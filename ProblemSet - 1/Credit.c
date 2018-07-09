@@ -107,6 +107,8 @@ int main(void) {
 // Total SUM - - - - - - - - -
 
         int totMod10 = (sum0 + sum1) % 10;
+        
+// Return Card Type - - - - - - - - -
 
         if (totMod10 == 0) {
             printf("%s\n\n", ctype);
@@ -115,12 +117,11 @@ int main(void) {
         else {
             printf("INVALID\n\n");
         }
-
 }
 
 
 
-// Checks if a string is entirely made up of ONLY numbers
+// Function: Checks if a string is entirely made up of ONLY numbers
 bool isnum(string s) {
 
     int len = strlen(s);
@@ -136,7 +137,7 @@ bool isnum(string s) {
 }
 
 
-// Converts individual int characters into int datatype
+// Function: Converts individual int characters into int datatype
 int citoi(char c) {
 
     int answer = c - '0';
