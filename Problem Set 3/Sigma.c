@@ -17,10 +17,13 @@ int sigma(int n);
 
 int main(void) {
 
-            int n;
+            int n = get_int("\nPositive Integer: ");
 
             do {
-                n = get_int("\nPositive Integer (between 1-50,000): ");
+
+                printf("\nUsage: Integer must be [0 - 65535]\n");
+                n = get_int("\nPositive Integer: ");
+
             } while (n < 1 || n > MAX);
 
             int answer = sigma(n);
@@ -43,3 +46,18 @@ int sigma(int num) {
     }
 
 }
+
+
+
+/* One way of writing the sigma() function.
+
+int sigma(int m) {
+
+    int sum = 0;
+    for (int i = 1; i <= m; i++) {
+        sum += i;  // equiv. to --> 'sum = sum + i;'
+    }
+    return sum;
+}
+
+*/
