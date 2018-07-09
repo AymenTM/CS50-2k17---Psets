@@ -13,7 +13,6 @@ Description: Adds up all the numbers from 1 to the number provided as input
 // Prototype
 int sigma(int n);
 
-
 #define MAX 65535
 
 int main(void) {
