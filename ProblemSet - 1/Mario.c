@@ -1,4 +1,6 @@
-// Program that prints out a double half-pyramid of a specified height.
+// Program that prints out a double half-pyramid of a specified height. 
+
+// ---> Mario (More Comfortable)
 
 #include <cs50.h>
 #include <stdio.h>
