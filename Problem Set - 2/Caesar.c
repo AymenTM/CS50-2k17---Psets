@@ -2,8 +2,10 @@
 
 Program: Encryption w/ Caesar's Cipher Technique.
 
-Description: given a key 'argv', will cipher a given plaintext and output
+Description: given a key 'argv[1]', will cipher a given plaintext and output
              ciphertext per Caesar's cipher technique.
+
+Website: https://docs.cs50.net/problems/caesar/caesar.html
 
 */
 
@@ -13,20 +15,18 @@ Description: given a key 'argv', will cipher a given plaintext and output
 #include <string.h>
 #include <stdlib.h>
 
-
 int main(int argc, string argv[]) {
 
             // Wrong Usage
             if (argc == 1)
                 {
-                    printf("\nERROR - NO KEY FOUND.\n\n1\n\n");
+                    printf("\nUsage: ./caesar k.\n\n1\n\n");
                 }
 
             else if (argc > 2)
                 {
-                    printf("\n\nERROR - 1 KEY LIMIT.\n\n1\n\n");
+                    printf("\n\nUsage: ./caesar k.\n\n1\n\n");
                 }
-
 
             // Correct Usage
             else
