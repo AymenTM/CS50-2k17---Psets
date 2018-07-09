@@ -5,7 +5,7 @@ Program: determines whether a provided credit card number is valid according to 
 Description: given a credit card number, using Luhn's Algorithm, checks whether or not a credit card
              number is valid. If valid determines what type of credit card number it is and outputs its type
              (AMEX, Mastercard, Visa). If not valid, outputs "INVALID".
-
+             
 */
 
 
