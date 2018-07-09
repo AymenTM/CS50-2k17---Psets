@@ -7,7 +7,6 @@ Description: given a key 'argv', will cipher a given plaintext and output
 
 */
 
-
 #include <cs50.h>
 #include <stdio.h>
 #include <ctype.h>
