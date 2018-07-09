@@ -44,7 +44,7 @@ int main(int argc, string argv[]) {
                    }
 
 
-                    // Correct Usage
+                    // If Usage is Correct
                     string k = argv[1];
                     int lenk = strlen(k);
                     string p = get_string("\nPlaintext: ");
