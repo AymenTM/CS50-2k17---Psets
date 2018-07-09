@@ -3,8 +3,8 @@
 Program: determines whether a provided credit card number is valid according to Luhn’s algorithm.
 
 Description: given a credit card number, using Luhn's Algorithm, checks whether or not a credit card
-number is valid. If valid determines what type of credit card number it is and outputs its type
-(AMEX, Mastercard, Visa). If not valid, outputs "INVALID".
+             number is valid. If valid determines what type of credit card number it is and outputs its type
+             (AMEX, Mastercard, Visa). If not valid, outputs "INVALID".
 
 */
 
@@ -14,6 +14,8 @@ number is valid. If valid determines what type of credit card number it is and o
 #include <ctype.h>
 #include <stdlib.h>
 #include <string.h>
+
+// Protypes
 bool isnum(string s);
 int citoi(char c);
 
