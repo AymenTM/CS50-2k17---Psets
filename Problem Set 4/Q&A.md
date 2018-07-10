@@ -64,7 +64,7 @@ Because the number of element of data that we are reading is 1, the BITMAPFILEHE
 ## What does `fseek` do?
 
 Repositions the file position indicator for the stream to a desired location specified in
-the functions arguments.
+the function's arguments.
 
 ## What is `SEEK_CUR`?
 
