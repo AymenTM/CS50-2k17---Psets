@@ -2,6 +2,8 @@
 
 Program: Given ANY name, will store and print out its initials.
 
+---> Initials (More Comfortable)
+
 Website: https://docs.cs50.net/problems/initials/more/initials.html
 
 */
