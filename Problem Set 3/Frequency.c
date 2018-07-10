@@ -1,5 +1,7 @@
 /*
 
+---> "Frequency" is one of the helper functions that were asked to be done, i just made it a program unto itself.
+
 Program: Calculates frequency (in Hz) of a (musical) note.
 
 Description: Takes as input a string a note (e.g., A4) and returns its corresponding
