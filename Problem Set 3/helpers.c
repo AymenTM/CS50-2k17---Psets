@@ -1,5 +1,5 @@
 
-// Helper functions for music
+// Helper functions used in programs found in the music folder (which was given by the staff).
 
 #include <cs50.h>
 #include "helpers.h"
