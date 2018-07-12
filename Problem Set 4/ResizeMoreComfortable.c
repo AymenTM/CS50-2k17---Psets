@@ -36,7 +36,7 @@ int main(int argc, char *argv[]) {
 
 // Check if 'f' is within the required bounds - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #2
 
-    // Store 'f'
+    // Convert 'f' into a float and store it
     float f = atof(argv[1]);
 
     // Test it
