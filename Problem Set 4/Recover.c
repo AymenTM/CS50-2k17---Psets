@@ -57,7 +57,7 @@ int main(int argc, char *argv[]) {
         int first_JPEG_found = 0;
 
         // We'll use this to assign the JPEG file its corresponding serial number (filename)
-        char outfile[10];
+        char outfile[8];
 
         // We'll use this to store a 512 Byte block (array of 512 --> 1 bytes)
         uint8_t buffer[512];
