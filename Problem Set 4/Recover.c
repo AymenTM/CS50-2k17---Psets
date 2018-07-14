@@ -39,7 +39,7 @@ int main(int argc, char *argv[]) {
         // Create File Pointer to Read Infile
         FILE *inptr = fopen(infile, "r");  // <--- notice the b, that's because we need/want to read the file in binary
 
-        // Check if pointer was successfully created
+        // Error Checking
         if (inptr == NULL) {
 
             fprintf(stderr, "Could not open %s\n", infile);
