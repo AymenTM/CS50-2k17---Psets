@@ -22,7 +22,7 @@ int main(int argc, char *argv[]) {
 
         int serialCount = 0, first_JPEG_found = 0;
 
-        // Extraction Process
+        // Extraction Algorithm
         while (fread(buffer, 1, 512, inptr) > 0) {
 
             // Check for the JPEG signature
