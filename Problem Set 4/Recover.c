@@ -39,7 +39,7 @@ int main(int argc, char *argv[]) {
         // Create File Pointer to Read Infile
         FILE *inptr = fopen(infile, "r");  // <--- notice the b, that's because we need/want to read the file in binary
 
-        // Error Checking
+        // Check if pointer was successfully created
         if (inptr == NULL) {
 
             fprintf(stderr, "Could not open %s\n", infile);
@@ -67,7 +67,7 @@ int main(int argc, char *argv[]) {
 
 
 
-// Find 1st JPEG - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #5
+// Find 1st JPEG - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #4
 
         // From the beginning of the memory card till we find the first JPEG
         while (!first_JPEG_found) {
@@ -102,7 +102,7 @@ int main(int argc, char *argv[]) {
 
 
 
-// Find the rest of the JPEGs - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #6
+// Find the rest of the JPEGs - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #5
 
         // After finding the first JPEG till the end of the memory card
         while (fread(buffer, sizeof(BYTE), 512, inptr) > 0) {  // <---- read a 512 Byte block
@@ -137,7 +137,7 @@ int main(int argc, char *argv[]) {
 
 
 
-// Close Streams & Free Memory - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #7
+// Close Streams & Free Memory - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #6
 
     fclose(inptr); fclose(outptr);
 
@@ -145,7 +145,7 @@ int main(int argc, char *argv[]) {
 
 
 
-// Success - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #8
+// Success - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #7
 
     return 0;
 }
