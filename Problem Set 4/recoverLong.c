@@ -2,8 +2,6 @@
 
 Program: Recovers JPEGs from a forensic image.
 
-Description: We read off of a trashed memory card to recover some deleted photos.
-
 Website: https://docs.cs50.net/2018/x/psets/4/recover/recover.html#background
 
 */
@@ -126,6 +124,7 @@ int main(int argc, char *argv[]) {
 
                 // Write the Block
                 fwrite(buffer, sizeof(BYTE), 512, outptr);
+                    
             }
 
             else {
@@ -133,6 +132,7 @@ int main(int argc, char *argv[]) {
                 // Write the Block
                 fwrite(buffer, sizeof(BYTE), 512, outptr);
             }
+                
         }
 
 
@@ -164,7 +164,8 @@ int check4JPEG_signature(BYTE *buffer) {
     }
 
     else {
-
-        return 0;  // 0 meaning false
+            
+        return 0;  // 0 meaning false    
     }
+       
 }
