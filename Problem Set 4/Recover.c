@@ -53,7 +53,7 @@ int main(int argc, char *argv[]) {
             else if (first_JPEG_found) fwrite(buffer, 1, 512, outptr);
         }
 
-    // Close Streams & Allocated Memory
+    // Close Streams & Free Allocated Memory
     fclose(inptr); fclose(outptr); free(outfile);
 
     return 0;
