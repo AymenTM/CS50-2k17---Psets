@@ -8,7 +8,6 @@ Website: https://docs.cs50.net/2018/x/psets/4/recover/recover.html#background
 
 */
 
-
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -21,7 +20,6 @@ int check4JPEG_signature(BYTE *buffer);
 
 int main(int argc, char *argv[]) {
 
-        
 // Correct Usage Check - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #1
 
         // Correct Usage Check
@@ -59,34 +57,20 @@ int main(int argc, char *argv[]) {
         int first_JPEG_found = 0;
 
         // We'll use this to store the JPEG filenames
-        char outfile[8];
+        char *outfile = malloc(8);
 
         // We'll use this to store a 512 Byte block of data (array of 512 --> 1 bytes)
         BYTE buffer[512];
 
-
-
-// Open Initial Outfile - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #4
-
-        // Make Serial number for the JPEG, Store in Variable & Increment Serial Number
-        sprintf(outfile, "%.3i.jpeg", serialCount); serialCount++;
-
-        // Close previous file (if it exists), Open a new File & Associate File Pointer to it
-        FILE *outptr = fopen(outfile, "w");
-
-        // Check if pointer was successfully created
-        if (outptr == NULL) {
-
-            fprintf(stderr, "Could not create %s\n", outfile);
-            return 2;
-        }
+        // Declare File Pointer; we'll use this for the outfiles
+        FILE *outptr;
 
 
 
 // Find 1st JPEG - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #5
 
         // From the beginning of the memory card till we find the first JPEG
-        while (first_JPEG_found == 0) {
+        while (!first_JPEG_found) {
 
             // Read a 512 Byte block
             fread(buffer, sizeof(BYTE), 512, inptr);
@@ -94,17 +78,30 @@ int main(int argc, char *argv[]) {
             // Check if the block starts with the 4 signature JPEG bytes
             if (check4JPEG_signature(buffer) == 1) {
 
-                // Write the Block
-                fwrite(buffer, sizeof(BYTE), 512, outptr);
-
                 // Signal that we've found the beginning of the first JPEG
                 first_JPEG_found++;
-            }
 
+                // Make Serial number for the JPEG & Increment Serial Number
+                sprintf(outfile, "%.3i.jpeg", serialCount); serialCount++;
+
+                // Close previous file (if it exists), Open a new File & Associate File Pointer to it
+                outptr = fopen(outfile, "w");
+
+                // Error checking
+                if (outptr == NULL) {
+
+                    fclose(inptr);
+                    fprintf(stderr, "Could not create %s\n", outfile);
+                    return 2;
+                }
+
+                // Write the Block
+                fwrite(buffer, sizeof(BYTE), 512, outptr);
+            }
         }
-        
-        
-        
+
+
+
 // Find the rest of the JPEGs - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #6
 
         // After finding the first JPEG till the end of the memory card
@@ -119,6 +116,14 @@ int main(int argc, char *argv[]) {
                 // Close previous file (if it exists), Open a new File & Associate File Pointer to it
                 freopen(outfile, "w", outptr);
 
+                // Error checking
+                if (outptr == NULL) {
+
+                    fclose(inptr); fclose(outptr);
+                    fprintf(stderr, "Could not create %s\n", outfile);
+                    return 2;
+                }
+
                 // Write the Block
                 fwrite(buffer, sizeof(BYTE), 512, outptr);
             }
@@ -132,16 +137,17 @@ int main(int argc, char *argv[]) {
 
 
 
-// Close Streams - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #7
+// Close Streams & Free Memory - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #7
 
-    fclose(inptr);
-    fclose(outptr);
+    fclose(inptr); fclose(outptr);
 
-        
+    free(infile); free(outfile);
+
+
+
 // Success - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #8
-        
-    return 0;
 
+    return 0;
 }
 
 
@@ -161,5 +167,4 @@ int check4JPEG_signature(BYTE *buffer) {
 
         return 0;  // 0 meaning false
     }
-
 }
