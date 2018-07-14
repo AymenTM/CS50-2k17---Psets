@@ -22,11 +22,11 @@ int main(int argc, char *argv[]) {
 
         int serialCount = 0, first_JPEG_found = 0;
 
-        // Extraction Algorithm
+        // Extraction Process
         while (fread(buffer, 1, 512, inptr) > 0) {
 
             // Check for the JPEG signature
-            if (buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0xff && 0xe0 <= buffer[3] && buffer[3] <= 0xef ) {
+            if (buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0xff && (buffer[3] & 0xf0) == 0xe0) {
 
                 (first_JPEG_found) ? fclose(outptr) : first_JPEG_found++;
 
@@ -45,7 +45,7 @@ int main(int argc, char *argv[]) {
             else if (first_JPEG_found) fwrite(buffer, 1, 512, outptr);
         }
 
-    // Close Streams & Free Allocated Memory
+    // Close Streams & Allocated Memory
     fclose(inptr); fclose(outptr); free(outfile);
 
     return 0;
