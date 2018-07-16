@@ -40,9 +40,9 @@ int main() {
 
 // Print Sorted Arrays - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    // // Quick Sort
-    // quickSort(numberArray, 0, sizeOfArray);
-    // printf("\nQuick Sort: --->  "); i = 0; while (i < sizeOfArray - 1 ) { printf("%i, ", numberArray[i]); i++;} printf("%i", numberArray[i]); puts("");
+    // Quick Sort
+    quickSort(numberArray, 0, sizeOfArray);
+    printf("\nQuick Sort: --->  "); i = 0; while (i < sizeOfArray - 1 ) { printf("%i, ", numberArray[i]); i++;} printf("%i", numberArray[i]); puts("");
 
     // // Merge Sort
     // mergeSort(numberArray, 0, sizeOfArray);
@@ -320,3 +320,5 @@ int *randomNumberArrayGenerator(int sizeOfArray, int min, int max) {
 
     return (randIntArray);
 }
+
+
