@@ -1,13 +1,12 @@
 
 // PROTOTYPES
 void bubbleSort(int *array, int sizeOfArray);
-void swap(int *var1, int *var2);
 
 
 // Bubble Sort
 void bubbleSort(int *array, int sizeOfArray) {
 
-    int i, j;
+    int i, j, temporary;
 
         // Scan 1 less element (from the end of the array) after each scan
         for (i = 0; i < sizeOfArray-1; i++)
@@ -19,12 +18,5 @@ void bubbleSort(int *array, int sizeOfArray) {
                 if (array[j] > array[j+1])
 
                     // Swap
-                    swap(&array[j], &array[j+1]);
+                    { temporary = array[j]; array[j] = array[j+1]; array[j+1] = temporary; }
 }
-
-
-void bubbleSort(int *array, int sizeOfArray);
-
-
-// Swaps the Contents of two Variables
-void swap(int *var1, int *var2) { int tempory = *var1; *var1 = *var2; *var2 = tempory; }
