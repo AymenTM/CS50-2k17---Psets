@@ -4,7 +4,7 @@ void selectionSort(int *array, int sizeOfArray);
 void swap(int *var1, int *var2);
 
 
-// Selection Srt
+// Selection Sort
 void selectionSort(int *array, int sizeOfArray) {
 
     int i, startIndex = 0, currentSmallest;
