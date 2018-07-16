@@ -1,6 +1,6 @@
 
-// PROTOTYPES
-void selectionSort(int *array, int sizeOfArray);
+// PROTOTYPE
+void insertionSort(int *array, int sizeOfArray);
 
 
 // Insertion Sort
