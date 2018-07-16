@@ -1,5 +1,5 @@
 
-// PROTOTYPES
+// PROTOTYPE
 void bubbleSort(int *array, int sizeOfArray);
 
 
