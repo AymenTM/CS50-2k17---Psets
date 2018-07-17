@@ -11,15 +11,13 @@ void insertionSort(int *array, int sizeOfArray) {
         // Scan Through Unsorted Array
         for (i = 1; i < sizeOfArray; i++) {
 
-            // Grab value at index 'i'
+            // Grab element at index 'i'
             grab = array[i];
 
-            // Make place for value at index 'i' in sorted list
-            for (sortd = i - 1; sortd >= 0 && array[sortd] > grab; sortd--)
+            // Make place for it in sorted list; move everything by one to the right
+            for (sortd = i - 1; sortd >= 0 && array[sortd] > grab; sortd--) array[sortd+1] = array[sortd];
 
-                array[sortd+1] = array[sortd];
-
-            // Insert value at index 'i'
+            // Insert element in its rightful place
             array[sortd+1] = grab;
         }
 }
