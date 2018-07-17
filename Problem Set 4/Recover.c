@@ -42,7 +42,7 @@ int main(int argc, char *argv[]) {
                 sprintf(outfile, "%.3i.jpeg", serialCount); serialCount++;
                 outptr = fopen(outfile, "w");
                 if (outptr == NULL) {
-                    fclose(inptr); fclose(outptr); free(infile); free(outfile);
+                    fclose(inptr); fclose(outptr); free(outfile);
                     fprintf(stderr, "Could not create %s\n", outfile);
                     return 2;
                 }
