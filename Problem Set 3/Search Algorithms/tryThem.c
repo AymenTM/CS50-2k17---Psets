@@ -121,9 +121,7 @@ int *randomNumberArrayGenerator(int sizeOfArray, int min, int max) {
     // Seed
     srand(time(NULL));
 
-    // Generates Random Integer & Stores it in Array
     for (int i = 0; i < sizeOfArray; i++) {
-
         do { n = rand() % (max + 1); } while (n < min || n > max);
         randIntArray[i] = n;
     }
@@ -134,21 +132,10 @@ int *randomNumberArrayGenerator(int sizeOfArray, int min, int max) {
 
 
 void insertionSort(int *array, int sizeOfArray) {
-
-    int i, grab, sortd;
-
-        // Scan Through Unsorted Array
-        for (i = 1; i < sizeOfArray; i++) {
-
-            // Grab value at index 'i'
-            grab = array[i];
-
-            // Make place for value at index 'i' in sorted list
-            for (sortd = i - 1; sortd >= 0 && array[sortd] > grab; sortd--)
-
-                array[sortd+1] = array[sortd];
-
-            // Insert value at index 'i'
+    
+        for (int i = 1; i < sizeOfArray; i++) {
+            int grab = array[i];
+            for (int sortd = i - 1; sortd >= 0 && array[sortd] > grab; sortd--) array[sortd+1] = array[sortd];             
             array[sortd+1] = grab;
         }
 }
