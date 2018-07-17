@@ -26,10 +26,10 @@ int main() {
     // Get Key
     printf("\nFind: "); scanf(" %i", &key);
 
-    // // Random Array
+    // // Unsorted Array
     // printf("\nRandom Array: --->  "); i = 0; while (i < sizeOfArray - 1 ) { printf("%i, ", numberArray[i]); i++;} printf("%i", numberArray[i]); puts("\n");
 
-    // // Insertion Sort
+    // // Sorted Array
     // printf("\nArray: --->  "); int i = 0; while (i < sizeOfArray - 1 ) { printf("%i, ", numberArray[i]); i++;} printf("%i", numberArray[i]); puts("");
 
 
@@ -58,15 +58,7 @@ int main() {
 
 int linearSearch(int key, int *array, int sizeOfArray) {
 
-        // Go through each element of the array
-        for (int i = 0; i < sizeOfArray; i++)
-
-            // If key is found
-            if (array[i] == key)
-
-                // Return its index
-                return i;
-        // Else, signal that key was not found
+        for (int i = 0; i < sizeOfArray; i++) if (array[i] == key) return i;
         return -1;
 }
 
@@ -81,28 +73,11 @@ int binarySearch(int key, int *array, int sizeOfArray) {
     // Define starting index (mid array) & Current Number of Elements
     int index = ceil(sizeOfArray * 0.5) - 1, elements = sizeOfArray;
 
-        // While there still are elements to be investigated
         while (elements) {
-
-            // If element matches key --> Return its index
             if (array[index] == key) return index;
-
-            // (Element Bigger than Key); Divide accordingly
-            else if (array[index] > key) {
-
-                elements = floor(elements * 0.5) + (elements%2 - 1);
-                index = index+1 - ceil(elements/2) + ((elements/2%2) - 1) - 1;
-            }
-
-            // (Element Smaller than Key); Divide accordingly
-            else (array[index] < key) {
-
-                elements = ceil(elements * 0.5) - (elements%2);
-                index = index+1 + ceil(elements/2) - (elements/2%2);
-            }
+            else if (array[index] > key) { elements = floor(elements * 0.5) + (elements%2 - 1); index = index+1 - ceil(elements/2) + ((elements/2%2) - 1) - 1; }
+            else (array[index] < key) { elements = ceil(elements * 0.5) - (elements%2); index = index+1 + ceil(elements/2) - (elements/2%2); }
         }
-
-        // Else, signal that key was not found
         return -1;
 }
 
