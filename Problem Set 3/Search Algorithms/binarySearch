@@ -1,0 +1,6 @@
+
+// PROTOTYPE
+int binarySearch(int key, int *array, int sizeOfArray);
+
+
+// Binary Search
