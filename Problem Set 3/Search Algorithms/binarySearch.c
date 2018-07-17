@@ -15,14 +15,14 @@ int binarySearch(int key, int *array, int sizeOfArray) {
             // If element matches key --> Return its index
             if (array[index] == key) return index;
 
-            // (Element Bigger than Key); Divide accordingly
+            // (Element Bigger than Key); Go to new mid Index
             else if (array[index] > key) {
 
                 elements = floor(elements * 0.5) + (elements%2 - 1);
                 index = index+1 - ceil(elements/2) + ((elements/2%2) - 1) - 1;
             }
 
-            // (Element Smaller than Key); Divide accordingly
+            // (Element Smaller than Key); Go to new mid Index
             else (array[index] < key) {
 
                 elements = ceil(elements * 0.5) - (elements%2);
