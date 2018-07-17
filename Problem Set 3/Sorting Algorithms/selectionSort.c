@@ -19,7 +19,7 @@ void selectionSort(int *array, int sizeOfArray) {
                 // If a smaller Int is Found
                 if (array[i] < array[currentSmallest])
 
-                    // Keep track of where the smallest int was found
+                    // Keep track of its index
                     currentSmallest = i;
             }
 
