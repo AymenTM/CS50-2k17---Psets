@@ -9,7 +9,7 @@ int binarySearch(int key, int *array, int sizeOfArray) {
     // Define starting index (mid array) & Current Number of Elements
     int index = ceil(sizeOfArray * 0.5) - 1, elements = sizeOfArray;
 
-        // While there still are elements to be investigated
+        // While Elements Remain Between Previous & Current Index
         while (elements) {
 
             // If element matches key --> Return its index
