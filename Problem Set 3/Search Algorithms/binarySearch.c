@@ -18,18 +18,19 @@ int binarySearch(int key, int *array, int sizeOfArray) {
             // (Element Bigger than Key); Go to new mid Index
             else if (array[index] > key) {
 
-                elements = floor(elements * 0.5) + (elements%2 - 1);
-                index = index+1 - ceil(elements/2) + ((elements/2%2) - 1) - 1;
+                elements = ceil(elements * 0.5);
+                index = index - (elements/2);
             }
 
             // (Element Smaller than Key); Go to new mid Index
-            else if (array[index] < key) {
+            else {
 
-                elements = ceil(elements * 0.5) - (elements%2);
-                index = index+1 + ceil(elements/2) - (elements/2%2);
+                elements = ceil(elements * 0.5);
+                index = index + (elements/2);
+                if (elements == 1) index++;
             }
         }
-        
-        // Else, signal that key was not found        
+
+        // Else, signal that key was not found
         return -1;
 }
