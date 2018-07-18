@@ -23,7 +23,7 @@ int binarySearch(int key, int *array, int sizeOfArray) {
             }
 
             // (Element Smaller than Key); Go to new mid Index
-            else (array[index] < key) {
+            else if (array[index] < key) {
 
                 elements = ceil(elements * 0.5) - (elements%2);
                 index = index+1 + ceil(elements/2) - (elements/2%2);
