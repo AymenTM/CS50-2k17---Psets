@@ -30,6 +30,7 @@ int binarySearch(int key, int *array, int sizeOfArray) {
                 index = index + (elements/2);
                 if (elements == 1) index++;
             }
+            
         }
 
         // Else, signal that key was not found
