@@ -59,10 +59,10 @@ int binarySearch(int key, int array[], int arraySize) {
         middle = (upperBound + lowerBound) / 2;
 
         // If Element Matches Key, Return its Index
-        if (key == values[middle]) return middle;
+        if (key == array[middle]) return middle;
 
         // If Element Bigger than Key
-        if (key < values[middle]) upperBound = middle - 1;
+        if (key < array[middle]) upperBound = middle - 1;
 
         // If Element Smaller than Key
         else lowerBound = middle + 1;
@@ -95,6 +95,6 @@ int binarySearch(int array[], int lowerBound, int upperBound, int key) {
         return binarySearch(array, middle+1, upperBound, key);
    }
 
-    // Key was not found
+    // Key Not Found
    return -1;
 }
