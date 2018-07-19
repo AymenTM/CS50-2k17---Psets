@@ -42,7 +42,7 @@ int binarySearch(int key, int array[], int sizeOfArray) {
 
 // Variation of Binary Search - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     
-bool search(int key, int array[], int arraySize) {
+int binarySearch(int key, int array[], int arraySize) {
 
     // If No Elements
     if (arraySize <= 0) return -1;
