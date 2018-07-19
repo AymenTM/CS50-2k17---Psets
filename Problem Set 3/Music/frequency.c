@@ -1,5 +1,7 @@
 /*
 
+---> "Frequency" is one of the helper functions that were asked to be done, i just made it a program unto itself.
+
 Program: Calculates frequency (in Hz) of a (musical) note.
 
 Description: Takes as input a string a note (e.g., A4) and returns its corresponding
@@ -8,7 +10,7 @@ Description: Takes as input a string a note (e.g., A4) and returns its correspon
              In this program we assume that the note will only be passed as a string
              formatted as such: XY or XMY, whereby X is the letter of the note, M is
              an occasional accidental and Y is the octave number.
-
+             
 */
 
 #include <cs50.h>
