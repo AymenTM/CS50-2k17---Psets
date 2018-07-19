@@ -12,7 +12,7 @@
 /**
  * Returns true if value is in array of n values, else false.
  */
-bool search(int value, int values[], int lowerBound, int upperBound);
+bool search(int value, int values[], int arraySize);
 
 /**
  * Sorts array of n values.
