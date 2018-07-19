@@ -63,7 +63,7 @@ int binarySearch(int key, int array[], int arraySize) {
         if (key < values[middle]) upperBound = middle - 1;
 
         // If Element Smaller than Key
-        if (key > values[middle]) lowerBound = middle + 1;
+        else lowerBound = middle + 1;
 
     }
 
