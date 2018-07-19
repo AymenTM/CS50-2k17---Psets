@@ -16,7 +16,7 @@ int binarySearch(int key, int array[], int sizeOfArray) {
             // If element matches key --> Return its index
             if (array[index] == key) return index;
 
-            // (Element Bigger than Key); Go to new mid Index
+            // If Element Bigger than Key
             else if (array[index] > key) {
 
                 elements = ceil(elements * 0.5);
@@ -24,7 +24,7 @@ int binarySearch(int key, int array[], int sizeOfArray) {
                 if (elements == 1) return -1;
             }
 
-            // (Element Smaller than Key); Go to new mid Index
+            // If Element Smaller than Key
             else {
 
                 elements = ceil(elements * 0.5);
