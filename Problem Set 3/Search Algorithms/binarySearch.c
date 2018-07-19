@@ -1,14 +1,14 @@
 
 // PROTOTYPE
-int binarySearch(int key, int array[], int sizeOfArray);
+int binarySearch(int key, int array[], int arraySize);
 
 
 // myVariation of Binary Search - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-int binarySearch(int key, int array[], int sizeOfArray) {
+int binarySearch(int key, int array[], int arraySize) {
 
     // Define starting index (mid array) & Current Number of Elements
-    int index = ceil(sizeOfArray * 0.5) - 1, elements = sizeOfArray;
+    int index = ceil(arraySize * 0.5) - 1, elements = arraySize;
 
         // While Elements Remain
         while (elements) {
