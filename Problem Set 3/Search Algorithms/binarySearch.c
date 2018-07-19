@@ -42,14 +42,14 @@ int binarySearch(int key, int array[], int sizeOfArray) {
 
 // Variation of Binary Search - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     
-int binarySearch(int key, int array[], int arraySize) {
+bool search(int key, int array[], int arraySize) {
 
     // If No Elements
     if (arraySize <= 0) return -1;
-    
+
     // Define Bounds
-    int lowerBound = 0;
-        upperBound = arraySize - 1;
+    int lowerBound = arraySize - arraySize,
+        upperBound = arraySize - 1,
         middle;
 
     // While Elements Remain
