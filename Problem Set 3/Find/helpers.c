@@ -13,27 +13,35 @@
 
 
 // Returns true if value is in array of n values, else false.
-// Recursive Binary Search
-bool search(int key, int array[], int lowerBound, int upperBound) {
+// Binary Search
+bool search(int key, int array[], int arraySize) {
+
+    // If No Elements
+    if (arraySize <= 0) return false;
+
+    // Define Bounds
+    int lowerBound = arraySize - arraySize,
+        upperBound = arraySize - 1,
+        middle;
 
     // While Elements Remain
     while (lowerBound <= upperBound) {
 
-        // Update Middle Index
-        int middle = (lowerBound + upperBound) / 2;
+        // Update Mid Index
+        middle = (upperBound + lowerBound) / 2;
 
         // If Element Matches Key, Return its Index
-        if (array[middle] == key) return true;
+        if (key == array[middle]) return true;
 
         // If Element Bigger than Key
-        if (array[middle] > key) return search(key, array, lowerBound, middle-1);
+        if (key < array[middle]) upperBound = middle - 1;
 
         // If Element Smaller than Key
-        else return search(key, array, middle+1, upperBound);
+        else lowerBound = middle + 1;
 
     }
 
-    // Key was not found
+    // Key Not Found
     return false;
 }
 
