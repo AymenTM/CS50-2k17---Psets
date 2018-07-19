@@ -13,7 +13,7 @@
 
 
 // Returns true if value is in array of n values, else false.
-// Binary Search
+// Iterative Binary Search
 bool search(int key, int array[], int arraySize) {
 
     // If No Elements
