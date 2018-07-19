@@ -24,7 +24,7 @@
 
 int main(int argc, string argv[])
 {
-    /* If user inputs arguments that is at the same time <2 AND >3 in number,
+    /* If user inputs a number of arguments that is at the same time <2 AND >3,
        print string notifying user of the correct usage and return '1' signaling an error. */
     if (argc != 2 && argc != 3)
     {
