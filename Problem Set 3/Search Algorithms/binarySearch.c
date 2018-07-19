@@ -44,8 +44,10 @@ int binarySearch(int key, int array[], int sizeOfArray) {
     
 int binarySearch(int key, int array[], int arraySize) {
 
-    if (arraySize <= 0) return false;
-
+    // If No Elements
+    if (arraySize <= 0) return -1;
+    
+    // Define Bounds
     int lowerBound = 0;
         upperBound = arraySize - 1;
         middle;
@@ -68,7 +70,7 @@ int binarySearch(int key, int array[], int arraySize) {
     }
 
     // Key Not Found
-    return -1;
+    return -2;
 }
 
 
@@ -96,4 +98,3 @@ int binarySearch(int array[], int lowerBound, int upperBound, int key) {
     // Key was not found
    return -1;
 }
-
