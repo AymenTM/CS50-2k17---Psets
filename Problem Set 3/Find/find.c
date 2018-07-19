@@ -48,14 +48,14 @@ int main(int argc, string argv[])
         // add hay to stack
         haystack[size] = straw;
     }
+    
     printf("\n");
 
     // sort the haystack
     sort(haystack, size);
 
-
     // try to find needle in haystack
-    if (search(needle, haystack, size-size, size-1)) {
+    if (search(needle, haystack, size)) {
 
         printf("\nFound needle in haystack!\n\n");
         return 0;
@@ -66,4 +66,5 @@ int main(int argc, string argv[])
         printf("\nDidn't find needle in haystack.\n\n");
         return 1;
     }
+    
 }
