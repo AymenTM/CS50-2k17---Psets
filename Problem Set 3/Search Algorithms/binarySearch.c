@@ -77,24 +77,25 @@ int binarySearch(int key, int array[], int arraySize) {
 
 // Recursive Variation of Binary Search - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     
-int binarySearch(int array[], int lowerBound, int upperBound, int key) {
-    
+int binarySearch(int key, int *array, int lowerBound, int upperBound) {
+
     // While Elements Remain
-    if (upperBound >= lowerBound) {
+    while (lowerBound <= upperBound) {
         
         // Update Middle Index
-        int middle = lowerBound + (upperBound - lowerBound)/2;
-        
+        int middle = (lowerBound + upperBound) / 2;
+
         // If Element Matches Key, Return its Index
         if (array[middle] == key) return middle;
-        
+
         // If Element Bigger than Key
-        if (array[middle] > key) return binarySearch(array, lowerBound, middle-1, key);
+        if (array[middle] > key) return binarySearch(key, array, lowerBound, middle-1);
 
-        // Else If Element Smaller than Key
-        return binarySearch(array, middle+1, upperBound, key);
-   }
+        // If Element Smaller than Key   
+        else return binarySearch(key, array, middle+1, upperBound);
 
-    // Key Not Found
-   return -1;
+    }
+
+    // Key was not found
+    return -1;
 }
