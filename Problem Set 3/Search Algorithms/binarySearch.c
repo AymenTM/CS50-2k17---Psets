@@ -3,7 +3,7 @@
 int binarySearch(int key, int array[], int arraySize);
 
 
-// myVariation of Binary Search - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// myVariation of Binary Search - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
 int binarySearch(int key, int array[], int arraySize) {
 
@@ -40,7 +40,7 @@ int binarySearch(int key, int array[], int arraySize) {
 
 
 
-// Variation of Binary Search - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// Variation of Binary Search - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
     
 int binarySearch(int key, int array[], int arraySize) {
 
@@ -75,7 +75,7 @@ int binarySearch(int key, int array[], int arraySize) {
 
 
 
-// Recursive Variation of Binary Search - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// Recursive Variation of Binary Search - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
     
 int binarySearch(int key, int *array, int lowerBound, int upperBound) {
 
@@ -98,4 +98,18 @@ int binarySearch(int key, int *array, int lowerBound, int upperBound) {
 
     // Key was not found
     return -1;
+}
+
+
+
+// Binary Search Trees - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+int binarySearch(int key, node *tree) {
+
+    if (!tree) return -1;
+
+        else if (tree->element == key) return tree;
+
+            else (tree->element > key) ? binarySearch(key, tree->left) : binarySearch(key, tree->right);
+
 }
