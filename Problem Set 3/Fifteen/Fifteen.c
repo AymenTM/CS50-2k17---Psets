@@ -101,7 +101,7 @@ int main(int argc, string argv[]) {
         // check for win
         if (won()) {
 
-            printf("For the win !\n\n");
+            printf("You win !\n\n");
             break;
         }
 
@@ -168,31 +168,24 @@ void init(void) {
         row,
         column;
 
-    for (row = 0; row < d; row++) {
+    // Iterate through positions of the board
+    for (row = 0; row < d; row++)
         for (column = 0; column < d; column++) {
 
-            // If the dimensions are even numbers
-            if (d%2 == 0 && num == 2) {
-
-                board[row][column] = 1;
-                board[row][column+1] = 2;
-                board[row][column+2] = 0;
-                blankRow = row;
-                blankColumn = column+2;
-                return;
-            }
-
-            else {
-
                 board[row][column] = num;
-                printf("%i", board[row][column]);
                 num--;
             }
-        }
+
+    // If the dimensions are even --> Overwrite   2 | 1 | 0   to   1 | 2 | 0
+    if (d%2 == 0) {
+
+        board[d-1][d-3] = 1;
+        board[d-1][d-2] = 2;
     }
 
-    blankRow = row-1;
-    blankColumn = column-1;
+    // Remember the blank tile position
+    blankRow = d-1;
+    blankColumn = d-1;
 
     return;
 }
@@ -239,32 +232,18 @@ bool move(int tile) {
             for (int column = 0; column < d; column++) {
 
                 // Check if Element Matches Tile
-                if (board[row][column] == tile) {
+                if (board[row][column] == tile)
 
-                    // If tile Adjacent to 'blankTile'
-                    if (column == blankColumn)
-                        if (row == blankRow+1 || row == blankRow-1) {
+                    // If tile is Adjacent to 'blankTile'
+                    if (((column == blankColumn) && (row == blankRow+1 || row == blankRow-1))
+                    || ((row == blankRow) && (column == blankColumn+1 || column == blankColumn-1))) {
 
-                            // Swap Tile & BlankTile Positions --> Return True
-                            swap(&board[row][column], &board[blankRow][blankColumn]),
-                            blankRow = row;
-                            blankColumn = column;
-                            return true;
-                        }
-
-
-                    if (row == blankRow)
-                        if (column == blankColumn+1 || column == blankColumn-1) {
-
-                            // Swap Tile & BlankTile Positions --> Return True
-                            swap(&board[row][column], &board[blankRow][blankColumn]),
-                            blankRow = row;
-                            blankColumn = column;
-                            return true;
-                        }
-
-                }
-
+                        // Swap Tile & BlankTile Positions --> Return True Signaling a Legal Move Was Preformed
+                        swap(&board[row][column], &board[blankRow][blankColumn]),
+                        blankRow = row;
+                        blankColumn = column;
+                        return true;
+                    }
             }
 
     return false;
@@ -279,17 +258,18 @@ bool won(void) {
         row,
         column;
 
+        // Iterate through board
         for (row = 0; row < d; row++)
             for (column = 0; column < d && num < (d*d); column++) {
 
-                if (board[row][column] != num)
-                    return false;
-
+                // Check if tiles are in correct order
+                if (board[row][column] != num) return false;
                 num++;
             }
 
     return true;
 }
+
 
 // Swap function to facilitate life.
 void swap(int *elementA, int *elementB) { int temporary = *elementA; *elementA = *elementB; *elementB = temporary; return; }
