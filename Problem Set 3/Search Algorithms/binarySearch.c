@@ -105,11 +105,14 @@ int binarySearch(int key, int *array, int lowerBound, int upperBound) {
 // Binary Search Trees - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 int binarySearch(int key, node *tree) {
-
+       
+    // Make sure the tree Exists
     if (!tree) return -1;
 
+        // If Element Matches Key, Return its Index
         else if (tree->element == key) return tree;
-
+            
+            // If Element Bigger than Key --> Go to Left Child ELSE Go to Right Child
             else (tree->element > key) ? binarySearch(key, tree->left) : binarySearch(key, tree->right);
 
 }
