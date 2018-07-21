@@ -112,7 +112,7 @@ int binarySearch(int key, node *tree) {
         // If Element Matches Key, Return its Index
         else if (tree->element == key) return tree;
             
-            // If Element Bigger than Key --> Go to Left Child ELSE Go to Right Child
+            // If Element Bigger than Key --> Search Left Side of Tree  ELSE  Right Side of Tree
             else (tree->element > key) ? binarySearch(key, tree->left) : binarySearch(key, tree->right);
 
 }
