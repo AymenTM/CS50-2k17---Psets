@@ -89,7 +89,7 @@ int binarySearch(int key, int *array, int lowerBound, int upperBound) {
         if (array[middle] == key) return middle;
 
         // If Element Bigger than Key
-        if (array[middle] > key) return binarySearch(key, array, lowerBound, middle-1);
+        else if (array[middle] > key) return binarySearch(key, array, lowerBound, middle-1);
 
         // If Element Smaller than Key   
         else return binarySearch(key, array, middle+1, upperBound);
