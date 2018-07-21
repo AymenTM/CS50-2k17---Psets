@@ -226,7 +226,6 @@ void draw(void) {
 // If tile borders empty space, moves tile and returns true, else returns false.
 bool move(int tile) {
 
-
         // Go through each element of the array individually
         for (int row = 0; row < d; row++)
             for (int column = 0; column < d; column++) {
@@ -269,6 +268,7 @@ bool won(void) {
 
     return true;
 }
+
 
 
 // Swap function to facilitate life.
