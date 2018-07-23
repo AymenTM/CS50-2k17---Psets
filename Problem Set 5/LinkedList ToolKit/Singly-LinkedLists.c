@@ -19,12 +19,12 @@ node *listN = malloc(sizeof(node));
 node *probe = malloc(sizeof(node));
 
 
-// Prototypes
-node *create(VALUE item);
-void insert(VALUE item, node *list);
-void insertOnce(VALUE item, node *list);
-bool find(VALUE item, node *list)
-void destroy(node *list);
+// // Prototypes
+// node *create(VALUE item);
+// void insert(VALUE item, node *list);
+// void insertOnce(VALUE item, node *list);
+// bool find(VALUE item, node *list)
+// void destroy(node *list)
 
 
 
