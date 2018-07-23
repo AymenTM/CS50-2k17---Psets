@@ -1,6 +1,6 @@
 
 // Doubly-Linked List ToolKit (Library)
-
+- - - - - - - - - - - - - - - - - - - - - 
 
 
 // Datatype carried by Node(s)
@@ -28,7 +28,6 @@ bool find(VALUE item, node *list);
 void delete(VALUE item, node *list);
 void destroy(node *list);
 void printList(node *list);
-
 
 
 
