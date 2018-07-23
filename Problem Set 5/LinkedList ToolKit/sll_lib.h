@@ -1,5 +1,5 @@
 
-//   Singly-Linked List ToolKit (Header)
+//   Singly-Linked List Library/ToolKit (Header)
 // - - - - - - - - - - - - - - - - - - - - -
 
 
