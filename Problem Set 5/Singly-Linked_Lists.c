@@ -49,7 +49,7 @@ node *create(VALUE item) {
 
 
 
-// Inserts a Key in a Singly-Linked List ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈
+// Inserts a Item in a Singly-Linked List ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈
 
 // Inserts whether item duplicate(s) exist(s) or not
 void insert(VALUE item, node *list) {
@@ -110,7 +110,7 @@ void insert(VALUE item, node *list) {
         return;
     }
 
-    // Insertion Unsuccessful
+    // Insertion unSuccessful
     fprintf(stderr, "\nItem duplicate(s) exists.\nInsertion Failed.\n");
     return;
 }
