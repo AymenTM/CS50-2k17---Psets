@@ -1,6 +1,6 @@
 
-// Singly-Linked List ToolKit (Library)
-- - - - - - - - - - - - - - - - - - - - - 
+//   Singly-Linked List ToolKit (Header)
+// - - - - - - - - - - - - - - - - - - - - -
 
 
 // Datatype carried by Node(s)
@@ -15,20 +15,24 @@ typedef struct preNode {
 
 
 // Global Variables
-node *listN = malloc(sizeof(node));
-node *probe = malloc(sizeof(node));
+node *probe;
+
+// node *listN;
+// .
+// .
+// .
 
 
 // // Prototypes
-// node *create(VALUE item);
-// void insert(VALUE item, node *list);
-// void insertOnce(VALUE item, node *list);
-// bool find(VALUE item, node *list)
-// void destroy(node *list)
+// node *create(VALUE item)
+// node *insert(VALUE item, node *list);
+// node *insertOnce(VALUE item, node *list);
+// node *find(VALUE item, node *list);
+// int destroy(node *list);
+// void printList(node *list)
 
 
-
-// Creates a Singly-Linked List & Returns a Pointer to it ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈
+// Creates a Singly-Linked List & Returns a Pointer to it - - - - - - - - - - - - - - - - - - - -
 
 node *create(VALUE item) {
 
@@ -36,7 +40,7 @@ node *create(VALUE item) {
     node *genesis_Node = malloc(sizeof(node));
     if (!genesis_Node) {
 
-        fprintf(stderr, "\nCould not create genesis node. Out of Memory.\nCreation of Singly-Linked List Failed.\n");
+        fprintf(stderr, "\nCreation of Singly-Linked List Failed. --> Could not create genesis node. Out of Memory.\n");
         return NULL;
     }
 
@@ -50,82 +54,14 @@ node *create(VALUE item) {
 
 
 
-// Inserts a Item in a Singly-Linked List ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈
-
-// Inserts whether item duplicate(s) exist(s) or not
-void insert(VALUE item, node *list) {
-
-    // Allocate Space for Node that is to be inserted
-    node *new_Node = malloc(sizeof(node));
-    if (!new_Node) {
-
-        fprintf(stderr, "\nCould not create new node. Out of Memory.\nInsertion Failed.\n");
-        return NULL;
-    }
-
-    if (!list) {
-
-        fprintf(stderr, "\nHead node points to NULL.\nInsertion Failed.\n");
-        return NULL;
-    }
-
-    // Initialize the Node and make it Point to the CURRENT head of the list, making the head of the list now 2nd in the list and the newly inserted node the head of the list
-    new_Node->item = item;
-    new_Node->next = list;
-
-    // Update Head to Point to New head of the list
-    list = new_Node;
-
-    // Insertion Successful
-    return;
-}
-
-
-// Inserts ONLY if No Item duplicate(s) exist(s)
-void insertOnce(VALUE item, node *list) {
-
-    if (find(item, list) == true) {
-
-        // Allocate Space for Node that is to be inserted
-        node *new_Node = malloc(sizeof(node));
-        if (!new_Node) {
-
-            fprintf(stderr, "\nCould not create node. Out of Memory.\nInsertion Failed.\n");
-            return NULL;
-        }
-
-        if (!list) {
-
-            fprintf(stderr, "\nHead node points to NULL.\nInsertion Failed.\n");
-            return NULL;
-        }
-
-        // Initialize the Node and make it Point to the CURRENT head of the list, making the head of the list now 2nd in the list and the newly inserted node the head of the list
-        new_Node->item = item;
-        new_Node->next = list;
-
-        // Update Head to Point to New head of the list
-        list = new_Node;
-
-        // Insertion Successful
-        return;
-    }
-
-    // Insertion unSuccessful
-    fprintf(stderr, "\nItem duplicate(s) exists.\nInsertion Failed.\n");
-    return;
-}
-
-
-
 // Linear Search (Sgly/Dbly) Linked List for an Item; Boolean Return & Probe Points to Item ≈ ≈
 
-bool find(VALUE item, node *list) {
+node *find(VALUE item, node *list) {
 
     if (!list) {
 
-        fprintf(stderr, "\nHead node points to NULL.\nSearch Failed.\n");
-        return;
+        fprintf(stderr, "\nSearch Failed. --> Head node points to NULL.\n");
+        return NULL;
     }
 
     // Place Probe at the Beginning of the List
@@ -135,69 +71,135 @@ bool find(VALUE item, node *list) {
     while (probe) {
 
         // Check if the Element Matches Key (return true if it does)
-        if (probe->item == item) return true;
+        if (probe->item == item) return probe;
 
         // Else Check next Item in the List
         else probe = probe->next;
     }
 
     // If Element Does Not Exist
-    fprintf(stderr, "\nItem Not Found.\n");
-    return false;
+    fprintf(stderr, "\nItem does not exist."); return NULL;
 }
 
 
 
-// Destroys an entire (Sgly/Dbly) Linked List ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈
+// Inserts a Item in a Singly-Linked List - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-// Recursive Implementation
-void destroy(node *list) {
+// Inserts whether item duplicate(s) exist(s) or not
+node *insert(VALUE item, node *list) {
 
-    if (!(list->next))
-        free(list);
+    // Allocate Space for Node that is to be inserted
+    node *new_Node = malloc(sizeof(node));
+    if (!new_Node) {
 
-    else
-        destroy(list->next);
-
-    return;
-}
-
-
-// Iterative Implementation
-void destroy(node *list) {
+        fprintf(stderr, "\nInsertion Failed. --> Could not create new node. Out of Memory.\n");
+        return NULL;
+    }
 
     if (!list) {
 
-        fprintf(stderr, "\nHead node points to NULL.\nDestruction Failed.\n");
+        fprintf(stderr, "\nInsertion Failed. --> Head node points to NULL.\n");
+        return NULL;
+    }
+
+    // Initialize the Node and make it Point to the CURRENT head of the list, making the head of the list now 2nd in the list and the newly inserted node the head of the list
+    new_Node->item = item;
+    new_Node->next = list;
+
+    // Insertion Successful
+    return new_Node;
+}
+
+
+// Inserts ONLY if No Item duplicate(s) exist(s)
+node *insertOnce(VALUE item, node *list) {
+
+    if (!list) {
+
+        fprintf(stderr, "\nInsertion Failed. --> Head node points to NULL.\n");
+        return NULL;
+    }
+
+    if (find(item, list) == NULL) {
+
+        // Allocate Space for Node that is to be inserted
+        node *new_Node = malloc(sizeof(node));
+        if (!new_Node) {
+
+            fprintf(stderr, "\nInsertion Failed. --> Could not create node. Out of Memory.\n");
+            return NULL;
+        }
+
+        // Initialize the Node and make it Point to the CURRENT head of the list, making the head of the list now 2nd in the list and the newly inserted node the head of the list
+        new_Node->item = item;
+        new_Node->next = list;
+
+        // Insertion Successful
+        return new_Node;
+    }
+
+    // Insertion unSuccessful
+    fprintf(stderr, "\nInsertion Failed. --> Duplicate(s) of %i exist(s).\n", item);
+    return list;
+}
+
+
+
+// Destroys an entire (Sgly/Dbly) Linked List - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+// Recursive Implementation
+int destroy(node *lists) {
+
+    if (lists->next == NULL) free(lists);
+
+    else { destroy(lists->next); free(lists); }
+
+    return 0;
+}
+
+
+// // Iterative Implementation
+// int destroy(node *lists) {
+
+//     if (!lists) {
+
+//         fprintf(stderr, "\nDestruction Failed. --> Head node points to NULL.\n");
+//         return 1;
+//     }
+
+//     probe = lists;
+
+//     while (lists != NULL) {
+
+//         probe = lists->next;
+//         free(lists);
+//         lists = probe;
+
+//     }
+
+//     return 0;
+// }
+
+
+
+// Prints a given (Sgly/Dbly) Linked List - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+void printList(node *list) {
+
+    if (!list) {
+
+        fprintf(stderr, "\nPrinting Failed. --> Head node points to NULL.\n");
         return;
     }
 
-    node *next = malloc(sizeof(node));
-    probe = list;
-    next = probe;
+    printf("\n\n---> ");
+    for (probe = list; probe != NULL; probe = probe->next) {
 
-    if (!next) {
-
-        fprintf(stderr, "\nCould not create node.\nDestruction Failed.\n");
-        return;
+        printf("%d, ", probe->item);
     }
-
-    while (probe) {
-
-        next = probe->next;
-        free(probe);
-        probe = next;
-    }
+    printf("\n\n");
 
     return;
 }
 
-
-
-// Prints a given (Sgly/Dbly) Linked List ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈
-
-void printList(node *list) {
-    for (probe = list; probe; probe = probe->next) { printf("%.0f, ", probe->item); } return;
-}
-
-// ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈ ≈
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
