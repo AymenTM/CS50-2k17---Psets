@@ -1,5 +1,5 @@
 
-// Singly-Linked List ToolKit
+// Singly-Linked List ToolKit (Library)
 
 
 
