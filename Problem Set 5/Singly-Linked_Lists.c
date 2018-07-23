@@ -22,6 +22,7 @@ node *probe = malloc(sizeof(node));
 // Prototypes
 node *create(VALUE item);
 void insert(VALUE item, node *list);
+void insertOnce(VALUE item, node *list);
 bool find(VALUE item, node *list)
 void destroy(node *list);
 
@@ -81,7 +82,7 @@ void insert(VALUE item, node *list) {
 
 
 // Inserts ONLY if No Item duplicate(s) exist(s)
-void insert(VALUE item, node *list) {
+void insertOnce(VALUE item, node *list) {
 
     if (find(item, list) == true) {
 
