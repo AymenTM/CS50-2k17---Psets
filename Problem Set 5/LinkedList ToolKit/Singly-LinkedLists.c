@@ -148,32 +148,32 @@ node *insertOnce(VALUE item, node *list) {
 // Destroys an entire (Sgly/Dbly) Linked List - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 // Recursive Implementation
-int destroy(node *lists) {
+int destroy(node *list) {
 
-    if (lists->next == NULL) free(lists);
+    if (list->next == NULL) free(list);
 
-    else { destroy(lists->next); free(lists); }
+    else { destroy(list->next); free(list); }
 
     return 0;
 }
 
 
 // // Iterative Implementation
-// int destroy(node *lists) {
+// int destroy(node *list) {
 
-//     if (!lists) {
+//     if (!list) {
 
 //         fprintf(stderr, "\nDestruction Failed. --> Head node points to NULL.\n");
 //         return 1;
 //     }
 
-//     probe = lists;
+//     probe = list;
 
-//     while (lists != NULL) {
+//     while (list != NULL) {
 
-//         probe = lists->next;
-//         free(lists);
-//         lists = probe;
+//         probe = list->next;
+//         free(list);
+//         list = probe;
 
 //     }
 
