@@ -1,5 +1,5 @@
 
-// Singly-Linked List Tool Kit
+// Singly-Linked List ToolKit
 
 
 
@@ -83,7 +83,7 @@ void insert(VALUE item, node *list) {
 // Inserts ONLY if No Item duplicate(s) exist(s)
 void insert(VALUE item, node *list) {
 
-    if (find(list, item) == true) {
+    if (find(item, list) == true) {
 
         // Allocate Space for Node that is to be inserted
         node *new_Node = malloc(sizeof(node));
