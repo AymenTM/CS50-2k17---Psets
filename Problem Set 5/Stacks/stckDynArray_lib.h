@@ -20,7 +20,7 @@ typedef struct {
 // void printStack(stack *stack)                //  <--- Prints stack that is currently in use.
 
 
-/*Define CAPACITY (i.e the amount of bytes you allocate to the array, and declare stack(s) in main) */
+/*Define CAPACITY (i.e the amount of bytes you allocate to the array) and declare stack(s) in main */
 
 
 // Push (i.e add a value to the stack) - - - - - - - - - - - - - - - - - - - - - - - - - - - -
