@@ -25,13 +25,13 @@ node *probe;
 
 
 // // Prototypes
-// node *create(VALUE item);
-// int insert(VALUE item, node *list);
-// int insertOnce(VALUE item, node *list);
-// int find(VALUE item, node *list);
-// int delete(VALUE item, node *list);
-// int destroy(node *list);
-// void printList(node *list);
+// node *create(VALUE item);                         //  <---- Creates head node of a doubely-linked list, returns a pointer to it.
+// int insert(VALUE item, node *list);               //  <---- Inserts given value, makes it head of the list and returns a pointer to it.
+// int insertOnce(VALUE item, node *list);           //  <---- Same as insert() just checks for there are no duplicates before.
+// int find(VALUE item, node *list);                 //  <---- Linearly searches list for a value and returns a pointer to it.
+// int delete(VALUE item, node *list);               //  <---- Deletes a value in the list, returns 0 for success.
+// int destroy(node *list);                          //  <---- Destroys/deletes/frees the entire list.
+// void printList(node *list);                       //  <---- Prints list.
 
 
 
