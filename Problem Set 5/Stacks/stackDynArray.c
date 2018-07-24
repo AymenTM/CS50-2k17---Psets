@@ -52,7 +52,7 @@ int main(void) {
     printf("Pop value: %i\n", pop(&s)); // 3999
     printStack(&s);
 
-    // Delete/Destroy Stack Array
+    // Free/Delete/Destroy Stack Array
     printf("\n\n\n\nTEST #5: Destroy/Delete Stack Array\n\n");
     free(s.array);
     printStack(&s);
