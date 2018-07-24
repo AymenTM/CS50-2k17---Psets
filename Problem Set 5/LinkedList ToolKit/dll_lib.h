@@ -1,5 +1,5 @@
 
-//   Doubly-Linked List Library/ToolKit (Header)
+//   Doubly-Linked List ToolKit (Header)
 // - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -87,8 +87,8 @@ node *find(VALUE item, node *list) {
 }
 
 
-// Used in del(), same as find() except doesn't print to stderr that item wasnt found, cuz del() prints it instead, otherwise it would print the msg twice
-node *dfind(VALUE item, node *list) {
+// Used in del() & insertOnce() to avoid having msg "item not found" printed twice or even printed at all
+node *find2(VALUE item, node *list) {
     if (!list) { fprintf(stderr, "\nSearch Failed. --> Head node points to NULL.\n"); return NULL; }
     probe = list;
     while (probe != NULL) {
@@ -134,7 +134,7 @@ node *insert(VALUE item, node *list) {
 // Inserts ONLY if No Item duplicate(s) exist(s) - - - - - - - - - - - - - - - - - - - - - - - - -
 node *insertOnce(VALUE item, node *list) {
 
-    if (find(item, list) == 0) {
+    if (find2(item, list) == 0) {
 
         // Allocate Space for New Node
         node *new_Node = malloc(sizeof(node));
@@ -180,7 +180,7 @@ int del(VALUE item, node *list) {
         return 1;
     }
 
-    if (dfind(item, list) == NULL) {
+    if (find2(item, list) == NULL) {
 
         fprintf(stderr, "\nDeletion Failed. --> Item Not Found.\n");
         return 2;
@@ -195,7 +195,7 @@ int del(VALUE item, node *list) {
     }
 
 
-    // Only Nodes that don't have a next & a prev pointer pointing to NULL
+    // Only Nodes that don't have a next pointer pointing to NULL
     if (deleteNode->next != NULL && deleteNode->prev != NULL) {
 
         deleteNode->next->prev = deleteNode->prev;
@@ -204,13 +204,13 @@ int del(VALUE item, node *list) {
 
     // Only if DeleteNode is the Head node of the list (makes the previous pointer of the node after the head node point to NULL, which after deletion will become the head node)
     if (deleteNode == list) {
-        list = deleteNode->next; deleteNode->next->prev = deleteNode->prev;
+
+        list = deleteNode->next;
+        deleteNode->next->prev = deleteNode->prev;
     }
 
     // Only last Node of the list (makes the before last node next pointer point to NULL, which after deletion will become the last node of the list)
-    if (deleteNode->next == NULL) {
-        deleteNode->prev->next = deleteNode->next;
-    }
+    if (deleteNode->next == NULL) { deleteNode->prev->next = deleteNode->next; }
 
 
     // Delete Node & Return
