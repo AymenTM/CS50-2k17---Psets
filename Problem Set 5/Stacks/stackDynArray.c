@@ -5,8 +5,6 @@
 #include <stdlib.h>
 
 #include "stckArray_lib.h"
-
-
 #define CAPACITY 40
 
 
