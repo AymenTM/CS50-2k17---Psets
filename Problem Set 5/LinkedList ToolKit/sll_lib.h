@@ -80,7 +80,7 @@ node *find(VALUE item, node *list) {
     }
 
     // If Element Does Not Exist
-    fprintf(stderr, "\nItem does not exist."); return NULL;
+    fprintf(stderr, "\nItem does not exist.\n"); return NULL;
 }
 
 
