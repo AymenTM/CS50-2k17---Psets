@@ -152,7 +152,7 @@ node *insertOnce(VALUE item, node *list) {
     }
 
     // Insertion unSuccessful
-    fprintf(stderr, "\nInsertion Failed. --> Item duplicate(s) exists.\n", item);
+    fprintf(stderr, "\nInsertion Failed. --> Item duplicate(s) exists.\n");
     return list;
 }
 
@@ -214,5 +214,7 @@ void printList(node *list) {
 
     return;
 }
+
+
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
