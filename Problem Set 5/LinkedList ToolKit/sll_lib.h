@@ -1,5 +1,5 @@
 
-//   Singly-Linked List Library/ToolKit (Header) 
+//   Singly-Linked List ToolKit (Header)
 // - - - - - - - - - - - - - - - - - - - - -
 
 
@@ -24,12 +24,14 @@ node *probe;
 
 
 // // Prototypes
-// node *create(VALUE item)
-// node *insert(VALUE item, node *list);
-// node *insertOnce(VALUE item, node *list);
-// node *find(VALUE item, node *list);
-// int destroy(node *list);
-// void printList(node *list)
+// node *create(VALUE item)                         //  <---- Creates head node of a singly-linked list, returns a pointer to it.
+// node *insert(VALUE item, node *list);            //  <---- Inserts given value, makes it head of the list and returns a pointer to it.
+// node *insertOnce(VALUE item, node *list);        //  <---- Same as insert() just checks for there are no duplicates before.
+// node *find(VALUE item, node *list);              //  <---- Linearly searches list for a value and returns a pointer to it.
+// node *find2(VALUE item, node *list)              //  <---- Used in insertOnce()
+// int destroy(node *list);                         //  <---- Destroys/deletes/frees the entire list.
+// void printList(node *list)                       //  <---- Prints list.
+
 
 
 // Creates a Singly-Linked List & Returns a Pointer to it - - - - - - - - - - - - - - - - - - - -
@@ -82,6 +84,17 @@ node *find(VALUE item, node *list) {
 }
 
 
+// Used in del() & insertOnce() to avoid having msg "item not found" printed twice or even printed at all
+node *find2(VALUE item, node *list) {
+    if (!list) { fprintf(stderr, "\nSearch Failed. --> Head node points to NULL.\n"); return NULL; }
+    probe = list;
+    while (probe != NULL) {
+        if (probe->item == item) return probe;
+        else probe = probe->next;
+    } return NULL;
+}
+
+
 
 // Inserts a Item in a Singly-Linked List - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -120,7 +133,7 @@ node *insertOnce(VALUE item, node *list) {
         return NULL;
     }
 
-    if (find(item, list) == NULL) {
+    if (find2(item, list) == NULL) {
 
         // Allocate Space for Node that is to be inserted
         node *new_Node = malloc(sizeof(node));
@@ -139,7 +152,7 @@ node *insertOnce(VALUE item, node *list) {
     }
 
     // Insertion unSuccessful
-    fprintf(stderr, "\nInsertion Failed. --> Duplicate(s) of %i exist(s).\n", item);
+    fprintf(stderr, "\nInsertion Failed. --> Item duplicate(s) exists.\n", item);
     return list;
 }
 
@@ -148,32 +161,32 @@ node *insertOnce(VALUE item, node *list) {
 // Destroys an entire (Sgly/Dbly) Linked List - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 // Recursive Implementation
-int destroy(node *list) {
+int destroy(node *lists) {
 
-    if (list->next == NULL) free(list);
+    if (lists->next == NULL) free(lists);
 
-    else { destroy(list->next); free(list); }
+    else { destroy(lists->next); free(lists); }
 
     return 0;
 }
 
 
 // // Iterative Implementation
-// int destroy(node *list) {
+// int destroy(node *lists) {
 
-//     if (!list) {
+//     if (!lists) {
 
 //         fprintf(stderr, "\nDestruction Failed. --> Head node points to NULL.\n");
 //         return 1;
 //     }
 
-//     probe = list;
+//     probe = lists;
 
-//     while (list != NULL) {
+//     while (lists != NULL) {
 
-//         probe = list->next;
-//         free(list);
-//         list = probe;
+//         probe = lists->next;
+//         free(lists);
+//         lists = probe;
 
 //     }
 
