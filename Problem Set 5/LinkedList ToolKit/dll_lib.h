@@ -1,5 +1,5 @@
 
-//   Doubly-Linked List ToolKit (Header)
+//   Doubly-Linked List Library/ToolKit (Header)
 // - - - - - - - - - - - - - - - - - - - - -
 
 
