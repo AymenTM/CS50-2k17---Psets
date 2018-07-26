@@ -40,7 +40,12 @@ int main(void) {
     enQ(13, q);
     enQ(14, q);
     enQ(15, q);
+    
 
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    
+    // TEST #2: Free Queue Successfully (i.e without any leaks)           [√] Passed
 
     printQ(q);
     freeQ(&q);
