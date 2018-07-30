@@ -1,11 +1,11 @@
+                        // - - - - - - - - - - - - - - - - - - - - - - - - - - //
+                        //  LinkedList Based Queues Library/ToolKit (Header)   //
+                        // - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
-// LinkedList Based Queues Library/ToolKit (Header)
-// - - - - - - - - - - - - - - - - - - - - - - - -
 
-
-// ===================================================================================================
-//                                         DECLARATIONS
-// ===================================================================================================
+// =================================================================================================== //
+//                                          DECLARATIONS                                               //
+// =================================================================================================== //
 
 
 // Datatype carried by nodes (int)
@@ -13,19 +13,24 @@
 
 
 // Queue Node Datatype Structure
-typedef struct node_t {
+typedef struct qNode_t {
     VALUE item;
-    struct node_t *prev;
-    struct node_t *next;
-} node;
+    struct qNode_t *prev;
+    struct qNode_t *next;
+} qNode;
 
 
-// Prototypes:
-// node *createQ(VALUE item);                       //  <--- createQ(); creates a queue and returns a pointer to its head.
-// node *enQ(VALUE item, node *qTail);              //  <--- enQ(); adds an element to the queue & returns a pointer to the new tail.
-// VALUE deQ(node **qHead);                         //  <--- deQ(); grabs/removes the oldest element of the queue & returns it.
-// void printQ(node *qHead);                        //  <--- printQ(); prints/displays queue in its current state.
-// int freeQ(node *qHead);                          //  <--- freeQ(); frees up all allocated memory (i.e deletes the queue).
+
+
+// =================================================================================================== //
+//                                           PROTOTYPES                                                //
+// =================================================================================================== //
+
+// qNode *createQ(VALUE item);                  //  <---  createQ();  creates a queue and returns a pointer to its head.
+// qNode *enQ(VALUE item, qNode *qTail);        //  <---      enQ();  adds an element to the queue & returns a pointer to the new tail.
+// VALUE deQ(qNode **qHead);                    //  <---      deQ();  grabs/removes the oldest element of the queue & returns it.
+// void printQ(qNode *qHead);                   //  <---   printQ();  prints/displays queue in its current state.
+// int freeQ(qNode *qHead);                     //  <---    freeQ();  frees up all allocated memory (i.e deletes the queue).
 
 
 // Note:
@@ -34,20 +39,20 @@ typedef struct node_t {
 
 
 
-// ===================================================================================================
-//                                           FUNCTIONS
-// ===================================================================================================
+// =================================================================================================== //
+//                                           FUNCTIONS                                                 //
+// =================================================================================================== //
 
 
 // Create a Stack; Return a Pointer to it - - - - - - - - - - - - - - - - - - - -
 
-node *createQ(VALUE item) {
+qNode *createQ(VALUE item) {
 
     // Allocate Space for Node
-    node *genesis_Node = malloc(sizeof(node));
+    qNode *genesis_Node = malloc(sizeof(qNode));
     if (!genesis_Node) {
 
-        fprintf(stderr, "\nFailed to create queue. --> Could not create genesis node. Out of Memory.\n");
+        fprintf(stderr, "\nFailed to create queue. --> Could not create genesis qNode. Out of Memory.\n");
         return NULL;
     }
 
@@ -64,14 +69,14 @@ node *createQ(VALUE item) {
 
 // Enqueues an Item - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-node *enQ(VALUE item, node *qTail) {
+qNode *enQ(VALUE item, qNode *qTail) {
 
     // Allocate Space for Node
-    node *new_Tail = malloc(sizeof(node));
+    qNode *new_Tail = malloc(sizeof(qNode));
     if (!new_Tail || !qTail) {
 
-        if (!qTail) fprintf(stderr, "\nEnqueueing Failed. --> Tail node points to NULL.\n");
-        if (!new_Tail) fprintf(stderr, "\nEnqueueing Failed. --> Could not create node. Out of Memory.\n");
+        if (!qTail) fprintf(stderr, "\nEnqueueing Failed. --> Tail qNode points to NULL.\n");
+        if (!new_Tail) fprintf(stderr, "\nEnqueueing Failed. --> Could not create qNode. Out of Memory.\n");
         return qTail;
     }
 
@@ -91,13 +96,13 @@ node *enQ(VALUE item, node *qTail) {
 
 // Dequeues First Element of Queue - - - - - - - - - - - - - - - - - - - - - - - - -
 
-VALUE deQ(node **qHead) {
+VALUE deQ(qNode **qHead) {
 
-    node *deleteNode = *qHead;
+    qNode *deleteNode = *qHead;
     if (!*qHead || !deleteNode) {
 
-        if (!*qHead) fprintf(stderr, "\nDequeueing Failed. --> Head node points to NULL.\n");
-        if (!deleteNode) fprintf(stderr, "\nDequeueing Failed. --> Could not create node. Out of Memory.\n");
+        if (!*qHead) fprintf(stderr, "\nDequeueing Failed. --> Head qNode points to NULL.\n");
+        if (!deleteNode) fprintf(stderr, "\nDequeueing Failed. --> Could not create qNode. Out of Memory.\n");
         return -1;
     }
 
@@ -119,10 +124,10 @@ VALUE deQ(node **qHead) {
 
 // Prints/Displays Queue  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-void printQ(node *qHead) {
+void printQ(qNode *qHead) {
 
     printf("\n\nQueue:\n\n---> ");
-    for (node *probe = qHead; probe; probe = probe->next) {
+    for (qNode *probe = qHead; probe; probe = probe->next) {
 
         printf("%d, ", probe->item);
     }
@@ -135,7 +140,7 @@ void printQ(node *qHead) {
 
 // Frees/Destroys/Deletes - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-int freeQ(node *qHead) {
+int freeQ(qNode *qHead) {
 
     if (qHead->next == NULL) free(qHead);
 
