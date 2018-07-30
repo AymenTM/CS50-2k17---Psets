@@ -71,6 +71,8 @@ qNode *createQ(VALUE item) {
 
 qNode *enQ(VALUE item, qNode *qTail) {
 
+    if (!qTail) return createQ(item);
+
     // Allocate Space for Node
     qNode *new_Tail = malloc(sizeof(qNode));
     if (!new_Tail || !qTail) {
@@ -138,7 +140,7 @@ void printQ(qNode *qHead) {
 
 
 
-// Frees/Destroys/Deletes a LinkedList Queue - - - - - - - - - - - - - - - - - - - - -
+// Frees/Destroys/Deletes - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 int freeQ(qNode *qHead) {
 
