@@ -44,7 +44,7 @@ typedef struct qNode_t {
 // =================================================================================================== //
 
 
-// Create a Stack; Return a Pointer to it - - - - - - - - - - - - - - - - - - - -
+// Create a Queue & Return a Pointer to it - - - - - - - - - - - - - - - - - - - -
 
 qNode *createQ(VALUE item) {
 
