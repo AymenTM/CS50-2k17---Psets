@@ -138,7 +138,7 @@ void printQ(qNode *qHead) {
 
 
 
-// Frees/Destroys/Deletes - - - - - - - - - - - - - - - - - - - - - - - - - -
+// Frees/Destroys/Deletes a LinkedList Queue - - - - - - - - - - - - - - - - - - - - -
 
 int freeQ(qNode *qHead) {
 
