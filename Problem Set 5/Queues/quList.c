@@ -14,7 +14,7 @@ int main(void) {
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     // Creating Queue
-    qTail_A = qHead_A = enQ( 10, qTail_A);
+    qTail_A = qHead_A = enQ(0, qTail_A);
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -82,8 +82,12 @@ int main(void) {
     // TEST #3: Free Queue Successfully (i.e without any leaks)           [√] Passed
 
     freeQ(qHead_A);
-    printQ(qHead_A);
-
+    
+// ==19600== HEAP SUMMARY: (valgrind)
+// ==19600==     in use at exit: 0 bytes in 0 blocks
+// ==19600==   total heap usage: 21 allocs, 21 frees, 504 bytes allocated
+// ==19600== 
+// ==19600== All heap blocks were freed -- no leaks are possible
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
