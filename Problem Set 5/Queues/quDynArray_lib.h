@@ -87,7 +87,7 @@ int enQ(VALUE item, queue *q) {
     // Error Checking
     if (!q) { fprintf(stderr, "Enqueueing failed. --> Pointer points to NULL.\n"); return 1;}
 
-    // Making sure there's room for new value OR you can at this point REALLOCATE more space
+    // Making sure there's room for new value
     if (isFull(q)) {
 
         fprintf(stderr, "Enqueueing failed. --> Queue at full capacity.\n");
@@ -106,7 +106,7 @@ int enQ(VALUE item, queue *q) {
 
 
 
-// Dequeues (i.e removes/grabs) the oldest (i.e the last) element from the queue & returns it - - - - -
+// Dequeues (i.e removes/grabs) the oldest element from the queue & returns it - - - - - - - - - - - 
 
 VALUE deQ(queue *q) {
 
