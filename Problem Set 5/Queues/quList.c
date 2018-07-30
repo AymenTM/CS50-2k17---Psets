@@ -6,16 +6,15 @@
 #include <stdlib.h>
 
 #include "quList_lib.h"
-node *qHead_A;
-node *qTail_A;
+qNode *qHead_A = NULL;
+qNode *qTail_A = NULL;
 
 int main(void) {
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     // Creating Queue
-    qHead_A = createQ(0);
-    qTail_A = qHead_A;
+    qTail_A = qHead_A = enQ( 10, qTail_A);
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
