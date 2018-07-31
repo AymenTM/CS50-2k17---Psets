@@ -72,6 +72,8 @@ int main(void) {
     printf("DeQ: %i\n", deQ(&qHead_A));
     printf("DeQ: %i\n", deQ(&qHead_A));
 
+    printf("DeQ: %i\n", deQ(&qHead_A));  // last element of the queue
+
     printQ(qHead_A);
 
 
@@ -79,17 +81,17 @@ int main(void) {
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
-    // TEST #3: Free Queue Successfully (i.e without any leaks)           [√] Passed
+    // TEST #3: Free Queue Successfully (i.e without any leaks)         [√] Passed
 
-    freeQ(qHead_A);
-    
-// ==19600== HEAP SUMMARY: (valgrind)
-// ==19600==     in use at exit: 0 bytes in 0 blocks
-// ==19600==   total heap usage: 21 allocs, 21 frees, 504 bytes allocated
-// ==19600== 
-// ==19600== All heap blocks were freed -- no leaks are possible
 
-    
+        freeQ(qHead_A);
+
+    // ==40924== HEAP SUMMARY:
+    // ==40924==     in use at exit: 0 bytes in 0 blocks
+    // ==40924==   total heap usage: 21 allocs, 21 frees, 504 bytes allocated
+    // ==40924==
+    // ==40924== All heap blocks were freed -- no leaks are possible
+
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     return 0;
