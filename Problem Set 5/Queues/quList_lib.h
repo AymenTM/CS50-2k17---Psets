@@ -101,16 +101,23 @@ qNode *enQ(VALUE item, qNode *qTail) {
 VALUE deQ(qNode **qHead) {
 
     qNode *deleteNode = *qHead;
-    if (!*qHead || !deleteNode) {
+    if (!*qHead) {
 
         if (!*qHead) fprintf(stderr, "\nDequeueing Failed. --> Head qNode points to NULL.\n");
-        if (!deleteNode) fprintf(stderr, "\nDequeueing Failed. --> Could not create qNode. Out of Memory.\n");
         return -1;
     }
 
     // Updating to New Head
-    *qHead = (*qHead)->next;
-    (*qHead)->prev = NULL;
+
+    // If its the first/last node of the queue, then nullify pointer to queue
+    if (!((*qHead)->prev) && !((*qHead)->next)) (*qHead) = NULL;
+
+    // If its any other node
+    else {
+
+        if (((*qHead)->next) != NULL) *qHead = (*qHead)->next;
+        if (((*qHead)->prev) != NULL) (*qHead)->prev = NULL;
+    }
 
     // Hold on to value that was deQ'd
     VALUE deQd_item = deleteNode->item;
@@ -143,6 +150,8 @@ void printQ(qNode *qHead) {
 // Frees/Destroys/Deletes - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 int freeQ(qNode *qHead) {
+
+    if (!qHead) return 0;
 
     if (qHead->next == NULL) free(qHead);
 
