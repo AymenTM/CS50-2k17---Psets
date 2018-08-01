@@ -60,6 +60,7 @@ typedef struct lvlOrderUtil_t {
 // bTreeNode *deleteBST(VALUE item, bTreeNode *root);    // <---              deleteBST();   Deletes a given node from a BST.
 
 // // OTHER
+// bTreeNode *getSuccessor(VALUE item, bTreeNode *root); // <---           getSuccessor();   Finds & Returns successor Node of a given node. (INCOMPLETE)
 // int _searchBST(VALUE item, bTreeNode *root);          // <---             _searchBST();   Searches a BST for an element and returns a boolean.
 // int insertBoolBST(VALUE item, bTreeNode *root);       // <---          insertBoolBST();   Inserts a value/node in BST & returns a bool.
 // int isBST(bTreeNode *root, boolValue_t *_state);      // <---                  isBST();   Returns whether or not b-tree is a BST.
@@ -69,7 +70,7 @@ typedef struct lvlOrderUtil_t {
 
 // // BINARY TREE TRAVERSALS
 // void level_OrderTravBTREE(bTreeNode *root);           // <---   level_OrderTravBTREE();   Traverses tree in level-order.
-// void spiral_OrderTravBTREE(bTreeNode *root);          // <---               INCOMPLETE.   Traverses tree in a spiral level-order fashion.
+// void spiral_OrderTravBTREE(bTreeNode *root);          // <---  spiral_OrderTravBTREE();   Traverses tree in a spiral level-order fashion. (INCOMPLETE)
 // void in_OrderTravBTREE(bTreeNode *root);              // <---      in_OrderTravBTREE();   Traverses tree in-order.
 // void pre_OrderTravBTREE(bTreeNode *root);             // <---     pre_OrderTravBTREE();   Traverses tree in pre-order.
 // void post_OrderTravBTREE(bTreeNode *root);            // <---    post_OrderTravBTREE();   Traverses tree in post-order.
@@ -207,6 +208,8 @@ bTreeNode *searchBST(VALUE item, bTreeNode *root) {
     return NULL;
 }
 
+// Finds and returns a pointer to the successor node of a given node
+// bTreeNode *getSuccessor(VALUE item, bTreeNode *root) { skipping it for now }
 
 
 // ========================================== INSERTION ===============================================
