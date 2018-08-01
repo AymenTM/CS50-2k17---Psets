@@ -35,13 +35,17 @@ node_SL *probe;
 //                                             PROTOTYPES                                              //
 // =================================================================================================== //
 
-// node_SL *create_SL(VALUE item)                         //  <---        create_SL();   Creates head node_SL of a singly-linked list, returns a pointer to it.
-// node_SL *insert_SL(VALUE item, node_SL *list);         //  <---        insert_SL();   Inserts given value, makes it head of the list and returns a pointer to it.
-// node_SL *insertOnce_SL(VALUE item, node_SL *list);     //  <---    insertOnce_SL();   Same as insert() just checks for there are no duplicates before.
-// node_SL *search_SL(VALUE item, node_SL *list);         //  <---        search_SL();   Linearly searches list for a value and returns a pointer to it.
-// node_SL *search2_SL(VALUE item, node_SL *list)         //  <---       search2_SL();   Used in insertOnce_SL()
-// int free_SLDL(node_SL *list);                          //  <---        free_SLDL();   Destroys/deletes/frees the entire list.
-// void print_SLDL(node_SL *list);                        //  <---       print_SLDL();   Prints singly-list.
+
+// BASIC OPERATIONS
+// node_SL *search_SL(VALUE item, node_SL *listHead);         //  <---        search_SL();   Linearly searches listHead for a value and returns a pointer to it.
+// int insert_SL(VALUE item, node_SL **listHead);             //  <---        insert_SL();   Inserts given value, makes it head of the listHead and returns a pointer to it.
+// int delete_SL(VALUE item, node_SL **listHead);             //  <---        delete_SL();   Deletes node containing given value.
+
+// OTHER
+// int create_SL(VALUE item, **listHead);                     //  <---        create_SL();   Creates head node_SL of a singly-linked listHead, returns a pointer to it.
+// int insertOnce_SL(VALUE item, node_SL **listHead);         //  <---    insertOnce_SL();   Same as insert() just checks for there are no duplicates before.
+// int free_SL(node_SL *listHead);                            //  <---          free_SL();   Destroys/deletes/frees the entire listHead.
+// void print_SL(node_SL *listHead);                          //  <---         print_SL();   Prints singly-listHead.
 
 
 
@@ -51,43 +55,19 @@ node_SL *probe;
 // =================================================================================================== //
 
 
-// ============================================ CREATE =============================================== //
-
-// Creates a Singly-Linked List & Returns a Pointer to it
-node_SL *create_SL(VALUE item) {
-
-    // Allocate Space for Node
-    node_SL *genesis_Node = malloc(sizeof(node_SL));
-    if (!genesis_Node) {
-
-        fprintf(stderr, "\nCreation of Singly-Linked List Failed. --> Could not create genesis node_SL. Out of Memory.\n");
-        return NULL;
-    }
-
-    // Initialize the Node
-    genesis_Node->item = item;
-    genesis_Node->next = NULL;
-
-    // Return a Pointer to the Node/List
-    return genesis_Node;
-}
-
-
-
-
 // =========================================== SEARCH ================================================ //
 
 // Linear Search (Sgly/Dbly) Linked List for an Item; Boolean Return & Probe Points to Item ≈ ≈
-node_SL *search_SL(VALUE item, node_SL *list) {
+node_SL *search_SL(VALUE item, node_SL *listHead) {
 
-    if (!list) {
+    if (!listHead) {
 
-        fprintf(stderr, "\nSearch Failed. --> Head node_SL points to NULL.\n");
+        fprintf(stderr, "\nSearch Failed. --> Head points to NULL.\n");
         return NULL;
     }
 
     // Place Probe at the Beginning of the List
-    probe = list;
+    probe = listHead;
 
     // Till the Probe Reaches the end of the Linked List
     while (probe) {
@@ -100,92 +80,175 @@ node_SL *search_SL(VALUE item, node_SL *list) {
     }
 
     // If Element Does Not Exist
-    fprintf(stderr, "\nItem does not exist.\n"); return NULL;
+    fprintf(stderr, "\nNot Found.\n"); return NULL;
 }
 
 
-// Used in destroy_SL() & insertOnce_SL() to avoid having msg "item not found" printed twice or even printed at all
-node_SL *search2_SL(VALUE item, node_SL *list) {
-    if (!list) { fprintf(stderr, "\nSearch Failed. --> Head node_SL points to NULL.\n"); return NULL; }
-    probe = list;
-    while (probe != NULL) {
-        if (probe->item == item) return probe;
-        else probe = probe->next;
-    } return NULL;
+// insertOnce_SL(); UTILITY
+node_SL *search2_SL(VALUE item, node_SL *listHead) {
+    if (!listHead) { fprintf(stderr, "\nSearch Failed. --> Head points to NULL.\n"); return NULL;}
+    probe = listHead;
+    while (probe) { if (probe->item == item) return probe; else probe = probe->next; }
+    return NULL;
 }
-
-
-
 
 // =========================================== INSERT ================================================ //
 
+// Creates a Singly-Linked List & Returns a Pointer to it
+int create_SL(VALUE item, node_SL **listHead) {
+
+    // Allocate Space for New Node
+    node_SL *genesis_Node = malloc(sizeof(node_SL));
+    if (!genesis_Node) {
+
+        fprintf(stderr, "\nCreation of Singly-Linked List Failed. --> Could not create genesis node. Out of Memory.\n");
+        return 1;
+    }
+
+    // Initialize the Node
+    genesis_Node->item = item;
+    genesis_Node->next = NULL;
+
+    // Update List head
+    (*listHead) = genesis_Node;
+
+    // Creation Successful
+    return 0;
+}
+
+
 // Inserts a Item in a Singly-Linked List
-node_SL *insert_SL(VALUE item, node_SL *list) {
+int insert_SL(VALUE item, node_SL **listHead) {
+
+    // If Head List points to nothing then create new node
+    if (!(*listHead)) {
+        if (create_SL(item, &(*listHead)) == 0) return 0;
+        else return 1;
+    }
 
     // Allocate Space for Node that is to be inserted
     node_SL *new_Node = malloc(sizeof(node_SL));
+    if (!new_Node) {
 
-    // Error Checking
-    if (!list || !new_Node) {
-
-        if (!list) fprintf(stderr, "\nInsertion Failed. --> Head node_SL points to NULL.\n");
-        if (!new_Node) fprintf(stderr, "\nInsertion Failed. --> Could not create new node_SL. Out of Memory.\n");
-        return NULL;
+        fprintf(stderr, "\nInsertion Failed. --> Could not create new node. Out of Memory.\n");
+        return 1;
     }
 
-
-    // Initialize the Node and make it Point to the CURRENT head of the list, making the head of the list now 2nd in the list and the newly inserted node_SL the head of the list
+    // Initialize the Node and make it Point to the CURRENT head of the listHead, making the head of the listHead now 2nd in the listHead and the newly inserted node_SL the head of the listHead
     new_Node->item = item;
-    new_Node->next = list;
+    new_Node->next = (*listHead);
+
+    // Update List head
+    (*listHead) = new_Node;
 
     // Insertion Successful
-    return new_Node;
+    return 0;
 }
 
 
 // Inserts ONLY if No Item duplicate(s) exist(s)
-node_SL *insertOnce_SL(VALUE item, node_SL *list) {
+int insertOnce_SL(VALUE item, node_SL **listHead) {
 
-    if (!list) {
-
-        fprintf(stderr, "\nInsertion Failed. --> Head node_SL points to NULL.\n");
-        return NULL;
+    // If Head List points to nothing then create new node
+    if (!(*listHead)) {
+        if (create_SL(item, &(*listHead)) == 0) return 0;
+        else return 1;
     }
 
-    if (search2_SL(item, list) == NULL) {
+    if (search2_SL(item, *listHead) == NULL) {
 
         // Allocate Space for Node that is to be inserted
         node_SL *new_Node = malloc(sizeof(node_SL));
         if (!new_Node) {
 
-            fprintf(stderr, "\nInsertion Failed. --> Could not create node_SL. Out of Memory.\n");
-            return NULL;
+            fprintf(stderr, "\nInsertion Failed. --> Could not create node. Out of Memory.\n");
+            return 1;
         }
 
-        // Initialize the Node and make it Point to the CURRENT head of the list, making the head of the list now 2nd in the list and the newly inserted node_SL the head of the list
         new_Node->item = item;
-        new_Node->next = list;
+        new_Node->next = (*listHead);
+
+        // Update List head
+        (*listHead) = new_Node;
 
         // Insertion Successful
-        printf("\nInsertion Successful.\n");
-        return new_Node;
+        return 0;
     }
 
     // Insertion unSuccessful
-    fprintf(stderr, "\nInsertion Failed. --> Item duplicate(s) exists.\n");
-    return list;
+    fprintf(stderr, "\nItem duplicate(s) exists.\n");
+    return 1;
 }
+
+
+// ============================================= DELETE ============================================== //
+
+// Deletes a given node from the SL
+int delete_SL(VALUE item, node_SL **listHead) {
+
+    // Error Checking
+    if (!(*listHead)) {
+        fprintf(stderr, "\nDeletion Failed. --> Head points to NULL.\n");
+        return 1;
+    }
+
+    node_SL *deleteNode = NULL;
+
+    // Case 1: If node is first node of the list
+    if ((*listHead)->item == item) {
+
+        // Point deleteNode to the node we want to delete
+        deleteNode = (*listHead);
+
+        // Update List head to point to next node
+        (*listHead) = (*listHead)->next;
+
+        // Free/Delete DeleteNode
+        free(deleteNode);
+    }
+
+    else {
+
+        probe = (*listHead);
+        while (probe) {
+
+            // Find the node previous to the node we want to delete
+            if (probe->next->item == item) {
+
+                // Case 2: If node is NOT first or last node of the list
+                // Case 3: If node is last node of the list
+                if (!(probe->next->next)) {
+
+                    // Point deleteNode to the node we want to delete
+                    deleteNode = probe->next;
+
+                    // Update Node previous to deleteNode to point to node after next
+                    probe->next = deleteNode->next;
+
+                    // Free/Delete DeleteNode
+                    free(deleteNode);
+                }
+            }
+
+            // Else Check next Item in the List
+            else probe = probe->next;
+        }
+    }
+
+    return 0;
+}
+
 
 
 
 // ============================================= FREE ================================================ //
 
 // Frees the entire (Sgly/Dbly) Linked List
-int free_SLDL(node_SL *lists) {
+int free_SL(node_SL *listHead) {
 
-    if (lists->next == NULL) free(lists);
+    if (listHead->next == NULL) free(listHead);
 
-    else { free_SLDL(lists->next); free(lists); }
+    else { free_SL(listHead->next); free(listHead); }
 
     return 0;
 }
@@ -196,15 +259,15 @@ int free_SLDL(node_SL *lists) {
 // ============================================ PRINT =============================================== //
 
 // Prints a given (Sgly/Dbly) Linked List
-void print_SLDL(node_SL *list) {
+void print_SL(node_SL *listHead) {
 
-    if (!list) {
+    if (!listHead) {
         fprintf(stderr, "\nPrinting Failed. --> Head node_SL points to NULL.\n");
         return;
     }
 
-    // Iterates through list and prints each element
-    for (probe = list; probe != NULL; probe = probe->next) printf("%d, ", probe->item);
+    // Iterates through listHead and prints each element
+    for (probe = listHead; probe != NULL; probe = probe->next) printf("%d, ", probe->item);
 
     return;
 }
