@@ -41,7 +41,7 @@ node_SL *probe;
 // node_SL *search_SL(VALUE item, node_SL *list);         //  <---        search_SL();   Linearly searches list for a value and returns a pointer to it.
 // node_SL *search2_SL(VALUE item, node_SL *list)         //  <---       search2_SL();   Used in insertOnce_SL()
 // int free_SLDL(node_SL *list);                          //  <---        free_SLDL();   Destroys/deletes/frees the entire list.
-// void print_SLDL(node_SL *list);                        //  <---         print_SLDL();   Prints singly-list.
+// void print_SLDL(node_SL *list);                        //  <---       print_SLDL();   Prints singly-list.
 
 
 
