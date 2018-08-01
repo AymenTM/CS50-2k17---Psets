@@ -9,7 +9,7 @@
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 #include "sll_lib.h"
-node_SL *list;
+SLL_node *list;
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -34,7 +34,7 @@ int main(void) {
     VALUE insertValue; printf("\nInsert: ") ;scanf(" %d", &insertValue); fflush(stdin);
 
     // Creates a Linked List and Associates a POINTER TO THE LIST (i.e a pointer that points to the first node_SL of the linked list (i.e the HEAD) allowing us to eventually traverse and have access to the whole linked list)
-    list = create_SL(insertValue);
+    insert_SLL(insertValue, &list);
 
     // Prompt and Insert the rest of the Values
     for (size_t i = 0; i < values2BeInserted-1; i++) {
@@ -43,52 +43,71 @@ int main(void) {
         printf("\nInsert: "); scanf(" %i", &insertValue); fflush(stdin);
 
         // Inserts inputted Value in a the Linked List
-        list = insert_SL(insertValue, list);
+        insert_SLL(insertValue, &list);
     }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    printf("\n\nHere is your list: ");
-    print_SLDL(list);
+    printf("\n\nList:\n--> ");
+    print_SLL(list);
 
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     // TEST THE LIBRARY FUNCTIONS
 
     printf("\n\n\n\nTest #1: InsertOnce( ) - - - - - - - - - - - - - - - - - - \n\n");
     printf("Inserting 3, 5, 90\n");
-    list = insertOnce_SL(3, list); // should give us an error message
-    list = insertOnce_SL(5, list); // should give us an error message
-    list = insertOnce_SL(90, list); // should give us an error message
+    insertOnce_SLL(3, &list); // should give us an error message
+    insertOnce_SLL(5, &list); // should give us an error message
+    insertOnce_SLL(90, &list); // should give us an error message
 
     usleep(1000000);
 
     printf("\n\n\n\nTest #2: Insert( ) - - - - - - - - - - - - - - - - - - - - - \n\n");
     printf("Inserting 2, 101, 92\n");
-    list = insert_SL(2, list); // add a 2
-    list = insert_SL(101, list); // add a 101
-    list = insert_SL(92, list); // add a 92
-    print_SLDL(list);
+    insert_SLL(2, &list); // add a 2
+    insert_SLL(101, &list); // add a 101
+    insert_SLL(92, &list); // add a 92
+    print_SLL(list);
 
     usleep(1000000);
 
     printf("\n\n\n\nTest #3: Find( ) - - - - - - - - - - - - - - - - - - - - - - \n\n");
-    printf("\nAddress of 2: %p\n", search_SL(2, list));
-    printf("\nAddress of 5: %p\n", search_SL(5, list));
-    printf("\nAddress of 10: %p\n", search_SL(10, list));
-    printf(" Address of 11: %p\n", search_SL(11, list)); // should give error message
-    printf("\nAddress of 5 Again: %p", search_SL(5, list));
+    printf("\nAddress of 2: %p\n", search_SLL(2, list));
+    printf("\nAddress of 5: %p\n", search_SLL(5, list));
+    printf("\nAddress of 10: %p\n", search_SLL(10, list));
+    printf(" Address of 11: %p\n", search_SLL(11, list)); // should give error message
+    printf("\nAddress of 5 Again: %p", search_SLL(5, list));
 
     usleep(1000000);
 
-    printf("\n\n\n\nTest #4: Free List - - - - - - - - - - - - - - - - - - - - - \n\n");
-    printf("%i\n", free_SLDL(list));
-
-    usleep(3000000);
-
-    printf("\n\nTests complete.\n\n");
+    // printf("\n\n\n\nTest #4: Free List - - - - - - - - - - - - - - - - - - - - - \n\n");
+    // printf("%i\n", free_SLL(list));
+    //
+    // usleep(3000000);
+    //
+    // printf("\n\nTests complete.\n\n");
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    printf("\n\n");
+
+    printf("%i\n", delete_SLL(1, &list));
+    printf("%i\n", delete_SLL(3, &list));
+    printf("%i\n", delete_SLL(5, &list));
+    printf("%i\n", delete_SLL(7, &list));
+    printf("%i\n", delete_SLL(9, &list));
+    printf("%i\n", delete_SLL(10, &list));
+    printf("%i\n", delete_SLL(8, &list));
+    printf("%i\n", delete_SLL(6, &list));
+    printf("%i\n", delete_SLL(4, &list));
+    printf("%i\n", delete_SLL(2, &list));
+
+    // printf("\nAfter Deletion:\n--> ");
+    printf("\n");
+    print_SLL(list);
+    printf("\n\n");
+    printf("%i\n", free_SLL(list));
 
     // Success
     return 0;
