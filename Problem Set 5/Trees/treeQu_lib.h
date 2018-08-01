@@ -1,5 +1,5 @@
               // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
-              //  LinkedList Based Queues Library/ToolKit Modified for Trees(Header)   //
+              //  LinkedList Based Queues Library/ToolKit Modified for Trees (Header)  //
               // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - //
 
 
