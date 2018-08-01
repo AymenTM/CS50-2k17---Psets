@@ -26,15 +26,15 @@ typedef struct _SLL_node {
 
 
 // BASIC OPERATIONS
-// SLL_node *search_SLL(VALUE item, SLL_node *listHead);         //  <---        search_SLL();   Linearly searches listHead for a value and returns a pointer to it.
-// int insert_SLL(VALUE item, SLL_node **listHead);             //  <---        insert_SLL();   Inserts given value, makes it head of the listHead and returns a pointer to it.
-// int delete_SLL(VALUE item, SLL_node **listHead);             //  <---        delete_SLL();   Deletes node containing given value.
+// SLL_node *search_SLL(VALUE item, SLL_node *listHead);        //  <---        search_SLL();   Linear search to find node containing given value; returns a pointer to that node.
+// int insert_SLL(VALUE item, SLL_node **listHead);             //  <---        insert_SLL();   Inserts given value in the list; returns 0 upon successful insertion.
+// int delete_SLL(VALUE item, SLL_node **listHead);             //  <---        delete_SLL();   Deletes node containing given value; returns 0 upon successful deletion.
 
 // OTHER
-// int create_SLL(VALUE item, **listHead);                     //  <---        create_SLL();   Creates head SLL_node of a singly-linked listHead, returns a pointer to it.
-// int insertOnce_SLL(VALUE item, SLL_node **listHead);         //  <---    insertOnce_SLL();   Same as insert() just checks for there are no duplicates before.
-// int free_SLL(SLL_node *listHead);                            //  <---          free_SLL();   Destroys/deletes/frees the entire listHead.
-// void print_SLL(SLL_node *listHead);                          //  <---         print_SLL();   Prints singly-listHead.
+// int create_SLL(VALUE item, **listHead);                      //  <---        create_SLL();   Creates head node of a singly-linked listHead, returns upon success.
+// int insertOnce_SLL(VALUE item, SLL_node **listHead);         //  <---    insertOnce_SLL();   Same as insert_SLL(), just checks for duplicates before insertion.
+// int free_SLL(SLL_node *listHead);                            //  <---          free_SLL();   Frees the entire singly-linked list.
+// void print_SLL(SLL_node *listHead);                          //  <---         print_SLL();   Prints singly-linked list in order.
 
 
 
