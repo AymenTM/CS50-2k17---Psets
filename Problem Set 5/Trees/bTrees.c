@@ -164,8 +164,8 @@ int main(void) {
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    /* TEST #10: Get Level Order Right using a Queue & the whole        [√] Passed
-    thing + the tree Successfully (i.e without any leaks) */
+    /* TEST #10: Get Level Order Right using a Queue & then Free the    [√] Passed
+    whole thing + the tree Successfully (i.e without any leaks) */
 
     // Level Order
     printf("\nLevel Order:\n--> ");
