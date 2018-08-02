@@ -31,7 +31,6 @@ typedef struct _SLL_node {
 // int delete_SLL(VALUE item, SLL_node **listHead);             //  <---        delete_SLL();   Deletes node containing given value; returns 0 upon successful deletion.
 
 // OTHER
-// int create_SLL(VALUE item, **listHead);                      //  <---        create_SLL();   Creates head node of a singly-linked listHead, returns upon success.
 // int insertOnce_SLL(VALUE item, SLL_node **listHead);         //  <---    insertOnce_SLL();   Same as insert_SLL(), just checks for duplicates before insertion.
 // int free_SLL(SLL_node *listHead);                            //  <---          free_SLL();   Frees the entire singly-linked list.
 // void print_SLL(SLL_node *listHead);                          //  <---         print_SLL();   Prints singly-linked list in order.
