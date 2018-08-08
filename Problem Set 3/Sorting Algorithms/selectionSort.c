@@ -4,28 +4,29 @@ void selectionSort(int *array, int sizeOfArray);
 
 
 // Selection Sort
-void selectionSort(int *array, int sizeOfArray) {
+void selectionSort(int *array, int arraySize) {
 
-    int i, startIndex = 0, currentSmallest, temporary;
+    int i, strtInd, curSmlst, temp;
 
         // Increment the index at which we start by 1 After Each Sort
-        for (startIndex = 0; startIndex < sizeOfArray - 1; startIndex++) {
+        for (strtInd = 0; strtInd < arraySize - 1; strtInd++) {
 
-            currentSmallest = startIndex;
+            // Store the Index of the Current Smallest Value
+            curSmlst = strtInd;
 
             // Scan Unsorted Array
-            for (i = startIndex + 1; i < sizeOfArray; i++) {
+            for (i = strtInd; i < arraySize; i++) {
 
-                // If a smaller Int is Found
-                if (array[i] < array[currentSmallest])
+                // If a smaller Value is Found
+                if (array[i] < array[curSmlst])
 
                     // Keep track of its index
-                    currentSmallest = i;
+                    curSmlst = i;
             }
 
-            // Put the smallest int found at the beginning
-            temporary = array[startIndex]; 
-            array[startIndex] = array[currentSmallest];
-            array[currentSmallest] = temporary;
+            // Swap the smallest value found with whatever is at the Start Index
+            temp = array[strtInd];
+            array[strtInd] = array[curSmlst];
+            array[curSmlst] = temp;
         }
 }
