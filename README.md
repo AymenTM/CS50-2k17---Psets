@@ -8,7 +8,7 @@ My solutions to Harvard's 2017/2018 CS50 problem sets.
 
 We made a small 2D game.
 
-— — — — — — — — — — — — — — — — — — — — — —
+—  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —
 ## Week 1: C
 water.c : a program to convert shower's length (in minutes) to equivalent water bottles
 ```javascript
