@@ -107,7 +107,7 @@ Tile to move:
 ```
 
 —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —
-## Week 5: Data-Structures (Linked Lists, Stacks, Queues, BSTs...) & a Spellchecker
+## Week 5: Data-Structures (Linked Lists, Stacks, Queues, BSTs, Tries ...) & a Spellchecker
 Implementation of a program that spell-checks a file (implemented using a **trie** data-structure).
 
 ```javascript
