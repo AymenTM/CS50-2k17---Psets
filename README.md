@@ -12,7 +12,7 @@ We made a small 2D game.
 
 —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —
 ## Week 1: C
-water.c : a program to convert shower's length (in minutes) to equivalent water bottles
+water.c : program that calculates your water consumption after having asked the user a couple of questions.
 ```javascript
 ~/workspace/pset1/ (master) $ ./water
 minutes: 10
