@@ -51,14 +51,14 @@ AMEX
 ```
 —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —
 ## Week 2: Crypto
-**caesar.c** : a program that ciphers a text per Caesar's cipher.
+**caesar.c** : a program that ciphers text per Caesar's cipher.
 ```javascript
 ~/workspace/pset2/ (master) $ ./caesar 13
 Be sure to drink your Ovaltine!
 Or fher gb qevax lbhe Binygvar!
 ```
 
-**vigenere.c** : a program that ciphers a text per Vigènere's cipher.
+**vigenere.c** : a program that ciphers text per Vigènere's cipher.
 ```javascript
 ~/workspace/pset2/ (master) $ ./vigenere bacon
 Meet me at the park at eleven am
@@ -82,25 +82,31 @@ Negh zf av huf pcfx bt gzrwep oz
 Tile to move:
 ```
 
+**frequency.c** : function that turns musical notes to their corresponding frequency (in hertz).
+
+**find.c** : program that searches a niddle in a haystack (an integer in an array of integers).
+
 —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —
 ## Week 4: Forensics
-whodunit.c : a program that intelligently analyze an image (clue.bmp) and turn it to a better image (verdict.bmp)
+**whodunit.c** : a program that intelligently analyze an image (clue.bmp) and turn it to a better image (verdict.bmp)
 ```javascript
 ~/workspace/pset4/ (master) $ ./whodunit clue.bmp verdict.bmp
 ```
 
-resize.c : a program that can enlarge an image to n size
+**resize.c** : a program that can enlarge an image to n size
 ```javascript
 ~/workspace/pset4/ (master) $ ./resize 4 small.bmp large.bmp
 ```
 
-recover.c : a program that recovers .jpeg images from card.raw
+**recover.c** : a program that recovers .jpeg images from card.raw
 ```javascript
 ~/workspace/pset4/ (master) $ ./recover
 ```
 
 —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —
 ## Week 5 and 6: Spellchecker
+Implementation of a program that spell-checks a file (implemented using a trie datastructure).
+
 ```javascript
 ~/workspace/pset5/ (master) $ ./speller dictionaries/large endi.txt
 
