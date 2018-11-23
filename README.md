@@ -11,7 +11,7 @@ _Note: prior to this I had strictly 0 coding/programming experience._
 We made a small 2D game.
 
 —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —
-## Week 1: C
+## Week 1: C ; Water, Greedy, Mario & Credit !
 **water.c** : program that calculates your water consumption after having asked the user a couple of questions.
 ```javascript
 ~/workspace/pset1/ (master) $ ./water
@@ -50,7 +50,7 @@ Number: 378282246310005
 AMEX
 ```
 —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —
-## Week 2: Crypto
+## Week 2: Text Ciphering
 **caesar.c** : a program that ciphers text per Caesar's cipher.
 ```javascript
 ~/workspace/pset2/ (master) $ ./caesar 13
@@ -66,7 +66,7 @@ Negh zf av huf pcfx bt gzrwep oz
 ```
 
 —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —
-## Week 3: Game of Fifteen
+## Week 3: Search Algorithms; Find, Game of Fifteen & Music
 **fifteen.c** : implementation of the game: Game of Fifteen
 ```javascript
 ~/workspace/pset3/ (master) $ ./fifteen 4
@@ -87,7 +87,7 @@ Tile to move:
 **find.c** : program that searches a niddle in a haystack (an integer in an array of integers).
 
 —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —
-## Week 4: Forensics
+## Week 4: Reading & Writing Files; Forensics & Data Recovery
 **whodunit.c** : a program that intelligently analyze an image (clue.bmp) and turn it to a better image (verdict.bmp)
 ```javascript
 ~/workspace/pset4/ (master) $ ./whodunit clue.bmp verdict.bmp
@@ -104,8 +104,8 @@ Tile to move:
 ```
 
 —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —
-## Week 5 and 6: Spellchecker
-Implementation of a program that spell-checks a file (implemented using a trie datastructure).
+## Week 5: Data-Structures (Linked Lists, Stacks, Queues, BSTs...) & a Spellchecker
+Implementation of a program that spell-checks a file (using a trie data-structure).
 
 ```javascript
 ~/workspace/pset5/ (master) $ ./speller dictionaries/large endi.txt
