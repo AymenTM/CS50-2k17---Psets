@@ -1,8 +1,7 @@
 # Harvard CS50 2017/2018 Weekly Overview 
 
 My solutions to Harvard's 2017/2018 CS50 problem sets.
-
-[Here's the edX Course](https://www.edx.org/course/introduction-computer-science-harvardx-cs50x#!)
+[Click here for the edX Course!](https://www.edx.org/course/introduction-computer-science-harvardx-cs50x#!)
 
 
 Note: prior to this I had strictly 0 coding/programming experience.
