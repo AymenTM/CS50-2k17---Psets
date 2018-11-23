@@ -1,14 +1,14 @@
-# CS50-2k17/18---Psets
-My solutions to Harvard's 2017/2018 CS50 problem sets.
-
 # Harvard CS50 2017/2018 Weekly Overview 
 
+My solutions to Harvard's 2017/2018 CS50 problem sets.
 [Link to edX](https://www.edx.org/course/introduction-computer-science-harvardx-cs50x#!)
 
+—————————————————————————————————————————————————————————————————————————————————————
 ## Week 0: Scratch
 
 We made a small 2D game.
 
+—————————————————————————————————————————————————————————————————————————————————————
 ## Week 1: C
 water.c : a program to convert shower's length (in minutes) to equivalent water bottles
 ```javascript
