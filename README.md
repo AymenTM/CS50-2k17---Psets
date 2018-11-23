@@ -68,7 +68,7 @@ Negh zf av huf pcfx bt gzrwep oz
 ```
 
 —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —
-## Week 3: Search Algorithms; Find, Game of Fifteen & Music
+## Week 3: Search & Sorting Algorithms; Find, Game of Fifteen & Music
 
 **find.c** : program that searches a niddle in a haystack (an integer in an array of integers).
 
