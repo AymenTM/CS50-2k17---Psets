@@ -12,14 +12,14 @@ We made a small 2D game.
 
 —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —
 ## Week 1: C
-*water.c* : program that calculates your water consumption after having asked the user a couple of questions.
+**water.c** : program that calculates your water consumption after having asked the user a couple of questions.
 ```javascript
 ~/workspace/pset1/ (master) $ ./water
 minutes: 10
 bottles: 120
 ```
 
-*mario.c* : a program that prints out a double half-pyramid of a specified height.
+**mario.c** : a program that prints out a double half-pyramid of a specified height.
 ```javascript
 ~/workspace/pset1/ (master) $ ./mario
 Height: 4
@@ -28,7 +28,7 @@ Height: 4
  ###  ###
 ####  ####
 ```
-*greedy.c* : a program to count minimum number of coins needed for a change using greedy algorithm
+**greedy.c** : a program to count minimum number of coins needed for a change using greedy algorithm
 ```javascript
 ~/workspace/pset1/ (master) $ ./mario
 Height: -2
@@ -39,7 +39,7 @@ Retry: 1
 ##
 ```
 
-*credit.c* : a program that determines whether a provided credit card number is valid according to Luhn’s algorithm.
+**credit.c** : a program that determines whether a provided credit card number is valid according to Luhn’s algorithm.
 ```javascript
 ~/workspace/pset1/ (master) $ ./credit
 Number: 6176292929
@@ -51,14 +51,14 @@ AMEX
 ```
 —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —
 ## Week 2: Crypto
-caesar.c : a program to caesar cipher a text
+**caesar.c** : a program that ciphers a text per Caesar's cipher.
 ```javascript
 ~/workspace/pset2/ (master) $ ./caesar 13
 Be sure to drink your Ovaltine!
 Or fher gb qevax lbhe Binygvar!
 ```
 
-vigenere.c : a program to vigenere cipher a text
+**vigenere.c** : a program that ciphers a text per Vigènere's cipher.
 ```javascript
 ~/workspace/pset2/ (master) $ ./vigenere bacon
 Meet me at the park at eleven am
@@ -67,7 +67,7 @@ Negh zf av huf pcfx bt gzrwep oz
 
 —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —
 ## Week 3: Game of Fifteen
-fifteen.c : a game of fifteen games
+**fifteen.c** : implementation of the game: Game of Fifteen
 ```javascript
 ~/workspace/pset3/ (master) $ ./fifteen 4
 
