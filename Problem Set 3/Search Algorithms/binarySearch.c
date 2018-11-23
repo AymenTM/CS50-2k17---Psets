@@ -3,7 +3,7 @@
 int binarySearch(int key, int array[], int arraySize);
 
 
-// myVariation of Binary Search - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+// First Attempt - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
 int binarySearch(int key, int array[], int arraySize) {
 
@@ -40,7 +40,7 @@ int binarySearch(int key, int array[], int arraySize) {
 
 
 
-// Variation of Binary Search - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+// After having seen other solutions - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
     
 int binarySearch(int key, int array[], int arraySize) {
 
@@ -75,7 +75,7 @@ int binarySearch(int key, int array[], int arraySize) {
 
 
 
-// Recursive Variation of Binary Search - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+// After having seen recursive solutions - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
     
 int binarySearch(int key, int *array, int lowerBound, int upperBound) {
 
