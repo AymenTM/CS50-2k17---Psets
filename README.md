@@ -41,6 +41,7 @@ Retry: 1
 ##
 ```
 
+—  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —
 ## Week 2: Crypto
 caesar.c : a program to caesar cipher a text
 ```javascript
@@ -56,6 +57,7 @@ Meet me at the park at eleven am
 Negh zf av huf pcfx bt gzrwep oz
 ```
 
+—  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —
 ## Week 3: Game of Fifteen
 fifteen.c : a game of fifteen games
 ```javascript
@@ -72,6 +74,7 @@ fifteen.c : a game of fifteen games
 Tile to move:
 ```
 
+—  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —
 ## Week 4: Forensics
 whodunit.c : a program that intelligently analyze an image (clue.bmp) and turn it to a better image (verdict.bmp)
 ```javascript
@@ -88,6 +91,7 @@ recover.c : a program that recovers .jpeg images from card.raw
 ~/workspace/pset4/ (master) $ ./recover
 ```
 
+—  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —
 ## Week 5 and 6: Spellchecker
 ```javascript
 ~/workspace/pset5/ (master) $ ./speller dictionaries/large endi.txt
@@ -115,7 +119,7 @@ TIME IN unload:       0.06
 TIME IN TOTAL:        0.16
 ```
 
-
+—  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —
 ## Week 7 and 8: Python
 Requirements & Dependencies:
 ```javascript
@@ -169,6 +173,8 @@ Usage:
 ~/workspace/pset6/sentiments/ (master) $ export FLASK_DEBUG=1
 ~/workspace/pset6/sentiments/ (master) $ flask run
 ```
+
+—  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —
 ## Week 9: Python & SQL
 
 C$50 Finance
@@ -184,6 +190,7 @@ Usage:
 ~/workspace/pset7/finance/ (master) $ flask run
 ~/workspace/pset7/finance/ (master) $ phpliteadmin finance.db
 ```
+—  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —
 ## Week 10 & 11: Javascript
 Implement a website that lets users search for articles atop a map (using Google's API)
 
@@ -200,6 +207,7 @@ Usage:
 ```
 
 
+—  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —
 ## Week 12-end: Final Project
 https://github.com/endiliey/rengorum
 
