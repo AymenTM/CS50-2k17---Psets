@@ -2,7 +2,7 @@
 
 My solutions to Harvard's 2017/2018 CS50 problem sets.
 
-[Link to edX](https://www.edx.org/course/introduction-computer-science-harvardx-cs50x#!)
+[Here's the edX Course](https://www.edx.org/course/introduction-computer-science-harvardx-cs50x#!)
 
 
 Note: prior to this I had strictly 0 coding/programming experience.
