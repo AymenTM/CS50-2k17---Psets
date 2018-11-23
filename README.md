@@ -19,15 +19,6 @@ minutes: 10
 bottles: 120
 ```
 
-**mario.c** : a program that prints out a double half-pyramid of a specified height.
-```javascript
-~/workspace/pset1/ (master) $ ./mario
-Height: 4
-   #  #
-  ##  ##
- ###  ###
-####  ####
-```
 **greedy.c** : a program to count minimum number of coins needed for a change using greedy algorithm
 ```javascript
 ~/workspace/pset1/ (master) $ ./mario
@@ -37,6 +28,16 @@ Height: foo
 Retry: bar
 Retry: 1
 ##
+```
+
+**mario.c** : a program that prints out a double half-pyramid of a specified height.
+```javascript
+~/workspace/pset1/ (master) $ ./mario
+Height: 4
+   #  #
+  ##  ##
+ ###  ###
+####  ####
 ```
 
 **credit.c** : a program that determines whether a provided credit card number is valid according to Luhn’s algorithm.
@@ -51,6 +52,7 @@ AMEX
 ```
 —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —
 ## Week 2: Text Ciphering
+
 **caesar.c** : a program that ciphers text per Caesar's cipher.
 ```javascript
 ~/workspace/pset2/ (master) $ ./caesar 13
@@ -67,6 +69,9 @@ Negh zf av huf pcfx bt gzrwep oz
 
 —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —
 ## Week 3: Search Algorithms; Find, Game of Fifteen & Music
+
+**find.c** : program that searches a niddle in a haystack (an integer in an array of integers).
+
 **fifteen.c** : implementation of the game: Game of Fifteen
 ```javascript
 ~/workspace/pset3/ (master) $ ./fifteen 4
@@ -84,10 +89,8 @@ Tile to move:
 
 **frequency.c** : function that turns musical notes to their corresponding frequency (in hertz).
 
-**find.c** : program that searches a niddle in a haystack (an integer in an array of integers).
-
 —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —
-## Week 4: Reading & Writing Files; Forensics & Data Recovery
+## Week 4: Reading & Writing Files; Forensics, Resizing Images & Data Recovery
 **whodunit.c** : a program that intelligently analyze an image (clue.bmp) and turn it to a better image (verdict.bmp)
 ```javascript
 ~/workspace/pset4/ (master) $ ./whodunit clue.bmp verdict.bmp
