@@ -19,18 +19,18 @@ minutes: 10
 bottles: 120
 ```
 
-mario.c : a program that recreates half-pyramid using hashes (#) for blocks.
+mario.c : a program that prints out a double half-pyramid of a specified height.
 ```javascript
 ~/workspace/pset1/ (master) $ ./mario
 height: 8
-       ##
-      ###
-     ####
-    #####
-   ######
-  #######
- ########
-#########
+       ##  ##
+      ###  ###
+     ####  ####
+    #####  #####
+   ######  ######
+  #######  #######
+ ########  ########
+#########  #########
 ```
 greedy.c : a program to count minimum number of coins needed for a change using greedy algorithm
 ```javascript
@@ -43,6 +43,16 @@ Retry: 1
 ##
 ```
 
+credit.c : a program that determines whether a provided credit card number is valid according to Luhn’s algorithm.
+```javascript
+~/workspace/pset1/ (master) $ ./credit
+Number: 6176292929
+INVALID
+
+~/workspace/pset1/ (master) $ ./credit
+Number: 378282246310005
+AMEX
+```
 —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —
 ## Week 2: Crypto
 caesar.c : a program to caesar cipher a text
