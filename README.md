@@ -1,4 +1,4 @@
-# Weekly Overview of Harvard's 2017/2018 - CS50 Course
+# Weekly Overview of Harvard's 2017-18 - CS50 Course
 
 [Click here for the edX Course!](https://www.edx.org/course/introduction-computer-science-harvardx-cs50x#!)
 
