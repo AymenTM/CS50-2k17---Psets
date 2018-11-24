@@ -3,8 +3,7 @@
 My solutions to Harvard's 2017/2018 CS50 problem sets.
 [Click here for the edX Course!](https://www.edx.org/course/introduction-computer-science-harvardx-cs50x#!)
 
-Weekly Overview
-=====
+------
 
 ## Week 0: Scratch
 
