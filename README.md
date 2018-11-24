@@ -212,9 +212,9 @@ Usage:
 
 
 ## Week 12-end: Final Project
-https://github.com/endiliey/rengorum
+// TODO
 
-## Disclaimer : I am aware that my materials might not be free of errors. I intend to correct them as I encounter it. I am still learning :)
+#### Disclaimer : I am aware that my materials might not be free of errors. I intend to correct them as I encounter it. I am still learning :)
 
 ----
 _Note: prior to this I had strictly 0 coding/programming experience._
