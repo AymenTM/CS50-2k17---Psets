@@ -3,9 +3,6 @@
 My solutions to Harvard's 2017/2018 CS50 problem sets.
 [Click here for the edX Course!](https://www.edx.org/course/introduction-computer-science-harvardx-cs50x#!)
 
-
-_Note: prior to this I had strictly 0 coding/programming experience._
-——————————————————————————————————————————————————————
 ## Week 0: Scratch
 
 We made a small 2D game.
@@ -215,3 +212,6 @@ Usage:
 https://github.com/endiliey/rengorum
 
 ## Disclaimer : I am aware that my materials might not be free of errors. I intend to correct them as I encounter it. I am still learning :)
+
+====
+_Note: prior to this I had strictly 0 coding/programming experience._
