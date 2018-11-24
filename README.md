@@ -11,7 +11,6 @@ _Note: prior to this I had strictly 0 coding/programming experience._
 We made a small 2D game.
 
 ## Week 1: C ; Water, Greedy, Mario & Credit !
-- - - - 
 
 **water.c** : program that calculates your water consumption after having asked the user a couple of questions.
 
