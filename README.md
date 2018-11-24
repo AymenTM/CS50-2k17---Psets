@@ -1,4 +1,4 @@
-# Harvard's CS50 Course - 2017/2018
+# Harvard's 2017/2018 - CS50 Course
 
 My solutions to Harvard's 2017/2018 CS50 problem sets.
 [Click here for the edX Course!](https://www.edx.org/course/introduction-computer-science-harvardx-cs50x#!)
