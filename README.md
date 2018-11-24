@@ -196,7 +196,7 @@ Usage:
 ~/workspace/pset7/finance/ (master) $ flask run
 ~/workspace/pset7/finance/ (master) $ phpliteadmin finance.db
 ```
-—  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —
+
 ## Week 10 & 11: Javascript
 Implement a website that lets users search for articles atop a map (using Google's API)
 
