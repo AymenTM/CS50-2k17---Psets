@@ -3,13 +3,14 @@
 My solutions to Harvard's 2017/2018 CS50 problem sets.
 [Click here for the edX Course!](https://www.edx.org/course/introduction-computer-science-harvardx-cs50x#!)
 
-## Weekly Overview
+Weekly Overview
+=====
 
 ## Week 0: Scratch
 
 We made a small 2D game.
 
-### Week 1: C ; Water, Greedy, Mario & Credit !
+## Week 1: C ; Water, Greedy, Mario & Credit !
 
 **water.c** : a program that calculates your water consumption after having asked the user a couple of questions.
 
