@@ -8,7 +8,7 @@
 
 We made a small 2D game.
 
-_+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +_
+_+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +_
 
 ## Week 1: C ; Water, Greedy, Mario & Credit !
 
@@ -40,7 +40,7 @@ Number: 378282246310005
 AMEX
 ```
 
-_— — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —_
+_+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +_
 
 ## Week 2: Text Ciphering
 
@@ -57,6 +57,7 @@ Or fher gb qevax lbhe Binygvar!
 Meet me at the park at eleven am
 Negh zf av huf pcfx bt gzrwep oz
 ```
+_+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +_
 
 ## Week 3: Search & Sorting Algorithms; Find, Game of Fifteen & Music
 
@@ -79,6 +80,7 @@ Tile to move:
 
 **frequency.c** : function that turns musical notes to their corresponding frequency (in hertz).
 
+_+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +_
 
 ## Week 4: Reading & Writing Files; Forensics, Resizing Images & Data Recovery
 **whodunit.c** : a program that changes the pixel colors of an image to uncover a mystery.
