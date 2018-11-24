@@ -83,7 +83,7 @@ Tile to move:
 ~/workspace/pset4/ (master) $ ./whodunit clue.bmp verdict.bmp
 ```
 
-**resize.c** : a program that enlarges or shrinks an image to a give size.
+**resize.c** : a program that enlarges or shrinks an image to a given size (n).
 ```javascript
 ~/workspace/pset4/ (master) $ ./resize 4 small.bmp large.bmp
 ```
