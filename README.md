@@ -3,11 +3,13 @@
 My solutions to Harvard's 2017/2018 CS50 problem sets.
 [Click here for the edX Course!](https://www.edx.org/course/introduction-computer-science-harvardx-cs50x#!)
 
+## Overview of the Weeks
+
 ### Week 0: Scratch
 
 We made a small 2D game.
 
-## Week 1: C ; Water, Greedy, Mario & Credit !
+### Week 1: C ; Water, Greedy, Mario & Credit !
 
 **water.c** : a program that calculates your water consumption after having asked the user a couple of questions.
 
@@ -75,7 +77,7 @@ Tile to move:
 **frequency.c** : function that turns musical notes to their corresponding frequency (in hertz).
 
 
-## Week 4: Reading & Writing Files; Forensics, Resizing Images & Data Recovery
+### Week 4: Reading & Writing Files; Forensics, Resizing Images & Data Recovery
 **whodunit.c** : a program that changes the pixel colors of an image to uncover a mystery.
 ```javascript
 ~/workspace/pset4/ (master) $ ./whodunit clue.bmp verdict.bmp
@@ -92,7 +94,7 @@ Tile to move:
 ```
 
 
-## Week 5: Data-Structures (Linked Lists, Stacks, Queues, BSTs, Tries ...) & a Spellchecker
+### Week 5: Data-Structures (Linked Lists, Stacks, Queues, BSTs, Tries ...) & a Spellchecker
 Implementation of a program that spell-checks a file (implemented using a **trie** data-structure).
 
 ```javascript
