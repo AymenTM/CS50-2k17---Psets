@@ -20,15 +20,6 @@ bottles: 120
 ```
 
 **greedy.c** : a program to count minimum number of coins needed for a change using greedy algorithm
-```javascript
-~/workspace/pset1/ (master) $ ./mario
-Height: -2
-Height: -1
-Height: foo
-Retry: bar
-Retry: 1
-##
-```
 
 **mario.c** : a program that prints out a double half-pyramid of a specified height.
 ```javascript
