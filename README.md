@@ -9,11 +9,11 @@ We made a small 2D game.
 
 ## Week 1: C ; Water, Greedy, Mario & Credit !
 
-**water.c** : program that calculates your water consumption after having asked the user a couple of questions.
+#### **water.c** : program that calculates your water consumption after having asked the user a couple of questions.
 
-**greedy.c** : a program that counts the minimum amount of coins needed to give back the correct change (using the greedy algorithm).
+#### **greedy.c** : a program that counts the minimum amount of coins needed to give back the correct change (using the greedy algorithm).
 
-**mario.c** : a program that prints out a double half-pyramid of a specified height.
+#### **mario.c** : a program that prints out a double half-pyramid of a specified height.
 ```javascript
 ~/workspace/pset1/ (master) $ ./mario
 Height: 4
@@ -213,5 +213,5 @@ https://github.com/endiliey/rengorum
 
 ## Disclaimer : I am aware that my materials might not be free of errors. I intend to correct them as I encounter it. I am still learning :)
 
-====
+----
 _Note: prior to this I had strictly 0 coding/programming experience._
