@@ -98,6 +98,7 @@ _+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
 ~/workspace/pset4/ (master) $ ./recover card.raw
 ```
 
+_+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +_
 
 ## Week 5: Data-Structures (Linked Lists, Stacks, Queues, BSTs, Tries ...) & a Spellchecker
 Implementation of a program that spell-checks a file (implemented using a **trie** data-structure).
@@ -128,6 +129,7 @@ TIME IN unload:       0.06
 TIME IN TOTAL:        0.16
 ```
 
+_+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +_
 
 ## Week 7 and 8: Python
 Requirements & Dependencies:
@@ -183,6 +185,7 @@ Usage:
 ~/workspace/pset6/sentiments/ (master) $ flask run
 ```
 
+_+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +_
 
 ## Week 9: Python & SQL
 
@@ -200,6 +203,8 @@ Usage:
 ~/workspace/pset7/finance/ (master) $ phpliteadmin finance.db
 ```
 
+_+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +_
+
 ## Week 10 & 11: Javascript
 Implement a website that lets users search for articles atop a map (using Google's API)
 
@@ -215,7 +220,7 @@ Usage:
 ~/workspace/pset8/mashup/ (master) $ phpliteadmin mashup.db
 ```
 
-
+_+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +_
 
 ## Week 12-end: Final Project
 // TODO
