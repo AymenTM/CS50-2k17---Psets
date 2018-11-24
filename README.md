@@ -5,7 +5,7 @@ My solutions to Harvard's 2017/2018 CS50 problem sets.
 
 ## Weekly Overview
 
-### Week 0: Scratch
+## Week 0: Scratch
 
 We made a small 2D game.
 
@@ -39,7 +39,7 @@ Number: 378282246310005
 AMEX
 ```
 
-### Week 2: Text Ciphering
+## Week 2: Text Ciphering
 
 **caesar.c** : a program that ciphers text per Caesar's cipher.
 ```javascript
@@ -55,7 +55,7 @@ Meet me at the park at eleven am
 Negh zf av huf pcfx bt gzrwep oz
 ```
 
-### Week 3: Search & Sorting Algorithms; Find, Game of Fifteen & Music
+## Week 3: Search & Sorting Algorithms; Find, Game of Fifteen & Music
 
 **find.c** : program that searches a niddle in a haystack (an integer in an array of integers).
 
@@ -77,7 +77,7 @@ Tile to move:
 **frequency.c** : function that turns musical notes to their corresponding frequency (in hertz).
 
 
-### Week 4: Reading & Writing Files; Forensics, Resizing Images & Data Recovery
+## Week 4: Reading & Writing Files; Forensics, Resizing Images & Data Recovery
 **whodunit.c** : a program that changes the pixel colors of an image to uncover a mystery.
 ```javascript
 ~/workspace/pset4/ (master) $ ./whodunit clue.bmp verdict.bmp
@@ -94,7 +94,7 @@ Tile to move:
 ```
 
 
-### Week 5: Data-Structures (Linked Lists, Stacks, Queues, BSTs, Tries ...) & a Spellchecker
+## Week 5: Data-Structures (Linked Lists, Stacks, Queues, BSTs, Tries ...) & a Spellchecker
 Implementation of a program that spell-checks a file (implemented using a **trie** data-structure).
 
 ```javascript
