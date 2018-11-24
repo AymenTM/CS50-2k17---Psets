@@ -9,14 +9,11 @@ We made a small 2D game.
 
 ## Week 1: C ; Water, Greedy, Mario & Credit !
 
-#### **water.c** :
-Program that calculates your water consumption after having asked the user a couple of questions.
+**water.c** : a program that calculates your water consumption after having asked the user a couple of questions.
 
-#### **greedy.c** :
-A program that counts the minimum amount of coins needed to give back the correct change (using the greedy algorithm).
+**greedy.c** : a program that counts the minimum amount of coins needed to give back the correct change (using the greedy algorithm).
 
-#### **mario.c** :
-A program that prints out a double half-pyramid of a specified height.
+**mario.c** : a program that prints out a double half-pyramid of a specified height.
 
 ```javascript
 ~/workspace/pset1/ (master) $ ./mario
@@ -56,7 +53,6 @@ Meet me at the park at eleven am
 Negh zf av huf pcfx bt gzrwep oz
 ```
 
-—  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —
 ## Week 3: Search & Sorting Algorithms; Find, Game of Fifteen & Music
 
 **find.c** : program that searches a niddle in a haystack (an integer in an array of integers).
@@ -78,7 +74,7 @@ Tile to move:
 
 **frequency.c** : function that turns musical notes to their corresponding frequency (in hertz).
 
-—  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —
+
 ## Week 4: Reading & Writing Files; Forensics, Resizing Images & Data Recovery
 **whodunit.c** : a program that changes the pixel colors of an image to uncover a mystery.
 ```javascript
@@ -95,7 +91,7 @@ Tile to move:
 ~/workspace/pset4/ (master) $ ./recover card.raw
 ```
 
-—  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —
+
 ## Week 5: Data-Structures (Linked Lists, Stacks, Queues, BSTs, Tries ...) & a Spellchecker
 Implementation of a program that spell-checks a file (implemented using a **trie** data-structure).
 
@@ -125,7 +121,7 @@ TIME IN unload:       0.06
 TIME IN TOTAL:        0.16
 ```
 
-—  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —
+
 ## Week 7 and 8: Python
 Requirements & Dependencies:
 ```javascript
@@ -180,7 +176,7 @@ Usage:
 ~/workspace/pset6/sentiments/ (master) $ flask run
 ```
 
-—  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —
+
 ## Week 9: Python & SQL
 
 C$50 Finance
@@ -213,7 +209,7 @@ Usage:
 ```
 
 
-—  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —
+
 ## Week 12-end: Final Project
 https://github.com/endiliey/rengorum
 
