@@ -4,9 +4,13 @@
 
 ------
 
+—   —   —   —   —   —   —   —   —   —   —   —
+
 ## Week 0: Scratch
 
 We made a small 2D game.
+
+—   —   —   —   —   —   —   —   —   —   —   —
 
 ## Week 1: C ; Water, Greedy, Mario & Credit !
 
@@ -37,6 +41,8 @@ INVALID
 Number: 378282246310005
 AMEX
 ```
+
+—   —   —   —   —   —   —   —   —   —   —   —
 
 ## Week 2: Text Ciphering
 
