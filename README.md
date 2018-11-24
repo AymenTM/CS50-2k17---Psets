@@ -4,11 +4,11 @@ My solutions to Harvard's 2017/2018 CS50 problem sets.
 [Click here for the edX Course!](https://www.edx.org/course/introduction-computer-science-harvardx-cs50x#!)
 
 ## Week 0: Scratch
-----
+
 We made a small 2D game.
 
 ## Week 1: C ; Water, Greedy, Mario & Credit !
-----
+
 **water.c** : a program that calculates your water consumption after having asked the user a couple of questions.
 
 **greedy.c** : a program that counts the minimum amount of coins needed to give back the correct change (using the greedy algorithm).
@@ -38,7 +38,7 @@ AMEX
 ```
 
 ## Week 2: Text Ciphering
-----
+__________________________________________________________________________________________
 **caesar.c** : a program that ciphers text per Caesar's cipher.
 ```javascript
 ~/workspace/pset2/ (master) $ ./caesar 13
