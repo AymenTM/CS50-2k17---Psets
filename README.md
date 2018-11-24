@@ -3,7 +3,7 @@
 My solutions to Harvard's 2017/2018 CS50 problem sets.
 [Click here for the edX Course!](https://www.edx.org/course/introduction-computer-science-harvardx-cs50x#!)
 
-## Week 0: Scratch
+### Week 0: Scratch
 
 We made a small 2D game.
 
@@ -37,8 +37,8 @@ Number: 378282246310005
 AMEX
 ```
 
-## Week 2: Text Ciphering
-__________________________________________________________________________________________
+### Week 2: Text Ciphering
+
 **caesar.c** : a program that ciphers text per Caesar's cipher.
 ```javascript
 ~/workspace/pset2/ (master) $ ./caesar 13
@@ -53,7 +53,7 @@ Meet me at the park at eleven am
 Negh zf av huf pcfx bt gzrwep oz
 ```
 
-## Week 3: Search & Sorting Algorithms; Find, Game of Fifteen & Music
+### Week 3: Search & Sorting Algorithms; Find, Game of Fifteen & Music
 
 **find.c** : program that searches a niddle in a haystack (an integer in an array of integers).
 
