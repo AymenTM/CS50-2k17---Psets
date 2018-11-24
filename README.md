@@ -9,11 +9,15 @@ We made a small 2D game.
 
 ## Week 1: C ; Water, Greedy, Mario & Credit !
 
-#### **water.c** : program that calculates your water consumption after having asked the user a couple of questions.
+#### **water.c** :
+Program that calculates your water consumption after having asked the user a couple of questions.
 
-#### **greedy.c** : a program that counts the minimum amount of coins needed to give back the correct change (using the greedy algorithm).
+#### **greedy.c** :
+A program that counts the minimum amount of coins needed to give back the correct change (using the greedy algorithm).
 
-#### **mario.c** : a program that prints out a double half-pyramid of a specified height.
+#### **mario.c** :
+A program that prints out a double half-pyramid of a specified height.
+
 ```javascript
 ~/workspace/pset1/ (master) $ ./mario
 Height: 4
@@ -23,7 +27,9 @@ Height: 4
 ####  ####
 ```
 
-**credit.c** : a program that determines whether a provided credit card number is valid according to Luhn’s algorithm.
+**credit.c** :
+A program that determines whether a provided credit card number is valid according to Luhn’s algorithm.
+
 ```javascript
 ~/workspace/pset1/ (master) $ ./credit
 Number: 6176292929
@@ -33,7 +39,7 @@ INVALID
 Number: 378282246310005
 AMEX
 ```
-—  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —
+
 ## Week 2: Text Ciphering
 
 **caesar.c** : a program that ciphers text per Caesar's cipher.
