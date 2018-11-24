@@ -13,11 +13,6 @@ We made a small 2D game.
 —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —
 ## Week 1: C ; Water, Greedy, Mario & Credit !
 **water.c** : program that calculates your water consumption after having asked the user a couple of questions.
-```javascript
-~/workspace/pset1/ (master) $ ./water
-minutes: 10
-bottles: 120
-```
 
 **greedy.c** : a program to count minimum number of coins needed for a change using greedy algorithm
 
@@ -82,19 +77,19 @@ Tile to move:
 
 —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —
 ## Week 4: Reading & Writing Files; Forensics, Resizing Images & Data Recovery
-**whodunit.c** : a program that intelligently analyze an image (clue.bmp) and turn it to a better image (verdict.bmp)
+**whodunit.c** : a program that changes the pixel colors of an image to uncover a mystery.
 ```javascript
 ~/workspace/pset4/ (master) $ ./whodunit clue.bmp verdict.bmp
 ```
 
-**resize.c** : a program that can enlarge an image to n size
+**resize.c** : a program that enlarges or shrinks an image to a give size.
 ```javascript
 ~/workspace/pset4/ (master) $ ./resize 4 small.bmp large.bmp
 ```
 
-**recover.c** : a program that recovers .jpeg images from card.raw
+**recover.c** : a program that recovers Jpeg images from a camera's memory card (card.raw).
 ```javascript
-~/workspace/pset4/ (master) $ ./recover
+~/workspace/pset4/ (master) $ ./recover card.raw
 ```
 
 —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —  —
