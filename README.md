@@ -101,7 +101,7 @@ _+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
 _+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +_
 
 ## Week 5: Data-Structures (Linked Lists, Stacks, Queues, BSTs, Tries ...) & a Spellchecker
-Implementation of a program that spell-checks a file (implemented using a **trie** data-structure).
+**speller.c**: a program that spell-checks the words of a file against a dictionary. (implemented using a **trie data-structure**)
 
 ```javascript
 ~/workspace/pset5/ (master) $ ./speller dictionaries/large holmes.txt
