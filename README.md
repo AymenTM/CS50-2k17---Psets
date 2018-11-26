@@ -104,29 +104,40 @@ _+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
 Implementation of a program that spell-checks a file (implemented using a **trie** data-structure).
 
 ```javascript
-~/workspace/pset5/ (master) $ ./speller dictionaries/large endi.txt
+~/workspace/pset5/ (master) $ ./speller dictionaries/large holmes.txt
 
 MISSPELLED WORDS
 
-nme
-veri
-persan
-yo
-bro
-USConstitution
+[...]
+S
+eBooks
+PG
 http
-usconstitution
-const
-html
+tm
+eBooks
+eBooks
 
-WORDS MISSPELLED:     10
+My Solution:
+
+WORDS MISSPELLED:     17845
 WORDS IN DICTIONARY:  143091
-WORDS IN TEXT:        722
+WORDS IN TEXT:        1150970
 TIME IN load:         0.10
-TIME IN check:        0.00
+TIME IN check:        2.03
 TIME IN size:         0.00
-TIME IN unload:       0.06
-TIME IN TOTAL:        0.16
+TIME IN unload:       0.04
+TIME IN TOTAL:        2.18
+
+Staff Solution:
+
+WORDS MISSPELLED:     17845
+WORDS IN DICTIONARY:  143091
+WORDS IN TEXT:        1150970
+TIME IN load:         0.03
+TIME IN check:        2.23
+TIME IN size:         0.00
+TIME IN unload:       0.01
+TIME IN TOTAL:        2.27
 ```
 
 _+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +_
