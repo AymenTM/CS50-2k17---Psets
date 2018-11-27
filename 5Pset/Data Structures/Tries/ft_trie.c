@@ -37,6 +37,7 @@ void			trie_insert_data_recursive(t_trie **root, char *hash,
 
 void			trie_delete_data(t_trie **root, char *hash,
 				unsigned int (*char_to_index)(char c));
+
 void			trie_destroy(t_trie **root);
 
 void			*trie_fetch_data(t_trie *root, char *hash,
