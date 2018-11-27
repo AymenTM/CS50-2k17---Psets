@@ -1,6 +1,6 @@
 /**
  *
- * Some extra functions I needed.
+ * Some trie functions.
  *
  */
 

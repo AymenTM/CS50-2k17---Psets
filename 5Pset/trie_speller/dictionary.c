@@ -71,7 +71,7 @@ bool load(const char* dictionary)
  */
 unsigned int size(void)
 {
-    return (g_size++);
+    return (g_size);
 }
 
 /**

@@ -1,6 +1,6 @@
 /**
  *
- * My Header.
+ * Header.
  *
  */
 
