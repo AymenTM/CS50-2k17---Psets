@@ -10,7 +10,7 @@
 CC = clang
 
 # flags to pass compiler
-CFLAGS = -Wall -Werror -Wextra -O3 $(DBUG_FLAGS) $(FSAN_FLAGS)
+CFLAGS = -Wall -Werror -Wextra -O3 #$(DBUG_FLAGS) $(FSAN_FLAGS)
 
 
 
