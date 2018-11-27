@@ -1,0 +1,90 @@
+
+## My Q&A Answers
+
+
+0.  What is pneumonoultramicroscopicsilicovolcanoconiosis?
+
+	> An invented long word said to mean a lung disease caused by
+    inhaling very fine ash and sand dust.
+
+
+1.  According to its man page, what does getrusage do?
+
+	> According to its man page, 'getrusage' returns a structure
+    containing information about the resources utilized by a
+    process (time, memory, etc...).
+
+
+2.  Per that same man page, how many members are in a variable
+	of type struct rusage?
+
+	> 16 members.
+
+
+3.  Why do you think we pass before and after by reference
+	(instead of by value) to calculate, even though we’re
+	not changing their contents?
+
+	> Dunno. Curious to find out.
+
+
+4.  Explain as precisely as possible, in a paragraph or more,
+	how main goes about reading words from a file. In other
+	words, convince us that you indeed understand how that
+	function’s for loop works.
+
+	> We read in a character, check whether
+    or not the character is the 'EOF'
+    character, and only if it isn't
+    will we run the loop.
+
+        a) We check to see if the character is an alphabetical
+        character, if so we will store the letter in a string
+        placing it at whatever index we currently are in
+        that string.
+
+            Then we check if the length of the word exceeds 45
+            characters (the biggest length we decided to accept
+            for a word), if it does we will 'consume the rest
+            of the word', that is we will ignore the word and
+            move on to the next one.
+
+        b) Else if the character is a not an alphabetical
+        character, but rather a digit character then we
+        consume the rest of the 'word', that is we will
+        ignore the word and move on to the next one.
+
+        c) Else, if the character is not alpha-numeric,
+        and the length of the word (i.e 'index') is
+        greater than 0, then we must of found a word,
+        in which case we null terminate the word &
+        send it off to our function 'check', it
+        will return 0 if the word is not misspelled
+        & 1 if it is.
+
+        If the word is misspelled, we will print the
+        word out to screen.
+
+        Finally we reset 'index' to 0.
+
+
+5.  Why do you think we used fgetc to read each word’s
+	characters one at a time rather than use fscanf with
+	a format string like "%s" to read whole words at a
+	time? Put another way, what problems might arise by
+	relying on fscanf alone?
+
+	> Because we cannot monitor the length of the string
+	nor the characters that are present therein (ex: we
+	don't want digit characters; we only want strings
+	that are =< 45 characters in length); reading in
+	each word character by character allows us to get
+	only the valid words and ignore the invalid ones.
+
+
+6.  Why do you think we declared the parameters for check
+	and load as const (which means "constant")?
+
+	> Perhaps to make extra sure that when we're
+	handling the strings we do not in anyway alter
+	the strings.
