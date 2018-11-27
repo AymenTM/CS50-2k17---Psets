@@ -102,7 +102,8 @@ unsigned int				alpha_2_indx(char c)
 
 /**
 DEPENDENCIES: malloc, <stdlib.h>
-ft trie_create_node ; returns length of given string.
+ft trie_create_node ; creates a trie node & returns a pointer
+to the node.
 
 HALF TESTED !
 NOT NORMED !
