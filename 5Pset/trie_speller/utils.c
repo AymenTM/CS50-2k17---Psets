@@ -10,6 +10,11 @@
 #include "dictionary.h"
 #include "utils.h"
 
+/**
+DEPENDENCIES: none.
+ft alpha_2_indx ; turns a given alphabetical letter
+character into the index it corresponds to.
+*/
 int			alpha_2_indx(char c)
 {
 	if (c >= 'a' && c <= 'z')
@@ -27,7 +32,12 @@ int			alpha_2_indx(char c)
 	return (0);
 }
 
-t_trie		*trie_create_node(void)
+/**
+DEPENDENCIES: malloc, <stdlib.h>
+ft trie_create_node ; creates a trie node & returns a pointer
+to the node.
+*/
+t_trie			*trie_create_node(void)
 {
 	t_trie *new_node;
 	unsigned int i;
@@ -41,6 +51,10 @@ t_trie		*trie_create_node(void)
 	return (new_node);
 }
 
+/**
+DEPENDENCIES: trie_create_node
+ft trie_load_word ; adds a word to the trie data-structure.
+*/
 void			trie_load_word(t_trie **root, char *word,
 				int (*char_to_index)(char c))
 {
@@ -82,6 +96,10 @@ void		trie_load_word_recursive(t_trie **root, char *word,
 	}
 }
 
+/**
+DEPENDENCIES: free, <stdlib.h>
+ft trie_unload_word ; deletes a word from the trie data-structure.
+*/
 void		trie_unload_word(t_trie **root, char *word,
 			int (*char_to_index)(char c))
 {
@@ -109,6 +127,10 @@ void		trie_unload_word(t_trie **root, char *word,
 	}
 }
 
+/**
+DEPENDENCIES: free, <stdlib.h>
+ft trie_destroy ; deletes/unloads the entire trie data-structure.
+*/
 void		trie_destroy(t_trie **root)
 {
 	int i;
@@ -127,6 +149,12 @@ void		trie_destroy(t_trie **root)
 	}
 }
 
+/**
+DEPENDENCIES: none.
+ft trie_check_word ; checks whether or not a given word exists
+in the trie data-structure (i.e checks if the spelling of the
+given word is correct).
+*/
 int			trie_check_word(t_trie *root, char *word,
 			int (*char_to_index)(char c))
 {
@@ -143,6 +171,11 @@ int			trie_check_word(t_trie *root, char *word,
 	return (0);
 }
 
+/**
+DEPENDENCIES: write, <unistd.h>
+ft trie_print_words ; prints all the existing words in the
+trie data-structure.
+*/
 void		trie_print_words(t_trie *root, char word[LENGTH + 1])
 {
 	static int index = 0;
@@ -171,6 +204,11 @@ void		trie_print_words(t_trie *root, char word[LENGTH + 1])
 	}
 }
 
+/**
+DEPENDENCIES: free, <stdlib.h>
+ft trie_size ; counts & returns the number of words
+currently held in the trie data-structure.
+*/
 unsigned int	trie_size(t_trie *root)
 {
 	unsigned int word_count;

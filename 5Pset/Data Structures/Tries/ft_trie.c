@@ -51,9 +51,6 @@ unsigned int	trie_size(t_trie *root);
 DEPENDENCIES: none.
 ft char_2_indx ; turns a given character into the
 index it corresponds to.
-
-HALF TESTED !
-NOT NORMED !
 */
 unsigned int				char_2_indx(char c)
 {
@@ -80,9 +77,6 @@ unsigned int				char_2_indx(char c)
 DEPENDENCIES: none.
 ft alpha_2_indx ; turns a given alphabetical letter
 character into the index it corresponds to.
-
-HALF TESTED !
-NOT NORMED !
 */
 unsigned int				alpha_2_indx(char c)
 {
@@ -105,9 +99,6 @@ unsigned int				alpha_2_indx(char c)
 DEPENDENCIES: malloc, <stdlib.h>
 ft trie_create_node ; creates a trie node & returns a pointer
 to the node.
-
-HALF TESTED !
-NOT NORMED !
 */
 t_trie			*trie_create_node(void)
 {
@@ -125,10 +116,8 @@ t_trie			*trie_create_node(void)
 
 /**
 DEPENDENCIES: trie_create_node
-ft trie_insert_data ; creates & inserts given data into a trie data-structure.
-
-HALF TESTED !
-NOT NORMED !
+ft trie_insert_data ; creates & inserts given data into a
+trie data-structure.
 */
 void			trie_insert_data(t_trie **root, char *hash, void *data,
 				unsigned int (*char_to_index)(char c))
@@ -176,9 +165,6 @@ DEPENDENCIES: free, <stdlib.h>
 ft trie_delete_data ; deletes the data that is mapped to the hash
 and only the leaf nodes that do not contain any data that lead to
 the deleted node.
-
-HALF TESTED !
-NOT NORMED !
 */
 void			trie_delete_data(t_trie **root, char *hash,
 				unsigned int (*char_to_index)(char c))
@@ -215,9 +201,6 @@ DEPENDENCIES: free, <stdlib.h>
 ft trie_destroy ; frees up the entire trie data-structure
 (deleteing every node of the trie and all the data
 contained within it).
-
-HALF TESTED !
-NOT NORMED !
 */
 void			trie_destroy(t_trie **root)
 {
@@ -246,9 +229,6 @@ void			trie_destroy(t_trie **root)
 DEPENDENCIES: none.
 ft trie_fetch_data ; retrieves the data that is mapped to the hash.
 Returns an address to the data.
-
-HALF TESTED !
-NOT NORMED !
 */
 void			*trie_fetch_data(t_trie *root, char *hash,
 				unsigned int (*char_to_index)(char c))
@@ -270,9 +250,6 @@ void			*trie_fetch_data(t_trie *root, char *hash,
 DEPENDENCIES: none.
 ft trie_size ; counts & returns the number of data elements currently
 stored within the trie data-structure.
-
-HALF TESTED !
-NOT NORMED !
 */
 unsigned int	trie_size(t_trie *root)
 {
