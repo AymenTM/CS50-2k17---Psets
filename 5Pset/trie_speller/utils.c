@@ -205,7 +205,7 @@ void		trie_print_words(t_trie *root, char word[LENGTH + 1])
 }
 
 /**
-DEPENDENCIES: free, <stdlib.h>
+DEPENDENCIES: none.
 ft trie_size ; counts & returns the number of words
 currently held in the trie data-structure.
 */
