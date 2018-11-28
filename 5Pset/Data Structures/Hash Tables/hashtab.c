@@ -18,6 +18,8 @@
 #endif
 
 
+
+
 /**
 	DEPENDENCIES:	none.
 
@@ -31,6 +33,8 @@ hashtable_insert_data()
 {
 
 }
+
+
 
 /**
 	DEPENDENCIES:	none.
@@ -46,6 +50,8 @@ hashtable_delete_data()
 
 }
 
+
+
 /**
 	DEPENDENCIES:	none.
 
@@ -59,6 +65,8 @@ hashtable_destroy()
 {
 
 }
+
+
 
 /**
 	DEPENDENCIES:	none.
@@ -74,6 +82,8 @@ hashtable_fetch_data()
 
 }
 
+
+
 /**
 	DEPENDENCIES:	none.
 
@@ -87,6 +97,8 @@ hashtable_clear_val()
 {
 
 }
+
+
 
 /**
 	DEPENDENCIES:	none.
@@ -102,6 +114,8 @@ t_hashtable		*hashtable_realloc()
 
 }
 
+
+
 /**
 	DEPENDENCIES:	none.
 
@@ -116,6 +130,8 @@ t_hashtable		*hashtable_dealloc()
 
 }
 
+
+
 /**
 	DEPENDENCIES:	none.
 
@@ -129,6 +145,8 @@ unsigned int	hashtable_size(const t_hashtable *table)
 {
 
 }
+
+
 
 /**
 	DEPENDENCIES:	none.
