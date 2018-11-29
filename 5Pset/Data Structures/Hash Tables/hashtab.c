@@ -22,7 +22,7 @@ typedef struct		s_entry
 {
 	char			*key;
 	void			*value;
-	unsigned int 	keylen;
+	unsigned int	keylen;
 	struct s_entry	*successor;
 }					t_entry;
 
@@ -45,20 +45,20 @@ RETURN VALUES:	If successful, returns a pointer to the
 				hash table. If an error occurs the function
 				will return a NULL pointer.
 
-SEARCH TAGS:	ft hashtable_alloc_table  	ft hashtable_create_table 
-				ft ht_alloc_table  			ft ht_create_table
+SEARCH TAGS:	ft hashtable_alloc_table	ft hashtable_create_table 
+				ft ht_alloc_table			ft ht_create_table
 */
 t_hashtable		*hashtable_alloc_table(unsigned int size)
 {
-	t_hashtable 	*table;
-	unsigned int 	i;
+	t_hashtable		*table;
+	unsigned int	i;
 
 	if (size < 1)
 		return (NULL);
 	if (!(table = malloc(sizeof(t_hashtable))))
 		return (NULL);
- 	if (!(table->hashtab = malloc(sizeof(t_entry*) * size)))
- 		return (NULL);
+	if (!(table->hashtab = malloc(sizeof(t_entry*) * size)))
+		return (NULL);
 	table->num_buckets = size;
 	table->entries = 0;
 	i = 0;
@@ -76,8 +76,8 @@ DESCRIPTION:	Inserts a key-value pair (an entry) into the hash
 
 RETURN VALUES:	If successful, returns 0; otherwise -1.
 
-SEARCH TAGS:	ft hashtable_insert_data  	ft hashtable_add_entry 
-				ft ht_insert_data  			ft ht_add_entry
+SEARCH TAGS:	ft hashtable_insert_data	ft hashtable_add_entry 
+				ft ht_insert_data			ft ht_add_entry
 */
 int				hashtable_insert_data(t_hashtable **table,
 										char *key,
@@ -93,27 +93,29 @@ int				hashtable_insert_data(t_hashtable **table,
 		index = HASH(entry->key, entry->keylen) % table->num_buckets;
 		entry->successor = ((*table)->buckets)[index];
 		((*table)->buckets)[index] = entry;
+		*table->entries += 1;
 		return (0);
 	}
 	return (-1);
 }
 
 /**
-DEPENDENCIES:	none.
+DEPENDENCIES:	ft_strcmp()
+				HASH()
 
 DESCRIPTION:	Retrieves an entry.
 
 RETURN VALUES:	If the entry is found, a pointer to the entry is
 				returned; otherwise a NULL pointer is returned.
 
-SEARCH TAGS:	ft hashtable_fetch_entry   	ft hashtable_fetch_data
-				ft hashtable_find_entry   	ft hashtable_find_data
-				ft hashtable_lookup_entry   ft hashtable_lookup_data
-				ft hashtable_get_entry   	ft hashtable_get_data
-				ft ht_fetch_entry   		ft ht_fetch_data
-				ft ht_find_entry    		ft ht_find_data
-				ft ht_lookup_entry   		ft ht_lookup_data
-				ft ht_get_entry   			ft ht_get_data
+SEARCH TAGS:	ft hashtable_fetch_entry	ft hashtable_fetch_data
+				ft hashtable_find_entry		ft hashtable_find_data
+				ft hashtable_lookup_entry	ft hashtable_lookup_data
+				ft hashtable_get_entry		ft hashtable_get_data
+				ft ht_fetch_entry			ft ht_fetch_data
+				ft ht_find_entry			ft ht_find_data
+				ft ht_lookup_entry			ft ht_lookup_data
+				ft ht_get_entry				ft ht_get_data
 */
 t_entry			*hashtable_fetch_entry(t_hashtable *table, char *key)
 {
@@ -135,23 +137,55 @@ t_entry			*hashtable_fetch_entry(t_hashtable *table, char *key)
 }
 
 /**
-DEPENDENCIES:	none.
+DEPENDENCIES:	free, <stdlib.h>
+				ft_strcmp()
+				HASH()
 
-DESCRIPTION:	.
+DESCRIPTION:	Finds and deletes/frees an entry in the hash
+				table.
 
-RETURN VALUES:	If successful returns 0; otherwise -1.
+RETURN VALUES:	If the entry is found, and is successfully
+				deleted/free'd, the function returns 0;
+				otherwise the function returns -1.
 
-SEARCH TAGS:	ft hashtable_delete_data  ft ht_delete_data
+SEARCH TAGS:	ft hashtable_delete_data	ft ht_delete_data
+				ft hashtable_delete_entry	ft ht_delete_entry
 */
-int				hashtable_delete_data(t_hashtable **table, char *key)
+int				hashtable_delete_entry(t_hashtable **table, char *key)
 {
+	t_entry			*prev_entry;
+	t_entry			*cur_entry;
+	unsigned int	index;
 
+	if (table && key)
+	{
+		index = HASH(entry->key, entry->keylen) % table->num_buckets;
+		cur_entry = ((*table)->buckets)[index];
+		while (cur_entry)
+		{
+			if (ft_strcmp(cur_entry->key, key) == 0)
+			{
+				(cur_entry == ((*table)->buckets)[index]) ?
+					((*table)->buckets)[index] = cur_entry->successor :
+					prev_entry->successor = cur_entry->successor;
+				free(cur_entry->key);
+				free(cur_entry->value);
+				free(cur_entry);
+				*table->entries -= 1;
+				return (0);
+			}
+			prev_entry = cur_entry;
+			cur_entry = cur_entry->successor;
+		}
+	}
+	return (-1);
 }
 
 /**
-DEPENDENCIES:	none.
+DEPENDENCIES:	free, <stdlib.h>
 
-DESCRIPTION:	.
+DESCRIPTION:	Deletes/frees the entire hash table
+				and all the entries contained in it.
 
 RETURN VALUES:	If successful returns 0; otherwise -1.
 
@@ -159,7 +193,36 @@ SEARCH TAGS:	ft hashtable_destroy  ft ht_destroy
 */
 int				hashtable_destroy(t_hashtable **table)
 {
-	
+	t_entry			*temp;
+	unsigned int	i;
+
+	if (table)
+	{
+		if (*table)
+		{
+			if ((*table)->buckets)
+			{
+				i = 0;
+				while (i < (*table)->num_buckets)
+				{
+					while (((*table)->buckets)[i])
+					{
+						temp = ((*table)->buckets)[i];
+						((*table)->buckets)[i] =
+								((*table)->buckets)[i]->successor;
+						free(temp->key);
+						free(temp->value);
+						free(temp);
+					}
+					i++;
+				}
+				free((*table)->buckets);
+			}
+			free(*table);
+		}
+		return (0);
+	}
+	return (-1);
 }
 
 /**
@@ -169,7 +232,7 @@ DESCRIPTION:	.
 
 RETURN VALUES:	If successful returns 0; otherwise -1.
 
-SEARCH TAGS:	ft hashtable_realloc_table  ft ht_realloc_table
+SEARCH TAGS:	ft hashtable_realloc_table	ft ht_realloc_table
 */
 t_hashtable		*hashtable_realloc_table()
 {
@@ -183,51 +246,9 @@ DESCRIPTION:	.
 
 RETURN VALUES:	If successful returns 0; otherwise -1.
 
-SEARCH TAGS:	ft hashtable_dealloc  ft ht_dealloc
+SEARCH TAGS:	ft hashtable_dealloc_table	ft ht_dealloc_table
 */
-t_hashtable		*hashtable_dealloc()
-{
-
-}
-
-/**
-DEPENDENCIES:	none.
-
-DESCRIPTION:	.
-
-RETURN VALUES:	If successful returns 0; otherwise -1.
-
-SEARCH TAGS:	ft hashtable_size  ft ht_size
-*/
-unsigned int	hashtable_size(const t_hashtable *table)
-{
-
-}
-
-/**
-DEPENDENCIES:	none.
-
-DESCRIPTION:	.
-
-RETURN VALUES:	If successful returns 0; otherwise -1.
-
-SEARCH TAGS:	ft hashtable_sizeof  ft ht_sizeof
-*/
-size_t			hashtable_sizeof(const t_hashtable *table)
-{
-
-}
-
-/**
-DEPENDENCIES:	none.
-
-DESCRIPTION:	clears node value if it exists.
-
-RETURN VALUES:	If successful returns 0; otherwise -1.
-
-SEARCH TAGS:	ft hashtable_clear_val  ft ht_clear_val
-*/
-int				hashtable_clear_val(t_hashtable **table, char *key)
+t_hashtable		*hashtable_dealloc_table()
 {
 
 }
@@ -255,23 +276,29 @@ RETURN VALUES:	If nothing happens the function returns 0.
 				If an unsuccessful reallocation or deallocation happens,
 				it returns -1.
 
+				If any other error occurs, it returns -2.
+
 SEARCH TAGS:	ft hashtable_check_load_factor  ft ht_check_load_factor
 */
 int				hashtable_check_load_factor(t_hashtable **table)
 {
-	if ((float)(*table)->entries / (float)(*table)->num_buckets
-		> MAX_LOAD_FACTOR)
+	if (table && *table)
 	{
-		*table = hashtable_realloc_table(*table);
-		return ((*table == NULL) ? -1 : 2);
+		if ((float)(*table)->entries / (float)(*table)->num_buckets
+			> MAX_LOAD_FACTOR)
+		{
+			*table = hashtable_realloc_table(*table);
+			return ((*table == NULL) ? -1 : 2);
+		}
+		if ((float)(*table)->entries / (float)(*table)->num_buckets
+			< MIN_LOAD_FACTOR)
+		{
+			*table = hashtable_dealloc_table(*table);
+			return ((*table == NULL) ? -1 : 1);
+		}
+		return (0);
 	}
-	if ((float)(*table)->entries / (float)(*table)->num_buckets
-		< MIN_LOAD_FACTOR)
-	{
-		*table = hashtable_dealloc_table(*table);
-		return ((*table == NULL) ? -1 : 1);
-	}
-	return (0);
+	return (-2);
 }
 
 /**
