@@ -68,7 +68,9 @@ t_hashtable        *hashtable_alloc_table(unsigned int size)
     return (table);
 }
 
-/* — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — 
+
+
+/* — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 DEPENDENCIES:   ft_entry_create()
                 HASH()
 
@@ -101,7 +103,9 @@ int                hashtable_insert_data(t_hashtable **table,
     return (-1);
 }
 
-/* — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — 
+
+
+/* — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 DEPENDENCIES:   ft_strlen()
                 ft_strcmp()
                 HASH()
@@ -140,7 +144,9 @@ t_entry            *hashtable_fetch_entry(t_hashtable *table, char *key)
     return (NULL);
 }
 
-/* — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — 
+
+
+/* — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 DEPENDENCIES:   free, <stdlib.h>
                 ft_entry_free()
                 ft_strlen()
@@ -186,7 +192,9 @@ int                hashtable_delete_entry(t_hashtable **table, char *key)
     return (-1);
 }
 
-/* — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — 
+
+
+/* — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 DEPENDENCIES:   free, <stdlib.h>
                 ft_bucket_free()
 
@@ -223,7 +231,9 @@ int                hashtable_destroy(t_hashtable **table)
     return (-1);
 }
 
-/* — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — 
+
+
+/* — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 DEPENDENCIES:   none.
 
 DESCRIPTION:    .
@@ -238,7 +248,9 @@ t_hashtable        *hashtable_realloc_table()
 
 }
 
-/* — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — 
+
+
+/* — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 DEPENDENCIES:   none.
 
 DESCRIPTION:    .
@@ -253,7 +265,9 @@ t_hashtable        *hashtable_dealloc_table()
 
 }
 
-/* — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — 
+
+
+/* — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 DEPENDENCIES:   hashtable_realloc_table()
                 hashtable_dealloc_table()
 
@@ -302,7 +316,9 @@ int                hashtable_check_load_factor(t_hashtable **table)
     return (-2);
 }
 
-/* — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — 
+
+
+/* — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 DEPENDENCIES:   malloc, <stdlib.h>, ft_strdup, ft_strlen
 
 DESCRIPTION:    Takes a key and a value and creates an entry out
@@ -330,7 +346,9 @@ t_entry            *ft_entry_create(char *key, void *value)
     return (NULL);
 }
 
-/* — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — 
+
+
+/* — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 DEPENDENCIES:   free, <stdlib.h>
 
 DESCRIPTION:    Deletes/frees an entry.
@@ -342,12 +360,19 @@ SEARCH TAGS:    ft entry_free
 
 void               ft_entry_free(t_entry **entry)
 {
-    free((*entry)->key);
-    free((*entry)->value);
-    free(*entry);
+    if (entry && *entry)
+    {
+        if ((*entry)->key)
+            free((*entry)->key);
+        if ((*entry)->value)
+            free((*entry)->value);
+        free(*entry);
+    }
 }
 
-/* — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — 
+
+
+/* — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 DEPENDENCIES:   ft_entry_free()
 
 DESCRIPTION:    Deletes/frees the entire bucket (linked

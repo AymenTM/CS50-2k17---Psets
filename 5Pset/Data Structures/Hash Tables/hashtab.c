@@ -332,9 +332,14 @@ SEARCH TAGS:	ft entry_free
 */
 void			ft_entry_free(t_entry **entry)
 {
-	free((*entry)->key);
-	free((*entry)->value);
-	free(*entry);
+	if (entry && *entry)
+	{
+		if ((*entry)->key)
+			free((*entry)->key);
+		if ((*entry)->value)
+			free((*entry)->value);
+		free(*entry);
+	}
 }
 
 /**
