@@ -68,7 +68,7 @@ t_hashtable		*hashtable_alloc_table(unsigned int size)
 }
 
 /**
-DEPENDENCIES:	ft_create_entry()
+DEPENDENCIES:	ft_entry_create()
 				HASH()
 
 DESCRIPTION:	Inserts a key-value pair (an entry) into the hash
@@ -88,7 +88,7 @@ int				hashtable_insert_data(t_hashtable **table,
 
 	if (table && *table && key && data)
 	{
-		if (!(entry = ft_create_entry(key, data)))
+		if (!(entry = ft_entry_create(key, data)))
 			return (-1);
 		index = HASH(entry->key, entry->keylen) % table->num_buckets;
 		entry->successor = ((*table)->buckets)[index];
@@ -139,6 +139,7 @@ t_entry			*hashtable_fetch_entry(t_hashtable *table, char *key)
 
 /**
 DEPENDENCIES:	free, <stdlib.h>
+				ft_entry_free()
 				ft_strlen()
 				ft_strcmp()
 				HASH()
@@ -170,9 +171,7 @@ int				hashtable_delete_entry(t_hashtable **table, char *key)
 				(cur_entry == ((*table)->buckets)[index]) ?
 					((*table)->buckets)[index] = cur_entry->successor :
 					prev_entry->successor = cur_entry->successor;
-				free(cur_entry->key);
-				free(cur_entry->value);
-				free(cur_entry);
+				ft_entry_free(&cur_entry);
 				*table->entries -= 1;
 				return (0);
 			}
@@ -185,6 +184,7 @@ int				hashtable_delete_entry(t_hashtable **table, char *key)
 
 /**
 DEPENDENCIES:	free, <stdlib.h>
+				ft_bucket_free()
 
 DESCRIPTION:	Deletes/frees the entire hash table
 				and all the entries contained in it.
@@ -195,7 +195,6 @@ SEARCH TAGS:	ft hashtable_destroy  ft ht_destroy
 */
 int				hashtable_destroy(t_hashtable **table)
 {
-	t_entry			*temp;
 	unsigned int	i;
 
 	if (table)
@@ -207,15 +206,7 @@ int				hashtable_destroy(t_hashtable **table)
 				i = 0;
 				while (i < (*table)->num_buckets)
 				{
-					while (((*table)->buckets)[i])
-					{
-						temp = ((*table)->buckets)[i];
-						((*table)->buckets)[i] =
-								((*table)->buckets)[i]->successor;
-						free(temp->key);
-						free(temp->value);
-						free(temp);
-					}
+					ft_bucket_free(&((*table)->buckets)[i]);
 					i++;
 				}
 				free((*table)->buckets);
@@ -314,7 +305,7 @@ RETURN VALUES:	If successful, it returns a pointer to the new entry;
 
 SEARCH TAGS:	ft create_entry
 */
-t_entry			*ft_create_entry(char *key, void *value)
+t_entry			*ft_entry_create(char *key, void *value)
 {
 	t_entry *new_entry;
 
@@ -329,3 +320,45 @@ t_entry			*ft_create_entry(char *key, void *value)
 	}
 	return (NULL);
 }
+
+/**
+DEPENDENCIES:	free, <stdlib.h>
+
+DESCRIPTION:	Deletes/frees an entry.
+
+RETURN VALUES:	none.
+
+SEARCH TAGS:	ft entry_free
+*/
+void			ft_entry_free(t_entry **entry)
+{
+	free((*entry)->key);
+	free((*entry)->value);
+	free(*entry);
+}
+
+/**
+DEPENDENCIES:	ft_entry_free()
+
+DESCRIPTION:	Deletes/frees the entire bucket (linked
+				list).
+
+RETURN VALUES:	none.
+
+SEARCH TAGS:	ft bucket_free
+*/
+void			ft_bucket_free(t_entry **head)
+{
+	t_entry	*temp;
+
+	if (head)
+	{
+		while (*head)
+		{
+			temp = *head;
+			*head = (*head)->successor;
+			ft_entry_free(&temp);
+		}
+	}
+}
+
