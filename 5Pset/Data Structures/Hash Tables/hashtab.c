@@ -50,8 +50,8 @@ SEARCH TAGS:    ft hashtable_alloc_table    ft hashtable_create_table
 */
 t_hashtable        *hashtable_alloc_table(unsigned int size)
 {
-    t_hashtable        *table;
-    unsigned int    i;
+    t_hashtable    *table;
+    unsigned int   i;
 
     if (size < 1)
         return (NULL);
@@ -83,8 +83,8 @@ int                hashtable_insert_data(t_hashtable **table,
                                         char *key,
                                         void *data)
 {
-    t_entry            *entry;
-    unsigned int    index;
+    t_entry        *entry;
+    unsigned int   index;
 
     if (table && *table && key && data)
     {
@@ -120,8 +120,8 @@ SEARCH TAGS:    ft hashtable_fetch_entry     ft hashtable_fetch_data
 */
 t_entry            *hashtable_fetch_entry(t_hashtable *table, char *key)
 {
-    t_entry            *cur_entry;
-    unsigned int    index;
+    t_entry        *cur_entry;
+    unsigned int   index;
 
     if (table && key)
     {
@@ -156,9 +156,9 @@ SEARCH TAGS:    ft hashtable_delete_data    ft ht_delete_data
 */
 int                hashtable_delete_entry(t_hashtable **table, char *key)
 {
-    t_entry            *prev_entry;
-    t_entry            *cur_entry;
-    unsigned int    index;
+    t_entry        *prev_entry;
+    t_entry        *cur_entry;
+    unsigned int   index;
 
     if (table && key)
     {
@@ -195,7 +195,7 @@ SEARCH TAGS:    ft hashtable_destroy  ft ht_destroy
 */
 int                hashtable_destroy(t_hashtable **table)
 {
-    unsigned int    i;
+    unsigned int i;
 
     if (table)
     {
@@ -349,7 +349,7 @@ SEARCH TAGS:    ft bucket_free
 */
 void            ft_bucket_free(t_entry **head)
 {
-    t_entry    *temp;
+    t_entry *temp;
 
     if (head)
     {
@@ -361,3 +361,4 @@ void            ft_bucket_free(t_entry **head)
         }
     }
 }
+
