@@ -36,6 +36,8 @@ typedef struct        s_hashtable
 #endif
 
 
+/* — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — */
+
 /**
 DEPENDENCIES:   malloc, <stdlib.h>
 
@@ -48,6 +50,7 @@ RETURN VALUES:  If successful, returns a pointer to the
 SEARCH TAGS:    ft hashtable_alloc_table    ft hashtable_create_table 
                 ft ht_alloc_table           ft ht_create_table
 */
+
 t_hashtable        *hashtable_alloc_table(unsigned int size)
 {
     t_hashtable    *table;
@@ -67,6 +70,8 @@ t_hashtable        *hashtable_alloc_table(unsigned int size)
     return (table);
 }
 
+/* — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — */
+
 /**
 DEPENDENCIES:   ft_entry_create()
                 HASH()
@@ -79,6 +84,7 @@ RETURN VALUES:  If successful, returns 0; otherwise -1.
 SEARCH TAGS:    ft hashtable_insert_data    ft hashtable_add_entry 
                 ft ht_insert_data           ft ht_add_entry
 */
+
 int                hashtable_insert_data(t_hashtable **table,
                                         char *key,
                                         void *data)
@@ -99,6 +105,8 @@ int                hashtable_insert_data(t_hashtable **table,
     return (-1);
 }
 
+/* — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — */
+
 /**
 DEPENDENCIES:   ft_strlen()
                 ft_strcmp()
@@ -118,6 +126,7 @@ SEARCH TAGS:    ft hashtable_fetch_entry     ft hashtable_fetch_data
                 ft ht_lookup_entry           ft ht_lookup_data
                 ft ht_get_entry              ft ht_get_data
 */
+
 t_entry            *hashtable_fetch_entry(t_hashtable *table, char *key)
 {
     t_entry        *cur_entry;
@@ -137,6 +146,8 @@ t_entry            *hashtable_fetch_entry(t_hashtable *table, char *key)
     return (NULL);
 }
 
+/* — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — */
+
 /**
 DEPENDENCIES:   free, <stdlib.h>
                 ft_entry_free()
@@ -154,6 +165,7 @@ RETURN VALUES:  If the entry is found, and is successfully
 SEARCH TAGS:    ft hashtable_delete_data    ft ht_delete_data
                 ft hashtable_delete_entry    ft ht_delete_entry
 */
+
 int                hashtable_delete_entry(t_hashtable **table, char *key)
 {
     t_entry        *prev_entry;
@@ -182,6 +194,8 @@ int                hashtable_delete_entry(t_hashtable **table, char *key)
     return (-1);
 }
 
+/* — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — */
+
 /**
 DEPENDENCIES:   free, <stdlib.h>
                 ft_bucket_free()
@@ -193,6 +207,7 @@ RETURN VALUES:  If successful returns 0; otherwise -1.
 
 SEARCH TAGS:    ft hashtable_destroy  ft ht_destroy
 */
+
 int                hashtable_destroy(t_hashtable **table)
 {
     unsigned int i;
@@ -218,6 +233,8 @@ int                hashtable_destroy(t_hashtable **table)
     return (-1);
 }
 
+/* — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — */
+
 /**
 DEPENDENCIES:   none.
 
@@ -227,10 +244,13 @@ RETURN VALUES:  If successful returns 0; otherwise -1.
 
 SEARCH TAGS:    ft hashtable_realloc_table    ft ht_realloc_table
 */
+
 t_hashtable        *hashtable_realloc_table()
 {
 
 }
+
+/* — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — */
 
 /**
 DEPENDENCIES:   none.
@@ -241,10 +261,13 @@ RETURN VALUES:  If successful returns 0; otherwise -1.
 
 SEARCH TAGS:    ft hashtable_dealloc_table    ft ht_dealloc_table
 */
+
 t_hashtable        *hashtable_dealloc_table()
 {
 
 }
+
+/* — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — */
 
 /**
 DEPENDENCIES:   hashtable_realloc_table()
@@ -273,6 +296,7 @@ RETURN VALUES:  If nothing happens the function returns 0.
 
 SEARCH TAGS:    ft hashtable_check_load_factor  ft ht_check_load_factor
 */
+
 int                hashtable_check_load_factor(t_hashtable **table)
 {
     if (table && *table)
@@ -294,6 +318,8 @@ int                hashtable_check_load_factor(t_hashtable **table)
     return (-2);
 }
 
+/* — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — */
+
 /**
 DEPENDENCIES:   malloc, <stdlib.h>, ft_strdup, ft_strlen
 
@@ -305,6 +331,7 @@ RETURN VALUES:  If successful, it returns a pointer to the new entry;
 
 SEARCH TAGS:    ft create_entry
 */
+
 t_entry            *ft_entry_create(char *key, void *value)
 {
     t_entry *new_entry;
@@ -321,6 +348,8 @@ t_entry            *ft_entry_create(char *key, void *value)
     return (NULL);
 }
 
+/* — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — */
+
 /**
 DEPENDENCIES:   free, <stdlib.h>
 
@@ -330,12 +359,15 @@ RETURN VALUES:  none.
 
 SEARCH TAGS:    ft entry_free
 */
-void            ft_entry_free(t_entry **entry)
+
+void               ft_entry_free(t_entry **entry)
 {
     free((*entry)->key);
     free((*entry)->value);
     free(*entry);
 }
+
+/* — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — */
 
 /**
 DEPENDENCIES:   ft_entry_free()
@@ -347,7 +379,8 @@ RETURN VALUES:  none.
 
 SEARCH TAGS:    ft bucket_free
 */
-void            ft_bucket_free(t_entry **head)
+
+void               ft_bucket_free(t_entry **head)
 {
     t_entry *temp;
 
@@ -362,3 +395,4 @@ void            ft_bucket_free(t_entry **head)
     }
 }
 
+/* — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — */
