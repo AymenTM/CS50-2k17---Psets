@@ -8,15 +8,13 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
-
-#include "____________.h"
-#include "____________.c"
 
 
 // FUNCTIONS ==================================================================
 
-
+uint32_t hash(const char* data, size_t len);
 
 
 
@@ -29,7 +27,6 @@ int main(int ac, char *av[])
 {
 
 	(void)ac;
-
-	
+	printf("%u\n", hash(av[1], strlen(av[1])) % 1000);
 	return (0);
 }

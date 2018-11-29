@@ -34,17 +34,26 @@ SRC_DIR   =     ./
 
 NAME      =     a
 
-SOURCES   =     $(SRC_DIR)test_main.c
+SOURCES   =     $(SRC_DIR)test_main.c \
+                $(SRC_DIR)murmurhash3/murmurhash3.c \
+                $(SRC_DIR)hashtab.c \
+
+OBJECTS   :=    $(SOURCES:.c=.o)
 
 
 # MAIN ========================================================================
 
 all: $(NAME)
 
-$(NAME): $(SOURCES) $(HEADERS)
+$(NAME): $(OBJECTS) $(HEADERS)
 	@$(CC) $(CFLAGS) $^ -o $@
 	@echo && echo "   [√] 	[Compilation Successful]"
 	@echo && ls "./"
+
+%.o: %.c
+	@echo "Compiling => " $<
+	@$(CC) $(CFLAGS) -I$(INC_DIR) -c $< -o $@
+
 
 
 # HOUSE KEEPING ===============================================================
