@@ -35,8 +35,7 @@ SRC_DIR   =     ./
 NAME      =     a
 
 SOURCES   =     $(SRC_DIR)test_main.c \
-                $(SRC_DIR)murmurhash3/murmurhash3.c \
-                $(SRC_DIR)hashtab.c \
+                $(SRC_DIR)murmurhash3/murmurhash3.c
 
 OBJECTS   :=    $(SOURCES:.c=.o)
 
