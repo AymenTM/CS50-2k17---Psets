@@ -100,7 +100,8 @@ int				hashtable_insert_data(t_hashtable **table,
 }
 
 /**
-DEPENDENCIES:	ft_strcmp()
+DEPENDENCIES:	ft_strlen()
+				ft_strcmp()
 				HASH()
 
 DESCRIPTION:	Retrieves an entry.
@@ -124,7 +125,7 @@ t_entry			*hashtable_fetch_entry(t_hashtable *table, char *key)
 
 	if (table && key)
 	{
-		index = HASH(entry->key, entry->keylen) % table->num_buckets;
+		index = HASH(key, ft_strlen(key)) % table->num_buckets;
 		cur_entry = table->buckets[index];
 		while (cur_entry)
 		{
@@ -138,6 +139,7 @@ t_entry			*hashtable_fetch_entry(t_hashtable *table, char *key)
 
 /**
 DEPENDENCIES:	free, <stdlib.h>
+				ft_strlen()
 				ft_strcmp()
 				HASH()
 
@@ -159,7 +161,7 @@ int				hashtable_delete_entry(t_hashtable **table, char *key)
 
 	if (table && key)
 	{
-		index = HASH(entry->key, entry->keylen) % table->num_buckets;
+		index = HASH(key, ft_strlen(key)) % table->num_buckets;
 		cur_entry = ((*table)->buckets)[index];
 		while (cur_entry)
 		{
