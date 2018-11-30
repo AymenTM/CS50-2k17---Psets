@@ -1,12 +1,12 @@
-1) Download the directory
+1.Download the directory
 ====
 
-2) Compile:
+2.Compile:
 ====
 
 `make`
 
-3) Run:
+3.Run:
 ====
 
 `Usage: ./a key1 key2 key3 key4 key5 key6`
