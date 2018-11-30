@@ -1,56 +1,14 @@
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 // ======================================================================= //
-//                                hashtable.h                              //
+//                         HASH TABLE FUNCTION LIBRARY                     //
 // ======================================================================= //
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-/* * * * * * * * * * * *
-========================
-    HASH TABLE HEADER
-========================
- * * * * * * * * * * * */
+#include <stdlib.h>
 
-#ifndef FT_HASHTABLE_H
-# define FT_HASHTABLE_H
-
-# define HASHCODE(key, buckets) (hash(key, ft_strlen(key)) % buckets)
-
-# define MIN_LOAD_FACTOR 0.1
-# define MAX_LOAD_FACTOR 0.7
-
-typedef struct		s_entry
-{
-	char			*key;
-	void			*value;
-	struct s_entry	*successor;
-}					t_entry;
-
-typedef struct		s_hashtable
-{
-	unsigned int	entries;
-	unsigned int	num_buckets;
-	t_entry			**buckets;
-}					t_hashtable;
-
-t_hashtable		*hashtable_alloc_table(unsigned int size);
-t_hashtable		*hashtable_realloc_table(t_hashtable *table);
-t_hashtable		*hashtable_dealloc_table(t_hashtable *table);
-
-t_entry			*ft_entry_create(char *key, void *value);
-
-t_entry			*hashtable_fetch_entry(t_hashtable *table, char *key);
-int				hashtable_insert_entry(t_hashtable **table, char *key,
-				void *value);
-int				hashtable_delete_entry(t_hashtable **table, char *key);
-
-int				hashtable_destroy_table(t_hashtable **table);
-int				hashtable_check_load_factor(t_hashtable **table);
-
-void			ft_entry_free(t_entry **entry);
-void			ft_bucket_free(t_entry **head);
-
-#endif
-
+#include "hashtab.h"
+#include "utils.h"
+#include "murmurhash3/murmurhash3.h" /* hash function used */
 
 /* creates an empty hash table */
 t_hashtable		*hashtable_alloc_table(unsigned int size)
@@ -62,13 +20,17 @@ t_hashtable		*hashtable_alloc_table(unsigned int size)
 		return (NULL);
 	if (!(table = malloc(sizeof(t_hashtable))))
 		return (NULL);
-	if (!(table->buckets = malloc(sizeof(t_entry*) * size)))
+	size = (unsigned int)ft_find_next_prime(size);
+	if (!(table->bucket_list =
+				malloc(sizeof(t_entry*) * size)))
+	{
 		return (NULL);
+	}
 	table->num_buckets = size;
 	table->entries = 0;
 	i = 0;
 	while (i < size)
-		(table->buckets)[i++] = NULL;
+		(table->bucket_list)[i++] = NULL;
 	return (table);
 }
 
@@ -81,11 +43,13 @@ int				hashtable_insert_entry(t_hashtable **table, char *key,
 
 	if (table && *table && key && value)
 	{
+		if (hashtable_check_load_factor(table) == -1)
+			return (-1);
 		if (!(entry = ft_entry_create(key, value)))
 			return (-1);
 		index = HASHCODE(key, (*table)->num_buckets);
-		entry->successor = ((*table)->buckets)[index];
-		((*table)->buckets)[index] = entry;
+		entry->successor = ((*table)->bucket_list)[index];
+		((*table)->bucket_list)[index] = entry;
 		(*table)->entries += 1;
 		return (0);
 	}
@@ -101,7 +65,7 @@ t_entry			*hashtable_fetch_entry(t_hashtable *table, char *key)
 	if (table && key)
 	{
 		index = HASHCODE(key, table->num_buckets);
-		cur_entry = table->buckets[index];
+		cur_entry = (table->bucket_list)[index];
 		while (cur_entry)
 		{
 			if (ft_strcmp(cur_entry->key, key) == 0)
@@ -122,13 +86,13 @@ int				hashtable_delete_entry(t_hashtable **table, char *key)
 	if (table && key)
 	{
 		index = HASHCODE(key, (*table)->num_buckets);
-		cur_entry = ((*table)->buckets)[index];
+		cur_entry = ((*table)->bucket_list)[index];
 		while (cur_entry)
 		{
 			if (ft_strcmp(cur_entry->key, key) == 0)
 			{
-				if (cur_entry == ((*table)->buckets)[index])
-					((*table)->buckets)[index] = cur_entry->successor;
+				if (cur_entry == ((*table)->bucket_list)[index])
+					((*table)->bucket_list)[index] = cur_entry->successor;
 				else
 					prev_entry->successor = cur_entry->successor;
 				ft_entry_free(&cur_entry);
@@ -151,16 +115,17 @@ int				hashtable_destroy_table(t_hashtable **table)
 	{
 		if (*table)
 		{
-			if ((*table)->buckets)
+			if ((*table)->bucket_list)
 			{
 				i = 0;
 				while (i < (*table)->num_buckets)
 				{
-					ft_bucket_free(&((*table)->buckets)[i]);
+					if (((*table)->bucket_list)[i])
+						ft_bucket_free(&((*table)->bucket_list)[i]);
 					i++;
 				}
-				free((*table)->buckets);
-				(*table)->buckets = NULL;
+				free((*table)->bucket_list);
+				(*table)->bucket_list = NULL;
 			}
 			free(*table);
 			(*table) = NULL;
@@ -168,18 +133,6 @@ int				hashtable_destroy_table(t_hashtable **table)
 		return (0);
 	}
 	return (-1);
-}
-
-/* grows table size */
-t_hashtable		*hashtable_realloc_table(t_hashtable *table)
-{
-	return (table);
-}
-
-/* shrinks table size */
-t_hashtable		*hashtable_dealloc_table(t_hashtable *table)
-{
-	return (table);
 }
 
 /* updates table size if necessary */
@@ -190,18 +143,110 @@ int				hashtable_check_load_factor(t_hashtable **table)
 		if ((float)(*table)->entries / (float)(*table)->num_buckets
 			> MAX_LOAD_FACTOR)
 		{
-			*table = hashtable_realloc_table(*table);
-			return ((*table == NULL) ? -1 : 2);
+			if (!(*table = hashtable_realloc_table(table)))
+				return (-1);
+			return (0);
 		}
 		if ((float)(*table)->entries / (float)(*table)->num_buckets
 			< MIN_LOAD_FACTOR)
 		{
-			*table = hashtable_dealloc_table(*table);
-			return ((*table == NULL) ? -1 : 1);
+			if (!(*table = hashtable_dealloc_table(table)))
+				return (-1);
+			return (0);
 		}
+		else
+		{
+			return (0);
+		}
+	}
+	return (-1);
+}
+
+/* grows the hash table by half and then some (to get to the next prime) */
+t_hashtable 	*hashtable_realloc_table(t_hashtable **table)
+{
+	t_hashtable		*new_table;
+
+	if (table && *table)
+	{
+		new_table = hashtable_alloc_table((*table)->num_buckets * 2);
+		if (new_table == NULL)
+			return (NULL);
+		if (hashtable_rehash_table(table, &new_table) == -1)
+			return (NULL);
+		free(*table);
+		return (new_table);
+	}
+	return (NULL);
+}
+
+/* shrinks the hash table by half and then some (to get to the next prime) */
+t_hashtable 	*hashtable_dealloc_table(t_hashtable **table)
+{
+	t_hashtable		*new_table;
+
+	if (table && *table)
+	{
+		if ((*table)->num_buckets > 1)
+		{
+			new_table = hashtable_alloc_table((*table)->num_buckets / 2);
+			if (new_table == NULL)
+				return (NULL);
+			if (hashtable_rehash_table(table, &new_table) == -1)
+				return (NULL);
+			free(*table);
+			return (new_table);
+		}
+		return (*table);
+	}
+	return (NULL);
+}
+
+/* rehashs one entry into the 'table_to' */
+int				hashtable_rehash_entry(t_hashtable **table_to, t_entry **entry)
+{
+	unsigned int	index;
+
+	if (table_to && *table_to && entry && *entry)
+	{
+		index = HASHCODE((*entry)->key, (*table_to)->num_buckets);
+		(*entry)->successor = ((*table_to)->bucket_list)[index];
+		((*table_to)->bucket_list)[index] = (*entry);
+		(*table_to)->entries += 1;
 		return (0);
 	}
-	return (-2);
+	return (-1);
+}
+
+/* rehashs all the entries in the 'table_from' into the 'table_to' */
+int				hashtable_rehash_table(t_hashtable **table_from,
+				t_hashtable **table_to)
+{
+	t_entry			*cur_entry;
+	t_entry			*temp;
+	unsigned int	i;
+
+	if (table_from && *table_from && table_to && *table_to)
+	{
+		i = 0;
+		while (i < (*table_from)->num_buckets)
+		{
+			if (((*table_from)->bucket_list)[i])
+			{
+				cur_entry = ((*table_from)->bucket_list)[i];
+				while (cur_entry)
+				{
+					temp = cur_entry->successor;
+					if (hashtable_rehash_entry(table_to, &cur_entry) == -1)
+						return (-1);
+					cur_entry = temp;
+				}
+				((*table_from)->bucket_list)[i] = NULL;
+			}
+			i++;
+		}
+	}
+	return (((*table_to)->entries == (*table_from)->entries) ? 0 : -1);
 }
 
 /* takes a key and a value and creates an entry out of them */
@@ -215,6 +260,7 @@ t_entry			*ft_entry_create(char *key, void *value)
 			return (NULL);
 		new_entry->key = key;
 		new_entry->value = value;
+		new_entry->successor = NULL;
 		return (new_entry);
 	}
 	return (NULL);
@@ -243,8 +289,8 @@ void			ft_bucket_free(t_entry **head)
 	{
 		while (*head)
 		{
-			temp = *head;
-			*head = (*head)->successor;
+			temp = (*head);
+			(*head) = (*head)->successor;
 			ft_entry_free(&temp);
 		}
 	}

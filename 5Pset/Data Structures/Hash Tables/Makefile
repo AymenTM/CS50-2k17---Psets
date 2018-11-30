@@ -8,10 +8,9 @@
 
 CC             =       gcc
 
-CFLAGS         =       -Wall -Wextra -Werror $(ADD_FLAGS)
+CFLAGS         =       -Wall -Wextra -Werror #$(ADD_FLAGS)
 
-WFLAGS         =       -Wshadow-all                                          \
-                       -Wno-sign-compare
+WFLAGS         =       -Wshadow-all
 
 OPTM_FLAGS     =       -O3
 
@@ -35,6 +34,8 @@ SRC_DIR   =     ./
 NAME      =     a
 
 SOURCES   =     $(SRC_DIR)test_main.c \
+                $(SRC_DIR)hashtab.c \
+                $(SRC_DIR)utils.c \
                 $(SRC_DIR)murmurhash3/murmurhash3.c
 
 OBJECTS   :=    $(SOURCES:.c=.o)

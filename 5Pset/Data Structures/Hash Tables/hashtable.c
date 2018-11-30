@@ -1,6 +1,6 @@
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 // ======================================================================= //
-//                                hashtable.h                              //
+//                         HASH TABLE FUNCTION LIBRARY                     //
 // ======================================================================= //
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
@@ -15,7 +15,7 @@
 
 # define HASHCODE(key, buckets) (hash(key, ft_strlen(key)) % buckets)
 
-# define MIN_LOAD_FACTOR 0.1
+# define MIN_LOAD_FACTOR 0.0
 # define MAX_LOAD_FACTOR 0.7
 
 typedef struct      s_entry
@@ -29,23 +29,25 @@ typedef struct      s_hashtable
 {
     unsigned int    entries;
     unsigned int    num_buckets;
-    t_entry         **buckets;
+    t_entry         **bucket_list;
 }                   t_hashtable;
 
 t_hashtable     *hashtable_alloc_table(unsigned int size);
-t_hashtable     *hashtable_realloc_table(t_hashtable *table);
-t_hashtable     *hashtable_dealloc_table(t_hashtable *table);
-
-t_entry         *ft_entry_create(char *key, void *value);
+t_hashtable     *hashtable_realloc_table(t_hashtable **table);
+t_hashtable     *hashtable_dealloc_table(t_hashtable **table);
 
 t_entry         *hashtable_fetch_entry(t_hashtable *table, char *key);
 int             hashtable_insert_entry(t_hashtable **table, char *key,
                 void *value);
 int             hashtable_delete_entry(t_hashtable **table, char *key);
-
+int             hashtable_rehash_entry(t_hashtable **table_to,
+                t_entry **entry);
+int             hashtable_rehash_table(t_hashtable **table_from,
+                t_hashtable **table_to);
 int             hashtable_destroy_table(t_hashtable **table);
 int             hashtable_check_load_factor(t_hashtable **table);
 
+t_entry         *ft_entry_create(char *key, void *value);
 void            ft_entry_free(t_entry **entry);
 void            ft_bucket_free(t_entry **head);
 
@@ -53,9 +55,12 @@ void            ft_bucket_free(t_entry **head);
 
 
 /* — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
-DEPENDENCIES:   malloc, <stdlib.h>
+DEPENDENCIES:   malloc() , <stdlib.h>
+                ft_find_next_prime()
 
-DESCRIPTION:    Creates an empty hash table.
+DESCRIPTION:    Creates/allocates an empty hash table of size 'size'
+                and then some (inorder to get to the nearest prime
+                number).
 
 RETURN VALUES:  If successful, returns a pointer to the
                 hash table. If an error occurs the function
@@ -74,30 +79,35 @@ t_hashtable     *hashtable_alloc_table(unsigned int size)
         return (NULL);
     if (!(table = malloc(sizeof(t_hashtable))))
         return (NULL);
-    if (!(table->buckets = malloc(sizeof(t_entry*) * size)))
+    size = (unsigned int)ft_find_next_prime(size);
+    if (!(table->bucket_list =
+                malloc(sizeof(t_entry*) * size)))
+    {
         return (NULL);
+    }
     table->num_buckets = size;
     table->entries = 0;
     i = 0;
     while (i < size)
-        (table->buckets)[i++] = NULL;
+        (table->bucket_list)[i++] = NULL;
     return (table);
 }
 
 
 
 /* — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
-DEPENDENCIES:   ft_entry_create()
-                HASH()
+DEPENDENCIES:   hashtable_check_load_factor()
+                ft_entry_create()
+                ft_strlen()
+                HASHCODE()
 
-DESCRIPTION:    Inserts a key-value pair (an entry) into the hash
-                table.
+DESCRIPTION:    Inserts a key-value pair into the hash table.
 
 RETURN VALUES:  If successful, returns 0; otherwise -1.
 
 SEARCH TAGS:    ft hashtable_insert_data    ft hashtable_add_entry 
                 ft ht_insert_data           ft ht_add_entry
-— — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — */
+— — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — */
 
 int             hashtable_insert_entry(t_hashtable **table, char *key,
                 void *value)
@@ -107,11 +117,13 @@ int             hashtable_insert_entry(t_hashtable **table, char *key,
 
     if (table && *table && key && value)
     {
+        if (hashtable_check_load_factor(table) == -1)
+            return (-1);
         if (!(entry = ft_entry_create(key, value)))
             return (-1);
         index = HASHCODE(key, (*table)->num_buckets);
-        entry->successor = ((*table)->buckets)[index];
-        ((*table)->buckets)[index] = entry;
+        entry->successor = ((*table)->bucket_list)[index];
+        ((*table)->bucket_list)[index] = entry;
         (*table)->entries += 1;
         return (0);
     }
@@ -121,23 +133,17 @@ int             hashtable_insert_entry(t_hashtable **table, char *key,
 
 
 /* — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
-DEPENDENCIES:   ft_strlen()
-                ft_strcmp()
-                HASH()
+DEPENDENCIES:   ft_strcmp()
+                ft_strlen()
+                HASHCODE()
 
-DESCRIPTION:    Retrieves an entry.
+DESCRIPTION:    Finds and returns (retrieves) an entry.
 
 RETURN VALUES:  If the entry is found, a pointer to the entry is
                 returned; otherwise a NULL pointer is returned.
 
 SEARCH TAGS:    ft hashtable_fetch_entry     ft hashtable_fetch_data
-                ft hashtable_find_entry      ft hashtable_find_data
-                ft hashtable_lookup_entry    ft hashtable_lookup_data
-                ft hashtable_get_entry       ft hashtable_get_data
-                ft ht_fetch_entry            ft ht_fetch_data
-                ft ht_find_entry             ft ht_find_data
-                ft ht_lookup_entry           ft ht_lookup_data
-                ft ht_get_entry              ft ht_get_data
+                ft hashtable_find_entry      ft hashtable_lookup_entry
 — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — */
 
 t_entry         *hashtable_fetch_entry(t_hashtable *table, char *key)
@@ -148,7 +154,7 @@ t_entry         *hashtable_fetch_entry(t_hashtable *table, char *key)
     if (table && key)
     {
         index = HASHCODE(key, table->num_buckets);
-        cur_entry = table->buckets[index];
+        cur_entry = (table->bucket_list)[index];
         while (cur_entry)
         {
             if (ft_strcmp(cur_entry->key, key) == 0)
@@ -162,11 +168,10 @@ t_entry         *hashtable_fetch_entry(t_hashtable *table, char *key)
 
 
 /* — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
-DEPENDENCIES:   free, <stdlib.h>
-                ft_entry_free()
-                ft_strlen()
+DEPENDENCIES:   ft_entry_free()
                 ft_strcmp()
-                HASH()
+                ft_strlen()
+                HASHCODE()
 
 DESCRIPTION:    Finds and deletes/frees an entry in the hash
                 table.
@@ -188,13 +193,13 @@ int             hashtable_delete_entry(t_hashtable **table, char *key)
     if (table && key)
     {
         index = HASHCODE(key, (*table)->num_buckets);
-        cur_entry = ((*table)->buckets)[index];
+        cur_entry = ((*table)->bucket_list)[index];
         while (cur_entry)
         {
             if (ft_strcmp(cur_entry->key, key) == 0)
             {
-                if (cur_entry == ((*table)->buckets)[index])
-                    ((*table)->buckets)[index] = cur_entry->successor;
+                if (cur_entry == ((*table)->bucket_list)[index])
+                    ((*table)->bucket_list)[index] = cur_entry->successor;
                 else
                     prev_entry->successor = cur_entry->successor;
                 ft_entry_free(&cur_entry);
@@ -211,7 +216,7 @@ int             hashtable_delete_entry(t_hashtable **table, char *key)
 
 
 /* — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
-DEPENDENCIES:   free, <stdlib.h>
+DEPENDENCIES:   free() , <stdlib.h>
                 ft_bucket_free()
 
 DESCRIPTION:    Deletes/frees the entire hash table
@@ -230,16 +235,17 @@ int             hashtable_destroy_table(t_hashtable **table)
     {
         if (*table)
         {
-            if ((*table)->buckets)
+            if ((*table)->bucket_list)
             {
                 i = 0;
                 while (i < (*table)->num_buckets)
                 {
-                    ft_bucket_free(&((*table)->buckets)[i]);
+                    if (((*table)->bucket_list)[i])
+                        ft_bucket_free(&((*table)->bucket_list)[i]);
                     i++;
                 }
-                free((*table)->buckets);
-                (*table)->buckets = NULL;
+                free((*table)->bucket_list);
+                (*table)->bucket_list = NULL;
             }
             free(*table);
             (*table) = NULL;
@@ -252,63 +258,27 @@ int             hashtable_destroy_table(t_hashtable **table)
 
 
 /* — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
-DEPENDENCIES:   none.
-
-DESCRIPTION:    .
-
-RETURN VALUES:  If successful returns 0; otherwise -1.
-
-SEARCH TAGS:    ft hashtable_realloc_table    ft ht_realloc_table
-— — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — */
-
-t_hashtable     *hashtable_realloc_table(t_hashtable *table)
-{
-    return (table);
-}
-
-
-
-/* — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
-DEPENDENCIES:   none.
-
-DESCRIPTION:    .
-
-RETURN VALUES:  If successful returns 0; otherwise -1.
-
-SEARCH TAGS:    ft hashtable_dealloc_table    ft ht_dealloc_table
-— — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — */
-
-t_hashtable     *hashtable_dealloc_table(t_hashtable *table)
-{
-    return (table);
-}
-
-
-
-/* — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 DEPENDENCIES:   hashtable_realloc_table()
                 hashtable_dealloc_table()
+                MAX_LOAD_FACTOR
+                MIN_LOAD_FACTOR
 
 DESCRIPTION:    Checks that the current load factor is
-                neither greater than the desired max
-                load factor nor is smaller than the
-                desired minimum load factor.
+                neither greater than or smaller than
+                the desiredthe desired max load factor
+                and desired minimum load factor
+                respectively.
 
                 If either is the case, a procedure to
                 realloc (grow) or dealloc (shrink) the
-                table will take place.
+                table will ensue.
 
                 If neither is the case, nothing happens.
 
-RETURN VALUES:  If nothing happens the function returns 0.
-
-                If a successful reallocation of the table happens, it returns 2.
-                If a successful deallocation happens, it returns 1.
-
-                If an unsuccessful reallocation or deallocation happens,
-                it returns -1.
-
-                If any other error occurs, it returns -2.
+RETURN VALUES:  If nothing happens, or a successful
+                reallocation or deallocation happens,
+                0 is returned. If an error occurs a -1
+                is returned.
 
 SEARCH TAGS:    ft hashtable_check_load_factor  ft ht_check_load_factor
 — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — */
@@ -320,32 +290,181 @@ int             hashtable_check_load_factor(t_hashtable **table)
         if ((float)(*table)->entries / (float)(*table)->num_buckets
             > MAX_LOAD_FACTOR)
         {
-            *table = hashtable_realloc_table(*table);
-            return ((*table == NULL) ? -1 : 2);
+            if (!(*table = hashtable_realloc_table(table)))
+                return (-1);
+            return (0);
         }
         if ((float)(*table)->entries / (float)(*table)->num_buckets
             < MIN_LOAD_FACTOR)
         {
-            *table = hashtable_dealloc_table(*table);
-            return ((*table == NULL) ? -1 : 1);
+            if (!(*table = hashtable_dealloc_table(table)))
+                return (-1);
+            return (0);
         }
-        return (0);
+        else
+        {
+            return (0);
+        }
     }
-    return (-2);
+    return (-1);
 }
 
 
 
 /* — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
-DEPENDENCIES:   malloc, <stdlib.h>, ft_strdup, ft_strlen
+DEPENDENCIES:   free() , <stdlib.h>
+                hashtable_alloc_table()
+                hashtable_rehash_table()
+
+DESCRIPTION:    Grows the hash table by half and then some
+                (inorder to get to the nearest prime number).
+
+RETURN VALUES:  If successful returns a pointer to the grown
+                hash table. Otherwise, if an error occurs the
+                function returns a NULL pointer.
+
+SEARCH TAGS:    ft hashtable_realloc_table    ft ht_realloc_table
+— — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — */
+
+t_hashtable     *hashtable_realloc_table(t_hashtable **table)
+{
+    t_hashtable     *new_table;
+
+    if (table && *table)
+    {
+        new_table = hashtable_alloc_table((*table)->num_buckets * 2);
+        if (new_table == NULL)
+            return (NULL);
+        if (hashtable_rehash_table(table, &new_table) == -1)
+            return (NULL);
+        free(*table);
+        return (new_table);
+    }
+    return (NULL);
+}
+
+
+
+/* — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
+DEPENDENCIES:   free() , <stdlib.h>
+                hashtable_alloc_table()
+                hashtable_rehash_table()
+
+DESCRIPTION:    Shrinks the hash table by half and then some
+                (inorder to get to the nearest prime number).
+
+RETURN VALUES:  If successful returns a pointer to the shrunk
+                hash table. Otherwise, if an error occurs the
+                function returns a NULL pointer.
+
+SEARCH TAGS:    ft hashtable_dealloc_table    ft ht_dealloc_table
+— — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — */
+
+t_hashtable     *hashtable_dealloc_table(t_hashtable **table)
+{
+    t_hashtable     *new_table;
+
+    if (table && *table)
+    {
+        if ((*table)->num_buckets > 1)
+        {
+            new_table = hashtable_alloc_table((*table)->num_buckets / 2);
+            if (new_table == NULL)
+                return (NULL);
+            if (hashtable_rehash_table(table, &new_table) == -1)
+                return (NULL);
+            free(*table);
+            return (new_table);
+        }
+        return (*table);
+    }
+    return (NULL);
+}
+
+
+
+/* — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
+DEPENDENCIES:   ft_strlen()
+                HASHCODE()
+
+DESCRIPTION:    Rehashs one entry in the 'table_to' hashtable.
+
+RETURN VALUES:  If successful returns 0; otherwise -1.
+
+SEARCH TAGS:    ft hashtable_rehash_entry  ft ht_rehash_entry
+— — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — */
+
+int             hashtable_rehash_entry(t_hashtable **table_to, t_entry **entry)
+{
+    unsigned int    index;
+
+    if (table_to && *table_to && entry && *entry)
+    {
+        index = HASHCODE((*entry)->key, (*table_to)->num_buckets);
+        (*entry)->successor = ((*table_to)->bucket_list)[index];
+        ((*table_to)->bucket_list)[index] = (*entry);
+        (*table_to)->entries += 1;
+        return (0);
+    }
+    return (-1);
+}
+
+
+
+/* — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
+DEPENDENCIES:   hashtable_rehash_entry()
+
+DESCRIPTION:    Rehashs all the entries in the hashtable
+                'table_from' into the hashtable 'table_to'.
+
+RETURN VALUES:  If successful returns 0; otherwise -1.
+
+SEARCH TAGS:    ft hashtable_rehash_table  ft ht_rehash_table
+— — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — */
+
+int             hashtable_rehash_table(t_hashtable **table_from,
+                t_hashtable **table_to)
+{
+    t_entry         *cur_entry;
+    t_entry         *temp;
+    unsigned int    i;
+
+    if (table_from && *table_from && table_to && *table_to)
+    {
+        i = 0;
+        while (i < (*table_from)->num_buckets)
+        {
+            if (((*table_from)->bucket_list)[i])
+            {
+                cur_entry = ((*table_from)->bucket_list)[i];
+                while (cur_entry)
+                {
+                    temp = cur_entry->successor;
+                    if (hashtable_rehash_entry(table_to, &cur_entry) == -1)
+                        return (-1);
+                    cur_entry = temp;
+                }
+                ((*table_from)->bucket_list)[i] = NULL;
+            }
+            i++;
+        }
+    }
+    return (((*table_to)->entries == (*table_from)->entries) ? 0 : -1);
+}
+
+
+
+/* — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
+DEPENDENCIES:   malloc() , <stdlib.h>
 
 DESCRIPTION:    Takes a key and a value and creates an entry out
                 of them.
 
-RETURN VALUES:  If successful, it returns a pointer to the new entry;
-                if an error occurs, it returns a NULL pointer.
+RETURN VALUES:  If successful, the function returns a pointer
+                to the new entry; if an error occurs, it returns
+                a NULL pointer.
 
-SEARCH TAGS:    ft create_entry
+SEARCH TAGS:    ft entry_create    ft create_entry
 — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — */
 
 t_entry         *ft_entry_create(char *key, void *value)
@@ -358,6 +477,7 @@ t_entry         *ft_entry_create(char *key, void *value)
             return (NULL);
         new_entry->key = key;
         new_entry->value = value;
+        new_entry->successor = NULL;
         return (new_entry);
     }
     return (NULL);
@@ -366,13 +486,13 @@ t_entry         *ft_entry_create(char *key, void *value)
 
 
 /* — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
-DEPENDENCIES:   free, <stdlib.h>
+DEPENDENCIES:   free() , <stdlib.h>
 
 DESCRIPTION:    Deletes/frees an entry.
 
 RETURN VALUES:  none.
 
-SEARCH TAGS:    ft entry_free
+SEARCH TAGS:    ft entry_free    ft free_entry
 — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — */
 
 void            ft_entry_free(t_entry **entry)
@@ -398,7 +518,7 @@ DESCRIPTION:    Deletes/frees the entire bucket (linked
 
 RETURN VALUES:  none.
 
-SEARCH TAGS:    ft bucket_free
+SEARCH TAGS:    ft bucket_free    ft free_bucket
 — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — */
 
 void            ft_bucket_free(t_entry **head)
@@ -409,8 +529,8 @@ void            ft_bucket_free(t_entry **head)
     {
         while (*head)
         {
-            temp = *head;
-            *head = (*head)->successor;
+            temp = (*head);
+            (*head) = (*head)->successor;
             ft_entry_free(&temp);
         }
     }

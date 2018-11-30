@@ -11,51 +11,9 @@
 #include <string.h>
 #include <unistd.h>
 
-// FUNCTIONS ==================================================================
-
-int		ft_strlen(char *str)
-{
-	int i;
-
-	i = 0;
-	while (str[i])
-		++i;
-	return (i);
-}
-
-int		ft_strcmp(char *s1, char *s2)
-{
-	unsigned int i;
-
-	i = 0;
-	while (s1[i] == s2[i] && s1[i] && s2[i])
-		i++;
-	return (s1[i] - s2[i]);
-}
-
-char	*ft_strdup(char *src)
-{
-	int		i;
-	char	*dest;
-
-	i = 0;
-	while (src[i])
-		i++;
-	if (!(dest = malloc(i + 1)))
-		return (0);
-	i = 0;
-	while (src[i])
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
-}
-
-uint32_t hash(const char* data, size_t len);
-
-#include "hashtab.c"
+#include "hashtab.h"
+#include "utils.h"
+#include "murmurhash3/murmurhash3.h"
 
 // MAIN =======================================================================
 
@@ -73,12 +31,48 @@ int main(int ac, char *av[])
 	printf("Hash Table Address: %p\n\n", hashtab = hashtable_alloc_table(100));
 
 	printf("——————————————————————————\nInsertion:\n\n");
-	printf("#1:	[%d]\n", hashtable_insert_entry(&hashtab, ft_strdup(av[1]), ft_strdup("aymen")));
+	printf("#1:	[%d]\n", hashtable_insert_entry(&hashtab, ft_strdup(av[1]), ft_strdup("yo")));
 	printf("#2:	[%d]\n", hashtable_insert_entry(&hashtab, ft_strdup(av[2]), ft_strdup("check")));
 	printf("#3:	[%d]\n", hashtable_insert_entry(&hashtab, ft_strdup(av[3]), ft_strdup("this")));
 	printf("#4:	[%d]\n", hashtable_insert_entry(&hashtab, ft_strdup(av[4]), ft_strdup("hash")));
 	printf("#5:	[%d]\n", hashtable_insert_entry(&hashtab, ft_strdup(av[5]), ft_strdup("table")));
 	printf("#6:	[%d]\n\n", hashtable_insert_entry(&hashtab, ft_strdup(av[6]), ft_strdup("out!")));
+
+	printf("——————————————————————————\nRetrieval:\n\n");
+	printf("#1: %s\n", (void*)(hashtable_fetch_entry(hashtab, av[1])->value));
+	printf("#2: %s\n", (void*)(hashtable_fetch_entry(hashtab, av[2])->value));
+	printf("#3: %s\n", (void*)(hashtable_fetch_entry(hashtab, av[3])->value));
+	printf("#4: %s\n", (void*)(hashtable_fetch_entry(hashtab, av[4])->value));
+	printf("#5: %s\n", (void*)(hashtable_fetch_entry(hashtab, av[5])->value));
+	printf("#6: %s\n\n", (void*)(hashtable_fetch_entry(hashtab, av[6])->value));
+
+	printf("Buckets: %d\n\n", hashtab->num_buckets);
+
+	printf("——————————————————————————\nDeallocation:\n\n");
+	printf("Deallocated Hash Table Address: [%p]\n", hashtab = hashtable_dealloc_table(&hashtab));
+	printf("Buckets: %d\n\n", hashtab->num_buckets);
+
+	printf("——————————————————————————\nDeallocation:\n\n");
+	printf("Deallocated Hash Table Address: [%p]\n", hashtab = hashtable_dealloc_table(&hashtab));
+	printf("Buckets: %d\n\n", hashtab->num_buckets);
+
+	printf("——————————————————————————\nDeallocation:\n\n");
+	printf("Deallocated Hash Table Address: [%p]\n", hashtab = hashtable_dealloc_table(&hashtab));
+	printf("Buckets: %d\n\n", hashtab->num_buckets);
+
+	printf("——————————————————————————\nRetrieval:\n\n");
+	printf("#1: %s\n", (void*)(hashtable_fetch_entry(hashtab, av[1])->value));
+	printf("#2: %s\n", (void*)(hashtable_fetch_entry(hashtab, av[2])->value));
+	printf("#3: %s\n", (void*)(hashtable_fetch_entry(hashtab, av[3])->value));
+	printf("#4: %s\n", (void*)(hashtable_fetch_entry(hashtab, av[4])->value));
+	printf("#5: %s\n", (void*)(hashtable_fetch_entry(hashtab, av[5])->value));
+	printf("#6: %s\n\n", (void*)(hashtable_fetch_entry(hashtab, av[6])->value));
+
+	printf("Number of current entries: %d\n\n", hashtab->entries);
+
+	printf("——————————————————————————\nReallocation:\n\n");
+	printf("Reallocated Hash Table Address: [%p]\n", hashtab = hashtable_realloc_table(&hashtab));
+	printf("Buckets: %d\n\n", hashtab->num_buckets);
 
 	printf("——————————————————————————\nRetrieval:\n\n");
 	printf("#1: %s\n", (void*)(hashtable_fetch_entry(hashtab, av[1])->value));
@@ -101,8 +95,8 @@ int main(int ac, char *av[])
 	printf("Number of current entries: %d\n\n", hashtab->entries);
 
 	printf("——————————————————————————\nDestruction:\n\n");
-	printf("Destroy Status: %d\n", hashtable_destroy_table(&hashtab));
-	printf("Hashtab: %p\n\n", hashtab);
+	printf("Destroy Status: [%d]\n", hashtable_destroy_table(&hashtab));
+	printf("Hashtable: %p\n\n", hashtab);
 
 	printf("——————————————————————————\n\n");
 
