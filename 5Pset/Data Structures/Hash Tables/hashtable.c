@@ -105,7 +105,7 @@ DESCRIPTION:    Inserts a key-value pair into the hash table.
 
 RETURN VALUES:  If successful, returns 0; otherwise -1.
 
-SEARCH TAGS:    ft hashtable_insert_data    ft hashtable_add_entry 
+SEARCH TAGS:    ft hashtable_insert_data    ft hashtable_add_entry
                 ft ht_insert_data           ft ht_add_entry
 — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — */
 
@@ -144,6 +144,8 @@ RETURN VALUES:  If the entry is found, a pointer to the entry is
 
 SEARCH TAGS:    ft hashtable_fetch_entry     ft hashtable_fetch_data
                 ft hashtable_find_entry      ft hashtable_lookup_entry
+                ft ht_fetch_entry            ft ht_fetch_data
+                ft ht_find_entry             ft ht_lookup_entry
 — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — */
 
 t_entry         *hashtable_fetch_entry(t_hashtable *table, char *key)
@@ -181,7 +183,7 @@ RETURN VALUES:  If the entry is found, and is successfully
                 otherwise the function returns -1.
 
 SEARCH TAGS:    ft hashtable_delete_data    ft ht_delete_data
-                ft hashtable_delete_entry    ft ht_delete_entry
+                ft hashtable_delete_entry   ft ht_delete_entry
 — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — */
 
 int             hashtable_delete_entry(t_hashtable **table, char *key)
@@ -224,7 +226,7 @@ DESCRIPTION:    Deletes/frees the entire hash table
 
 RETURN VALUES:  If successful returns 0; otherwise -1.
 
-SEARCH TAGS:    ft hashtable_destroy  ft ht_destroy
+SEARCH TAGS:    ft hashtable_destroy    ft ht_destroy
 — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — */
 
 int             hashtable_destroy_table(t_hashtable **table)
@@ -264,10 +266,9 @@ DEPENDENCIES:   hashtable_realloc_table()
                 MIN_LOAD_FACTOR
 
 DESCRIPTION:    Checks that the current load factor is
-                neither greater than or smaller than
-                the desiredthe desired max load factor
-                and desired minimum load factor
-                respectively.
+                neither greater than nor smaller than
+                the desired max load factor and desired
+                minimum load factor respectively.
 
                 If either is the case, a procedure to
                 realloc (grow) or dealloc (shrink) the
@@ -277,7 +278,7 @@ DESCRIPTION:    Checks that the current load factor is
 
 RETURN VALUES:  If nothing happens, or a successful
                 reallocation or deallocation happens,
-                0 is returned. If an error occurs a -1
+                0 is returned. If an error occurs -1
                 is returned.
 
 SEARCH TAGS:    ft hashtable_check_load_factor  ft ht_check_load_factor
