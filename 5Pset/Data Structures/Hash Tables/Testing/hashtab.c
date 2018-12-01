@@ -174,7 +174,7 @@ t_hashtable 	*hashtable_realloc_table(t_hashtable **table)
 			return (NULL);
 		if (hashtable_rehash_table(table, &new_table) == -1)
 			return (NULL);
-		free(*table);
+		hashtable_destroy_table(table);
 		return (new_table);
 	}
 	return (NULL);
@@ -194,7 +194,7 @@ t_hashtable 	*hashtable_dealloc_table(t_hashtable **table)
 				return (NULL);
 			if (hashtable_rehash_table(table, &new_table) == -1)
 				return (NULL);
-			free(*table);
+			hashtable_destroy_table(table);
 			return (new_table);
 		}
 		return (*table);
@@ -258,7 +258,7 @@ t_entry			*ft_entry_create(char *key, void *value)
 	{
 		if (!(new_entry = malloc(sizeof(t_entry))))
 			return (NULL);
-		new_entry->key = key;
+		new_entry->key = ft_strdup(key);
 		new_entry->value = value;
 		new_entry->successor = NULL;
 		return (new_entry);

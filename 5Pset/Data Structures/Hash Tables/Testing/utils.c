@@ -5,6 +5,7 @@
 
 #include <stdlib.h>
 
+/* reproduction of the standard library strlen() function */
 int		ft_strlen(char *str)
 {
 	int i;
@@ -15,6 +16,7 @@ int		ft_strlen(char *str)
 	return (i);
 }
 
+/* reproduction of the standard library strcmp() function */
 int		ft_strcmp(char *s1, char *s2)
 {
 	unsigned int i;
@@ -25,6 +27,7 @@ int		ft_strcmp(char *s1, char *s2)
 	return (s1[i] - s2[i]);
 }
 
+/* reproduction of the standard library strdup() function */
 char	*ft_strdup(char *src)
 {
 	int		i;
@@ -45,6 +48,7 @@ char	*ft_strdup(char *src)
 	return (dest);
 }
 
+/* checks whether the number 'nb' is a prime number */
 int		ft_is_prime(int nb)
 {
 	long i;
@@ -66,6 +70,7 @@ int		ft_is_prime(int nb)
 	return (1);
 }
 
+/* returns the next prime number or itself if it is a prime number */
 int		ft_find_next_prime(int nb)
 {
 	if (nb < 2)

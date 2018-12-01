@@ -12,16 +12,20 @@
 #include <stdio.h>
 
 #include "dictionary.h"
+#include "hashtable.h"
 #include "utils.h"
+
+#define INIT_SIZE 100
 
 /**
  * Returns true if word is in dictionary else false.
  */
 bool check(const char* word)
 {
-    return (
-        (hash_check_word(g_root, (char*)word, &alpha_2_indx) == 1)
-            ? true : false);
+    char s[46];
+
+    return (hashtable_fetch_entry(g_hashtab, ft_strlowercase(s, (char*)word)) ?
+     true : false);
 }
 
 /**
@@ -37,7 +41,7 @@ bool load(const char* dictionary)
     if ((fp = fopen(dictionary, "r")) == NULL)
         return (false);
 
-    g_root = trie_create_node();
+    g_hashtab = hashtable_alloc_table(INIT_SIZE);
 
     while ((c = fgetc(fp)) != EOF)
     {
@@ -49,7 +53,7 @@ bool load(const char* dictionary)
         }
         g_size++;
         word[index] = '\0';
-        trie_load_word(&g_root, word, &alpha_2_indx);
+        hashtable_insert_entry(&g_hashtab, word, ft_strdup(word));
     }
 
     // check whether there was an error
@@ -79,6 +83,6 @@ unsigned int size(void)
  */
 bool unload(void)
 {
-    trie_destroy(&g_root);
-    return ((g_root == NULL) ? true : false);
+    hashtable_destroy_table(&g_hashtab);
+    return ((g_hashtab == NULL) ? true : false);
 }

@@ -12,9 +12,14 @@
 
 #include <stdbool.h>
 
+#include "hashtable.h"
+
 // maximum length for a word
 // (e.g., pneumonoultramicroscopicsilicovolcanoconiosis)
 #define LENGTH 45
+
+extern t_hashtable     *g_hashtab;
+extern unsigned int    g_size;
 
 /**
  * Returns true if word is in dictionary else false.

@@ -19,12 +19,15 @@ EXE = speller
 
 # space-separated list of header files
 HDRS = dictionary.h \
+       hashtable.h \
        utils.h
 
 # space-separated list of source files
 SRCS = speller.c \
        dictionary.c \
-       utils.c
+       hashtable.c \
+       utils.c \
+       murmurhash3/murmurhash3.c
 
 # automatically generated list of object files
 OBJS = $(SRCS:.c=.o)
@@ -39,7 +42,7 @@ LIBS =
 $(EXE): $(OBJS) $(HDRS) Makefile
 	$(CC) $(CFLAGS) -o $@ $(OBJS) $(LIBS)
 
-# # dependencies 
+# # dependencies
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
@@ -49,7 +52,7 @@ $(EXE): $(OBJS) $(HDRS) Makefile
 clean:
 	rm -f core $(EXE) *.o *.dSYM*
 
-DBUG_FLAGS     =       -O0 -ggdb
+DBUG_FLAGS     =       -O0 -ggdb3
 
 FSAN_FLAGS     =       -fsanitize=address                                    \
                        -fsanitize=undefined                                  \

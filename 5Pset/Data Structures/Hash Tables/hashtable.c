@@ -66,7 +66,7 @@ RETURN VALUES:  If successful, returns a pointer to the
                 hash table. If an error occurs the function
                 will return a NULL pointer.
 
-SEARCH TAGS:    ft hashtable_alloc_table    ft hashtable_create_table 
+SEARCH TAGS:    ft hashtable_alloc_table    ft hashtable_create_table
                 ft ht_alloc_table           ft ht_create_table
  — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — */
 
@@ -316,6 +316,7 @@ int             hashtable_check_load_factor(t_hashtable **table)
 DEPENDENCIES:   free() , <stdlib.h>
                 hashtable_alloc_table()
                 hashtable_rehash_table()
+                hashtable_destroy_table()
 
 DESCRIPTION:    Grows the hash table by half and then some
                 (inorder to get to the nearest prime number).
@@ -338,7 +339,7 @@ t_hashtable     *hashtable_realloc_table(t_hashtable **table)
             return (NULL);
         if (hashtable_rehash_table(table, &new_table) == -1)
             return (NULL);
-        free(*table);
+        hashtable_destroy_table(table);
         return (new_table);
     }
     return (NULL);
@@ -350,6 +351,7 @@ t_hashtable     *hashtable_realloc_table(t_hashtable **table)
 DEPENDENCIES:   free() , <stdlib.h>
                 hashtable_alloc_table()
                 hashtable_rehash_table()
+                hashtable_destroy_table()
 
 DESCRIPTION:    Shrinks the hash table by half and then some
                 (inorder to get to the nearest prime number).
@@ -374,7 +376,7 @@ t_hashtable     *hashtable_dealloc_table(t_hashtable **table)
                 return (NULL);
             if (hashtable_rehash_table(table, &new_table) == -1)
                 return (NULL);
-            free(*table);
+            hashtable_destroy_table(table);
             return (new_table);
         }
         return (*table);
@@ -457,9 +459,14 @@ int             hashtable_rehash_table(t_hashtable **table_from,
 
 /* — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 DEPENDENCIES:   malloc() , <stdlib.h>
+                ft_strdup()
 
 DESCRIPTION:    Takes a key and a value and creates an entry out
                 of them.
+
+                NOTE: 'value' MUST have previously been
+                allocated, otherwise in the free'ing of
+                an entry, you WILL get a 'bad free' error.
 
 RETURN VALUES:  If successful, the function returns a pointer
                 to the new entry; if an error occurs, it returns
@@ -476,7 +483,7 @@ t_entry         *ft_entry_create(char *key, void *value)
     {
         if (!(new_entry = malloc(sizeof(t_entry))))
             return (NULL);
-        new_entry->key = key;
+        new_entry->key = ft_strdup(key);
         new_entry->value = value;
         new_entry->successor = NULL;
         return (new_entry);
@@ -489,7 +496,11 @@ t_entry         *ft_entry_create(char *key, void *value)
 /* — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 DEPENDENCIES:   free() , <stdlib.h>
 
-DESCRIPTION:    Deletes/frees an entry.
+DESCRIPTION:    Deletes/frees an entry (this is for use with entries that
+                have members that were allocated only).
+
+                NOTE: if 'entry->value' was not allocated somewhere in
+                the code, you WILL get a 'bad free' error.
 
 RETURN VALUES:  none.
 
