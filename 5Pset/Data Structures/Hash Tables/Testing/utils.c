@@ -1,6 +1,6 @@
 
 /* ===============================================================
-                            UTILIY FUNCTIONS 
+                            UTILIY FUNCTIONS
    =============================================================== */
 
 #include <stdlib.h>
@@ -63,7 +63,7 @@ int		ft_is_prime(int nb)
 	i = 11;
 	while ((result = i * i) < nb)
 	{
-		if (nb % i == 0 || result > 2147483647)
+		if (nb % i == 0)
 			return (0);
 		i += 2;
 	}

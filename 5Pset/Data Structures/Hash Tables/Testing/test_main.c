@@ -31,12 +31,12 @@ int main(int ac, char *av[])
 	printf("Hash Table Address: %p\n\n", hashtab = hashtable_alloc_table(100));
 
 	printf("——————————————————————————\nInsertion:\n\n");
-	printf("#1:	[%d]\n", hashtable_insert_entry(&hashtab, ft_strdup(av[1]), ft_strdup("yo")));
-	printf("#2:	[%d]\n", hashtable_insert_entry(&hashtab, ft_strdup(av[2]), ft_strdup("check")));
-	printf("#3:	[%d]\n", hashtable_insert_entry(&hashtab, ft_strdup(av[3]), ft_strdup("this")));
-	printf("#4:	[%d]\n", hashtable_insert_entry(&hashtab, ft_strdup(av[4]), ft_strdup("hash")));
-	printf("#5:	[%d]\n", hashtable_insert_entry(&hashtab, ft_strdup(av[5]), ft_strdup("table")));
-	printf("#6:	[%d]\n\n", hashtable_insert_entry(&hashtab, ft_strdup(av[6]), ft_strdup("out!")));
+	printf("#1:	[%d]\n", hashtable_insert_entry(&hashtab, av[1], ft_strdup("yo")));
+	printf("#2:	[%d]\n", hashtable_insert_entry(&hashtab, av[2], ft_strdup("check")));
+	printf("#3:	[%d]\n", hashtable_insert_entry(&hashtab, av[3], ft_strdup("this")));
+	printf("#4:	[%d]\n", hashtable_insert_entry(&hashtab, av[4], ft_strdup("hash")));
+	printf("#5:	[%d]\n", hashtable_insert_entry(&hashtab, av[5], ft_strdup("table")));
+	printf("#6:	[%d]\n\n", hashtable_insert_entry(&hashtab, av[6], ft_strdup("out!")));
 
 	printf("——————————————————————————\nRetrieval:\n\n");
 	printf("#1: %s\n", (char*)(hashtable_fetch_entry(hashtab, av[1])->value));
