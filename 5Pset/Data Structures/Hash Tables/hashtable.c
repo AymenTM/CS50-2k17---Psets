@@ -107,8 +107,8 @@ DESCRIPTION:    Inserts a key-value pair into the hash table.
                 NOTE: in this implementation ownership is taken of the
                 'value', that's to say that 'value' MUST be allocated
                 before hand somewhere in the code, if you fail to do
-                so, upon free'ing the hash table you WILL get a
-                'bad free' error.
+                so, upon free'ing of an entry or the hash table you
+                WILL get a 'bad free' error.
 
                 As for the 'key', a copy/duplicate of it is made (i.e memory
                 is allocated inorder to make a duplicate of it). The memory,
