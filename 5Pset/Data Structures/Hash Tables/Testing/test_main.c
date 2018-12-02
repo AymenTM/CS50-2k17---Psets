@@ -39,12 +39,12 @@ int main(int ac, char *av[])
 	printf("#6:	[%d]\n\n", hashtable_insert_entry(&hashtab, ft_strdup(av[6]), ft_strdup("out!")));
 
 	printf("——————————————————————————\nRetrieval:\n\n");
-	printf("#1: %s\n", (void*)(hashtable_fetch_entry(hashtab, av[1])->value));
-	printf("#2: %s\n", (void*)(hashtable_fetch_entry(hashtab, av[2])->value));
-	printf("#3: %s\n", (void*)(hashtable_fetch_entry(hashtab, av[3])->value));
-	printf("#4: %s\n", (void*)(hashtable_fetch_entry(hashtab, av[4])->value));
-	printf("#5: %s\n", (void*)(hashtable_fetch_entry(hashtab, av[5])->value));
-	printf("#6: %s\n\n", (void*)(hashtable_fetch_entry(hashtab, av[6])->value));
+	printf("#1: %s\n", (char*)(hashtable_fetch_entry(hashtab, av[1])->value));
+	printf("#2: %s\n", (char*)(hashtable_fetch_entry(hashtab, av[2])->value));
+	printf("#3: %s\n", (char*)(hashtable_fetch_entry(hashtab, av[3])->value));
+	printf("#4: %s\n", (char*)(hashtable_fetch_entry(hashtab, av[4])->value));
+	printf("#5: %s\n", (char*)(hashtable_fetch_entry(hashtab, av[5])->value));
+	printf("#6: %s\n\n", (char*)(hashtable_fetch_entry(hashtab, av[6])->value));
 
 	printf("Buckets: %d\n\n", hashtab->num_buckets);
 
@@ -61,12 +61,12 @@ int main(int ac, char *av[])
 	printf("Buckets: %d\n\n", hashtab->num_buckets);
 
 	printf("——————————————————————————\nRetrieval:\n\n");
-	printf("#1: %s\n", (void*)(hashtable_fetch_entry(hashtab, av[1])->value));
-	printf("#2: %s\n", (void*)(hashtable_fetch_entry(hashtab, av[2])->value));
-	printf("#3: %s\n", (void*)(hashtable_fetch_entry(hashtab, av[3])->value));
-	printf("#4: %s\n", (void*)(hashtable_fetch_entry(hashtab, av[4])->value));
-	printf("#5: %s\n", (void*)(hashtable_fetch_entry(hashtab, av[5])->value));
-	printf("#6: %s\n\n", (void*)(hashtable_fetch_entry(hashtab, av[6])->value));
+	printf("#1: %s\n", (char*)(hashtable_fetch_entry(hashtab, av[1])->value));
+	printf("#2: %s\n", (char*)(hashtable_fetch_entry(hashtab, av[2])->value));
+	printf("#3: %s\n", (char*)(hashtable_fetch_entry(hashtab, av[3])->value));
+	printf("#4: %s\n", (char*)(hashtable_fetch_entry(hashtab, av[4])->value));
+	printf("#5: %s\n", (char*)(hashtable_fetch_entry(hashtab, av[5])->value));
+	printf("#6: %s\n\n", (char*)(hashtable_fetch_entry(hashtab, av[6])->value));
 
 	printf("Number of current entries: %d\n\n", hashtab->entries);
 
@@ -75,12 +75,12 @@ int main(int ac, char *av[])
 	printf("Buckets: %d\n\n", hashtab->num_buckets);
 
 	printf("——————————————————————————\nRetrieval:\n\n");
-	printf("#1: %s\n", (void*)(hashtable_fetch_entry(hashtab, av[1])->value));
-	printf("#2: %s\n", (void*)(hashtable_fetch_entry(hashtab, av[2])->value));
-	printf("#3: %s\n", (void*)(hashtable_fetch_entry(hashtab, av[3])->value));
-	printf("#4: %s\n", (void*)(hashtable_fetch_entry(hashtab, av[4])->value));
-	printf("#5: %s\n", (void*)(hashtable_fetch_entry(hashtab, av[5])->value));
-	printf("#6: %s\n\n", (void*)(hashtable_fetch_entry(hashtab, av[6])->value));
+	printf("#1: %s\n", (char*)(hashtable_fetch_entry(hashtab, av[1])->value));
+	printf("#2: %s\n", (char*)(hashtable_fetch_entry(hashtab, av[2])->value));
+	printf("#3: %s\n", (char*)(hashtable_fetch_entry(hashtab, av[3])->value));
+	printf("#4: %s\n", (char*)(hashtable_fetch_entry(hashtab, av[4])->value));
+	printf("#5: %s\n", (char*)(hashtable_fetch_entry(hashtab, av[5])->value));
+	printf("#6: %s\n\n", (char*)(hashtable_fetch_entry(hashtab, av[6])->value));
 
 	printf("Number of current entries: %d\n\n", hashtab->entries);
 
