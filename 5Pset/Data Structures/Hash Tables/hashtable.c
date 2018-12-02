@@ -96,12 +96,23 @@ t_hashtable     *hashtable_alloc_table(unsigned int size)
 
 
 /* — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
-DEPENDENCIES:   hashtable_check_load_factor()
-                ft_entry_create()
+DEPENDENCIES:   ft_entry_create()
                 ft_strlen()
                 HASHCODE()
+                hash()
+                hashtable_check_load_factor()
 
 DESCRIPTION:    Inserts a key-value pair into the hash table.
+
+                NOTE: in this implementation ownership is taken of the
+                'value', that's to say that 'value' MUST be allocated
+                before hand somewhere in the code, if you fail to do
+                so, upon free'ing the hash table you WILL get a
+                'bad free' error.
+
+                As for the 'key', a copy/duplicate of it is made (i.e memory
+                is allocated inorder to make a duplicate of it). The memory,
+                upon free'ing of an entry or the hash table, is free'd.
 
 RETURN VALUES:  If successful, returns 0; otherwise -1.
 
@@ -136,6 +147,7 @@ int             hashtable_insert_entry(t_hashtable **table, char *key,
 DEPENDENCIES:   ft_strcmp()
                 ft_strlen()
                 HASHCODE()
+                hash()
 
 DESCRIPTION:    Finds and returns (retrieves) an entry.
 
@@ -174,6 +186,7 @@ DEPENDENCIES:   ft_entry_free()
                 ft_strcmp()
                 ft_strlen()
                 HASHCODE()
+                hash()
 
 DESCRIPTION:    Finds and deletes/frees an entry in the hash
                 table.
@@ -389,6 +402,7 @@ t_hashtable     *hashtable_dealloc_table(t_hashtable **table)
 /* — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 DEPENDENCIES:   ft_strlen()
                 HASHCODE()
+                hash()
 
 DESCRIPTION:    Rehashs one entry in the 'table_to' hashtable.
 
