@@ -48,16 +48,14 @@ int main(int ac, char *av[])
 
 	printf("Buckets: %d\n\n", hashtab->num_buckets);
 
-	printf("——————————————————————————\nDeallocation:\n\n");
-	printf("Deallocated Hash Table Address: [%p]\n", hashtab = hashtable_dealloc_table(&hashtab));
+	printf("——————————————————————————\nShrinkage:\n\n");
+	printf("#1 Shrinkage Status: [%d]\n", hashtable_shrink_table(&hashtab));
 	printf("Buckets: %d\n\n", hashtab->num_buckets);
 
-	printf("——————————————————————————\nDeallocation:\n\n");
-	printf("Deallocated Hash Table Address: [%p]\n", hashtab = hashtable_dealloc_table(&hashtab));
+	printf("#2 Shrinkage Status: [%d]\n", hashtable_shrink_table(&hashtab));
 	printf("Buckets: %d\n\n", hashtab->num_buckets);
 
-	printf("——————————————————————————\nDeallocation:\n\n");
-	printf("Deallocated Hash Table Address: [%p]\n", hashtab = hashtable_dealloc_table(&hashtab));
+	printf("#3 Shrinkage Status: [%d]\n", hashtable_shrink_table(&hashtab));
 	printf("Buckets: %d\n\n", hashtab->num_buckets);
 
 	printf("——————————————————————————\nRetrieval:\n\n");
@@ -71,7 +69,7 @@ int main(int ac, char *av[])
 	printf("Number of current entries: %d\n\n", hashtab->entries);
 
 	printf("——————————————————————————\nReallocation:\n\n");
-	printf("Reallocated Hash Table Address: [%p]\n", hashtab = hashtable_realloc_table(&hashtab));
+	printf("#1 Grow Status: [%d]\n", hashtable_grow_table(&hashtab));
 	printf("Buckets: %d\n\n", hashtab->num_buckets);
 
 	printf("——————————————————————————\nRetrieval:\n\n");

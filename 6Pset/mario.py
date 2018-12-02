@@ -4,12 +4,10 @@
 # ======================================= #
 # * * * * * * * * * * * * * * * * * * * * #
 
-from cs50 import get_int
-
 def main():
-	height = get_int("Height: ")
-	while height < 1 or height > 8:
-		height = get_int("Height: ")
+	height = int(input("Height: "))
+	while height < 1 or height > 100:
+		height = int(input("Height: "))
 	put_pyramid(height)
 
 def put_pyramid(height):
@@ -26,7 +24,6 @@ def put_pyramid(height):
 		for n in range(hashes):
 			print("#", end="")
 		print()
-	print("MA nigga 3absoun !")
 
 if __name__ == '__main__':
 	main()
