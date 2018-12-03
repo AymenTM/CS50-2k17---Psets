@@ -13,6 +13,7 @@ def main():
 	else:
 		print("INVALID")
 
+# checks the characteristics of the number to determine type #
 def find_type(number, length):
 	if length == 15 and number[0] == '3':
 		if number[1] == '4' or number[1] == '7':
@@ -27,6 +28,7 @@ def find_type(number, length):
 	else:
 		return ("INVALID")
 
+# Luhn's algorithm checksum #
 def valid_card(number, length):
 	sum1 = 0
 	sum2 = 0
