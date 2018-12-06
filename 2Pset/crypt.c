@@ -9,7 +9,11 @@
 
 int main(int argc, char const *argv[])
 {
-    (void)argc;
-    printf("%s\n", crypt(argv[1], "12"));
+    if (argc != 3)
+    {
+    	printf("Usage: ./crypt password salt\n");
+    	return (1);
+    }
+    printf("%s\n", crypt(argv[1], argv[2]));
     return (0);
 }
