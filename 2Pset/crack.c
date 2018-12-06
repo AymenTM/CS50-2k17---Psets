@@ -18,18 +18,19 @@ int total_chars = 0;
 
 /* ==================================================================== #
 #                                                                       #
-#   SYNOPSIS:       crack(hsh)                                          #
+#   SYNOPSIS:       int                                                 #
+#                   crack_furthur(char *hash,                           #
+#                                 char *salt,                           #
+#                                 char passwd[6],                       #
+#                                 int index)                            #
 #                                                                       #
 #   DESCRIPTION:    Cycles through all the possible characters          #
-#                   for index 0; does so once when we have a            #
-#                   1 character password, and once again when           #
-#                   we have a 2 character password, and again           #
-#                   for a 3, 4 & 5 character password.                  #
+#                   for the current index.                              #
 #                                                                       #
-#                   If the password is cracked it or its recursive      #
-#                   helper function will print the cracked password     #
-#                   to screen and return back to the initial call,      #
-#                   returning 1 as a final return value.                #
+#                   If the password is cracked it will print the        #
+#                   cracked password to screen and return back to       #
+#                   the initial call, returning 1 as a final return     #
+#                   value.                                              #
 #                                                                       #
 #   RETURN VALUES:  Returns 1 if the password is found; otherwise       #
 #                   0.                                                  #
@@ -60,17 +61,22 @@ int        crack_furthur(char *hash, char *salt, char passwd[6], int index)
     return (0);
 }
 
+
 /* ==================================================================== #
 #                                                                       #
-#   SYNOPSIS:       crack_furthur(hsh, passwd, salt, index)             #
+#   SYNOPSIS:       int                                                 #
+#                   crack(char *hash, char *salt)                       #
 #                                                                       #
 #   DESCRIPTION:    Cycles through all the possible characters          #
-#                   for the current index.                              #
+#                   for index 0; does so once when we have a            #
+#                   1 character password, and once again when           #
+#                   we have a 2 character password, and again           #
+#                   for a 3, 4 & 5 character password.                  #
 #                                                                       #
-#                   If the password is cracked it will print the        #
-#                   cracked password to screen and return back to       #
-#                   the initial call, returning 1 as a final return     #
-#                   value.                                              #
+#                   If the password is cracked it or its recursive      #
+#                   helper function will print the cracked password     #
+#                   to screen and return back to the initial call,      #
+#                   returning 1 as a final return value.                #
 #                                                                       #
 #   RETURN VALUES:  Returns 1 if the password is found; otherwise       #
 #                   0.                                                  #
