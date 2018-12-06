@@ -4,12 +4,6 @@
 # ============================ #
 # * * * * * * * * * * * * * * */
 
-/*
-NOTE: this is a training exercice to better understand how
-brute force attacks work, it is STRICTLY NOT INTENDED to
-be used to crack people's passwords.
-*/
-
 #define _XOPEN_SOURCE
 
 #include <unistd.h>
@@ -22,18 +16,26 @@ be used to crack people's passwords.
 
 int total_chars = 0;
 
-/*
-DESCRIPTION:    Cycles through all the possible characters
-                for the passed in index.
+/* ==================================================================== #
+#                                                                       #
+#   SYNOPSIS:       crack(hsh)                                          #
+#                                                                       #
+#   DESCRIPTION:    Cycles through all the possible characters          #
+#                   for index 0; does so once when we have a            #
+#                   1 character password, and once again when           #
+#                   we have a 2 character password, and again           #
+#                   for a 3, 4 & 5 character password.                  #
+#                                                                       #
+#                   If the password is cracked it or its recursive      #
+#                   helper function will print the cracked password     #
+#                   to screen and return back to the initial call,      #
+#                   returning 1 as a final return value.                #
+#                                                                       #
+#   RETURN VALUES:  Returns 1 if the password is found; otherwise       #
+#                   0.                                                  #
+#                                                                       #
+# ===================================================================== */
 
-                If the password is cracked it will print the
-                cracked password to screen and return back to
-                the initial call, returning 1 as a final return
-                value.
-
-RETURN VALUES:  Returns 1 if the password is found; otherwise
-                0.
-*/
 int        crack_furthur(char *hash, char *salt, char passwd[6], int index)
 {
     int found;
@@ -58,21 +60,23 @@ int        crack_furthur(char *hash, char *salt, char passwd[6], int index)
     return (0);
 }
 
-/*
-DESCRIPTION:    Cycles through all the possible characters
-                for index 0; does so once for when we have
-                1 character password, another time for when
-                we have a 2 character password, and again
-                for a  3, 4 & 5 character password.
+/* ==================================================================== #
+#                                                                       #
+#   SYNOPSIS:       crack_furthur(hsh, passwd, salt, index)             #
+#                                                                       #
+#   DESCRIPTION:    Cycles through all the possible characters          #
+#                   for the current index.                              #
+#                                                                       #
+#                   If the password is cracked it will print the        #
+#                   cracked password to screen and return back to       #
+#                   the initial call, returning 1 as a final return     #
+#                   value.                                              #
+#                                                                       #
+#   RETURN VALUES:  Returns 1 if the password is found; otherwise       #
+#                   0.                                                  #
+#                                                                       #
+# ===================================================================== */
 
-                If the password is cracked it or its recursive
-                helper function will print the cracked password
-                to screen and return back to the initial call,
-                returning 1 as a final return value.
-
-RETURN VALUES:  Returns 1 if the password is found; otherwise
-                0.
-*/
 int        crack(char *hash, char *salt)
 {
     char  passwd[6] = "A\0\0\0\0\0";
@@ -104,8 +108,8 @@ int        crack(char *hash, char *salt)
 
 int        main(int argc, char *argv[])
 {
-    char     *salt;
-    int        found;
+    char  *salt;
+    int   found;
 
     if (argc == 2)
     {

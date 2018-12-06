@@ -1,119 +1,59 @@
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  #
-# ============================================================= #
-#                 Brute Force Password Cracker                  #
-# ============================================================= #
-# * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+# * * * * * * * * * * * * * * * #
+# ============================= #
+#        CS50 - crack.py        #
+# ============================= #
+# * * * * * * * * * * * * * * * #
 
-# NOTE: this is a training exercice to better understand how
-# brute force attacks work, it is STRICTLY NOT INTENDED to
-# be used to crack people's passwords.
+from crypt import crypt
+from sys import argv
 
-#define _XOPEN_SOURCE
+alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+total_chars = 0
 
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+def main():
+	if len(argv) is 2:
+		if crack(argv[1]):
+			return (0)
+		else:
+			print('Uncrackable!')
+			return (1)
+	else:
+		print('Usage: python crack.py hash')
+		return (1)
 
-#define ISALPHA(c) ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
-#define MATCH_FOUND(hash, passwd, salt) (strcmp(hash, crypt(passwd, salt)) == 0)
+# Tries every possible permutation for the current index.
+def crack_furthur(hsh, passwd, salt, index):
+	found = 0
+	for c in alphabet:
+		passwd[index] = c
+		if total_chars > index:
+			found = crack_furthur(hsh, passwd, salt, index + 1)
+			if found:
+				return (1)
+		elif crypt(''.join(passwd), salt) == hsh:
+			print(''.join(passwd))
+			return (1)
+	return (0)
 
-int total_chars = 0;
+# Tries every possible permutation for the index 0 when
+# the password is at a length of 1, 2, 3, 4 & 5.
+def crack(hsh):
+	global total_chars
+	salt = hsh[:2]
+	passwd = ['', '', '', '', '']
+	found = 0
+	while total_chars < 5:
+		for c in alphabet:
+			passwd[0] = c
+			if total_chars > 0:
+				found = crack_furthur(hsh, passwd, salt, 1)
+				if found:
+					return (1)
+			elif crypt(''.join(passwd), salt) == hsh:
+				print(''.join(passwd))
+				return (1)
+		total_chars += 1
+	return (0)
 
-# ===================================================================== #
-#    DESCRIPTION:    Cycles through all the possible characters         #
-#                    for the passed in index.                           #
-#                                                                       #
-#                    If the password is cracked it will print the       #
-#                    cracked password to screen and return back to      #
-#                    the initial call, returning 1 as a final return    #
-#                    value.                                             #
-#                                                                       #
-#    RETURN VALUES:  Returns 1 if the password is found; otherwise      #
-#                    0.                                                 #
-# ===================================================================== #
-
-int		crack_furthur(char *hash, char *salt, char passwd[6], int index)
-{
-	int found;
-
-	found = 0;
-	passwd[index] = 'A';
-	while (ISALPHA(passwd[index]))
-	{
-		if (total_chars > index)
-			found = crack_furthur(hash, salt, passwd, index + 1);
-		else if (MATCH_FOUND(hash, passwd, salt))
-		{
-			printf("%s\n", passwd);
-			return (1);
-		}
-		if (found)
-			return (1);
-		if (passwd[index] == 'Z')
-			passwd[index] = 'a' - 1;
-		passwd[index]++;
-	}
-	return (0);
-}
-
-/*
-DESCRIPTION:	Cycles through all the possible characters
-				for index 0; does so once for when we have
-				1 character password, another time for when
-				we have a 2 character password, and again
-				for a  3, 4 & 5 character password.
-
-				If the password is cracked it or its recursive
-				helper function will print the cracked password
-				to screen and return back to the initial call,
-				returning 1 as a final return value.
-
-RETURN VALUES:	Returns 1 if the password is found; otherwise
-				0.
-*/
-int		crack(char *hash, char *salt)
-{
-	char  passwd[6] = "A\0\0\0\0\0";
-	int   found;
-
-	found = 0;
-	while (total_chars < 5)
-	{
-		while (ISALPHA(passwd[0]))
-		{
-			if (total_chars > 0)
-				found = crack_furthur(hash, salt, passwd, 1);
-			else if (MATCH_FOUND(hash, passwd, salt))
-			{
-				printf("%s\n", passwd);
-				return (1);
-			}
-			if (found)
-				return (1);
-			if (passwd[0] == 'Z')
-				passwd[0] = 'a' - 1;
-			passwd[0]++;
-		}
-		total_chars++;
-		passwd[0] = 'A';
-	}
-	return (0);
-}
-
-int		main(int argc, char *argv[])
-{
-	char 	*salt;
-	int		found;
-
-	if (argc == 2)
-	{
-		salt = strdup(argv[1]);
-		salt[2] = '\0';
-		found = crack(argv[1], salt);
-		free(salt);
-		return ((found) ? 0 : 1);
-	}
-	printf("Usage: ./crack hash\n");
-	return (1);
-}
+if __name__ == '__main__':
+	main()
