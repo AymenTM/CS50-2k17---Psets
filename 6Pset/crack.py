@@ -8,9 +8,6 @@
 # brute force attacks work, it is STRICTLY NOT INTENDED to
 # be used to crack people's passwords.
 
-# DO NOT USE FOR HACKING PURPOSES !
-
-
 #define _XOPEN_SOURCE
 
 #include <unistd.h>
@@ -24,16 +21,16 @@
 int total_chars = 0;
 
 # ===================================================================== #
-#	DESCRIPTION:	Cycles through all the possible characters          #
-#					for the passed in index.                            #
+#    DESCRIPTION:    Cycles through all the possible characters         #
+#                    for the passed in index.                           #
 #                                                                       #
-#					If the password is cracked it will print the        #
-#					cracked password to screen and return back to       #
-#					the initial call, returning 1 as a final return     #
-#					value.                                              #
+#                    If the password is cracked it will print the       #
+#                    cracked password to screen and return back to      #
+#                    the initial call, returning 1 as a final return    #
+#                    value.                                             #
 #                                                                       #
-#	RETURN VALUES:	Returns 1 if the password is found; otherwise       #
-#					0.                                                  #
+#    RETURN VALUES:  Returns 1 if the password is found; otherwise      #
+#                    0.                                                 #
 # ===================================================================== #
 
 int		crack_furthur(char *hash, char *salt, char passwd[6], int index)
