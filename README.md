@@ -102,6 +102,7 @@ _+ + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + + +
 
 ## Week 5: Data-Structures (Linked Lists, Stacks, Queues, BSTs, Tries & Hash Tables) & a Spellchecker
 **trie_speller.c**: a program that spell-checks the words of a file against a dictionary. (implemented using a **trie data-structure**)
+
 **hashtable_speller.c**: a program that spell-checks the words of a file against a dictionary. (implemented using a **hash table data-structure**)
 
 ```javascript
