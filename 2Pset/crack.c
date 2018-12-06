@@ -1,15 +1,13 @@
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  #
-# ===================================================================== #
-#        Brute Force Password Cracker for DES Encrypted Passwords       #
-# ===================================================================== #
-# * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/* * * * * * * * * * * * * * * #
+# ============================ #
+#        CS50 - crack.c        #
+# ============================ #
+# * * * * * * * * * * * * * * */
 
 /*
 NOTE: this is a training exercice to better understand how
 brute force attacks work, it is STRICTLY NOT INTENDED to
 be used to crack people's passwords.
-
-DO NOT USE FOR HACKING PURPOSES !
 */
 
 #define _XOPEN_SOURCE
