@@ -1,8 +1,8 @@
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  #
-# ============================================================= #
-#                 Brute Force Password Cracker                  #
-# ============================================================= #
-# * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  #
+# ===================================================================== #
+#        Brute Force Password Cracker for DES Encrypted Passwords       #
+# ===================================================================== #
+# * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 /*
 NOTE: this is a training exercice to better understand how
@@ -25,98 +25,98 @@ DO NOT USE FOR HACKING PURPOSES !
 int total_chars = 0;
 
 /*
-DESCRIPTION:	Cycles through all the possible characters
-				for the passed in index.
+DESCRIPTION:    Cycles through all the possible characters
+                for the passed in index.
 
-				If the password is cracked it will print the
-				cracked password to screen and return back to
-				the initial call, returning 1 as a final return
-				value.
+                If the password is cracked it will print the
+                cracked password to screen and return back to
+                the initial call, returning 1 as a final return
+                value.
 
-RETURN VALUES:	Returns 1 if the password is found; otherwise
-				0.
+RETURN VALUES:  Returns 1 if the password is found; otherwise
+                0.
 */
-int		crack_furthur(char *hash, char *salt, char passwd[6], int index)
+int        crack_furthur(char *hash, char *salt, char passwd[6], int index)
 {
-	int found;
+    int found;
 
-	found = 0;
-	passwd[index] = 'A';
-	while (ISALPHA(passwd[index]))
-	{
-		if (total_chars > index)
-			found = crack_furthur(hash, salt, passwd, index + 1);
-		else if (MATCH_FOUND(hash, passwd, salt))
-		{
-			printf("%s\n", passwd);
-			return (1);
-		}
-		if (found)
-			return (1);
-		if (passwd[index] == 'Z')
-			passwd[index] = 'a' - 1;
-		passwd[index]++;
-	}
-	return (0);
+    found = 0;
+    passwd[index] = 'A';
+    while (ISALPHA(passwd[index]))
+    {
+        if (total_chars > index)
+            found = crack_furthur(hash, salt, passwd, index + 1);
+        else if (MATCH_FOUND(hash, passwd, salt))
+        {
+            printf("%s\n", passwd);
+            return (1);
+        }
+        if (found)
+            return (1);
+        if (passwd[index] == 'Z')
+            passwd[index] = 'a' - 1;
+        passwd[index]++;
+    }
+    return (0);
 }
 
 /*
-DESCRIPTION:	Cycles through all the possible characters
-				for index 0; does so once for when we have
-				1 character password, another time for when
-				we have a 2 character password, and again
-				for a  3, 4 & 5 character password.
+DESCRIPTION:    Cycles through all the possible characters
+                for index 0; does so once for when we have
+                1 character password, another time for when
+                we have a 2 character password, and again
+                for a  3, 4 & 5 character password.
 
-				If the password is cracked it or its recursive
-				helper function will print the cracked password
-				to screen and return back to the initial call,
-				returning 1 as a final return value.
+                If the password is cracked it or its recursive
+                helper function will print the cracked password
+                to screen and return back to the initial call,
+                returning 1 as a final return value.
 
-RETURN VALUES:	Returns 1 if the password is found; otherwise
-				0.
+RETURN VALUES:  Returns 1 if the password is found; otherwise
+                0.
 */
-int		crack(char *hash, char *salt)
+int        crack(char *hash, char *salt)
 {
-	char  passwd[6] = "A\0\0\0\0\0";
-	int   found;
+    char  passwd[6] = "A\0\0\0\0\0";
+    int   found;
 
-	found = 0;
-	while (total_chars < 5)
-	{
-		while (ISALPHA(passwd[0]))
-		{
-			if (total_chars > 0)
-				found = crack_furthur(hash, salt, passwd, 1);
-			else if (MATCH_FOUND(hash, passwd, salt))
-			{
-				printf("%s\n", passwd);
-				return (1);
-			}
-			if (found)
-				return (1);
-			if (passwd[0] == 'Z')
-				passwd[0] = 'a' - 1;
-			passwd[0]++;
-		}
-		total_chars++;
-		passwd[0] = 'A';
-	}
-	return (0);
+    found = 0;
+    while (total_chars < 5)
+    {
+        while (ISALPHA(passwd[0]))
+        {
+            if (total_chars > 0)
+                found = crack_furthur(hash, salt, passwd, 1);
+            else if (MATCH_FOUND(hash, passwd, salt))
+            {
+                printf("%s\n", passwd);
+                return (1);
+            }
+            if (found)
+                return (1);
+            if (passwd[0] == 'Z')
+                passwd[0] = 'a' - 1;
+            passwd[0]++;
+        }
+        total_chars++;
+        passwd[0] = 'A';
+    }
+    return (0);
 }
 
-int		main(int argc, char *argv[])
+int        main(int argc, char *argv[])
 {
-	char 	*salt;
-	int		found;
+    char     *salt;
+    int        found;
 
-	if (argc == 2)
-	{
-		salt = strdup(argv[1]);
-		salt[2] = '\0';
-		found = crack(argv[1], salt);
-		free(salt);
-		return ((found) ? 0 : 1);
-	}
-	printf("Usage: ./crack hash\n");
-	return (1);
+    if (argc == 2)
+    {
+        salt = strdup(argv[1]);
+        salt[2] = '\0';
+        found = crack(argv[1], salt);
+        free(salt);
+        return ((found) ? 0 : 1);
+    }
+    printf("Usage: ./crack hash\n");
+    return (1);
 }

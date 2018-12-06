@@ -1,5 +1,4 @@
 
-
 /* To test crack.c */
 
 #define _XOPEN_SOURCE
@@ -8,9 +7,9 @@
 #include <stdio.h>
 #include <string.h>
 
-int	main(int argc, char const *argv[])
+int main(int argc, char const *argv[])
 {
-	(void)argc;
-	printf("%s\n", crypt(argv[1], "12"));
-	return (0);
+    (void)argc;
+    printf("%s\n", crypt(argv[1], "12"));
+    return (0);
 }
