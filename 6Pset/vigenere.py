@@ -27,17 +27,13 @@ def vigenere_cipher(msg, key):
         j = 0
         while i < mlen and j < klen:
             if (msg[i].islower() and key[j].islower()):
-                cipher += chr(ord('a') +
-                              ((ord(msg[i]) - ord('a')) + (ord(key[j]) - ord('a'))) % 26)
+                cipher += chr(ord('a') + ((ord(msg[i]) - ord('a')) + (ord(key[j]) - ord('a'))) % 26)
             elif (msg[i].isupper() and key[j].isupper()):
-                cipher += chr(ord('A') +
-                              ((ord(msg[i]) - ord('A')) + (ord(key[j]) - ord('A'))) % 26)
+                cipher += chr(ord('A') + ((ord(msg[i]) - ord('A')) + (ord(key[j]) - ord('A'))) % 26)
             elif (msg[i].islower() and key[j].isupper()):
-                cipher += chr(ord('a') +
-                              ((ord(msg[i]) - ord('a')) + (ord(key[j]) - ord('A'))) % 26)
+                cipher += chr(ord('a') + ((ord(msg[i]) - ord('a')) + (ord(key[j]) - ord('A'))) % 26)
             elif (msg[i].isupper() and key[j].islower()):
-                cipher += chr(ord('A') +
-                              ((ord(msg[i]) - ord('A')) + (ord(key[j]) - ord('a'))) % 26)
+                cipher += chr(ord('A') + ((ord(msg[i]) - ord('A')) + (ord(key[j]) - ord('a'))) % 26)
             else:
                 cipher += msg[i]
                 i += 1
