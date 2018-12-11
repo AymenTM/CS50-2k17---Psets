@@ -22,6 +22,9 @@ print('nope not today')
 
 
 
+
+
+
 dict_name = dict({'last_name' : 'jason', 'age' : 23, 'country' : 'turkey'})
 
 for key, value in dict_name.items():
