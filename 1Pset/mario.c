@@ -1,6 +1,6 @@
 /*
 
-Program that prints out a double half-pyramid of a specified height. 
+Program that prints out a double half-pyramid of a specified height.
 
 ---> Mario (More Comfortable)
 
@@ -25,7 +25,7 @@ int main(void)
 
     do
     {
-        h = get_int("Pick a height between [0-23]\n: ");
+        h = 3;
     }
     while (h < 0 || h > 23);
 
