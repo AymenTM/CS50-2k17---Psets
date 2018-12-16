@@ -1,8 +1,20 @@
 
-    tuple = [3, 2, 9, 5, 1, 8, 3]
+class Employee():
+    def __init__(self, name, age, salary):
+        self.name = name
+        self.age = age
+        self.salary = salary
 
-    s_tuple = sorted(tuple, reverse=True)     # returns a new tuple
+    def __repr__(self):
+        return '({},{},${})'.format(self.name, self.age, self.salary)
 
-    print(s_tuple)
 
-    >>> [9, 8, 5, 3, 3, 2, 1]
+e1 = Employee('Carl', 37, 70000)
+e2 = Employee('Sarah', 29, 80000)
+e3 = Employee('John', 43, 90000)
+
+employees = [e1, e2, e3]
+
+s_employees = sorted(employees, key=lambda e: e.salary)
+
+print(s_employees)
