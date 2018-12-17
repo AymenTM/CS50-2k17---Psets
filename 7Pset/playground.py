@@ -1,20 +1,8 @@
 
-class Employee():
-    def __init__(self, name, age, salary):
-        self.name = name
-        self.age = age
-        self.salary = salary
+import datetime
 
-    def __repr__(self):
-        return '({},{},${})'.format(self.name, self.age, self.salary)
+date = datetime.datetime(2016, 9, 24, 12, 30, 45)
 
+sentence = '{0:%B %d, %Y} fell on a {0:%A} and was the {0:%j} day of the year.'.format(date)
 
-e1 = Employee('Carl', 37, 70000)
-e2 = Employee('Sarah', 29, 80000)
-e3 = Employee('John', 43, 90000)
-
-employees = [e1, e2, e3]
-
-s_employees = sorted(employees, key=lambda e: e.salary)
-
-print(s_employees)
+print(sentence)
