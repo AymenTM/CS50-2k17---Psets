@@ -1,8 +1,10 @@
 
 import datetime
+import pytz
 
-date = datetime.datetime(2016, 9, 24, 12, 30, 45)
+dt = datetime.datetime.strptime(date_string, format)
 
-sentence = '{0:%B %d, %Y} fell on a {0:%A} and was the {0:%j} day of the year.'.format(date)
+dt_str = 'July 26, 2016'
+dt = datetime.datetime.strptime(dt_str, '%B %d, %Y')
 
-print(sentence)
+print(dt) >> > '2016-07-26 00:00:00'
