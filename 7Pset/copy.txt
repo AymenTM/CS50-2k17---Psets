@@ -1,6 +1,0 @@
-
-
-with open('playground.py', 'r') as rf:
-    with open('copy.txt', 'w') as wf:
-
-        wf.write(rf.read())
