@@ -1,11 +1,12 @@
 
+import os
 
-with open('playground.py', 'rb') as rf:
-	with open('copy.txt', 'wb') as wf:
+os.chdir('/Volumes/DISK 1/MacBook Pro/Personal/iTunes/Quran - Sudais')
 
-		chunk_size = 512
-		rf_chunk = rf.read(chunk_size)
+for f in os.listdir():
+    names = (f.strip()[6:-4]).split('-')
+    if len(names) > 1:
+        names[1] = names[1].capitalize()
+    print(names)
 
-		while len(rf_chunk) > 0:
-			wf.write(rf_chunk)
-			rf_chunk = rf.read(chunk_size)
+# os.rename(f, names)
