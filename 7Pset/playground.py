@@ -1,9 +1,11 @@
 
-		with open('file.txt', 'r') as fd:
 
-		    for line in fd:
-		        print(line, end='')
+with open('playground.py', 'rb') as rf:
+	with open('copy.txt', 'wb') as wf:
 
-	 	>> > 'this is Line #1'
-	    >>> 'this is Line #2'
-	    >>> 'this is Line #3'
+		chunk_size = 512
+		rf_chunk = rf.read(chunk_size)
+
+		while len(rf_chunk) > 0:
+			wf.write(rf_chunk)
+			rf_chunk = rf.read(chunk_size)
