@@ -1,18 +1,70 @@
 
-import csv
+import re
 
-    sequence = [
-        ['James', '23yrs', 'Canadian'],
-        ['Arnold', '21yrs', 'French'],
-        ['Kevin', '25yrs', 'British'],
-        ['Brian', '19yrs', 'Scotish'],
-        ['Smith', '22yrs', 'Spanish'],
-    ]
+text = """
+abcdefghijklmnopqrstuvwxyz
+ABCDEFGHIJKLMNOPQRSTUVWXYZ
+0123456789
+
+Ha Haha
+
+Meta Characters (that need to be escaped):
+. ^ $ * + ? { } [ ] \ | ( )
+
+ayk.com
+
+321-555-4350
+123.345.9824
+123*345*9824
+123+345+9824
+123@345@9824
+
+TypeError: expected string or bytes - like object
+
+Mr.Schafer
+mRs.Levki
+Mr Smith
+Ms Davis
+ms Larry
+Mrs. Robinson
+Mr. T
+"""
+sentence = 'Start a sentence and then bring it to an end.'
 
 
-with open('copy.csv', 'w') as wr_csv_file:
+urls = """
+https://www.google.com
+http://coreyms.com
+https://youtube.com
+https://www.nasa.gov
+"""
 
-    csv_writer = csv.writer(wr_csv_file, delimiter='\t')
+teachers = """
+Mr.Schafer
+mRs.Levki
+Mr Smith
+Ms Davis
+ms Larry
+Mrs. Robinson
+Mr. T
+"""
 
-    for row in sequence:
-        csv_writer.writerow(row)
+
+# my_pattern = re.compile(r'(https?://)(www\.)?(\w+)(\.\w+)')
+
+urls = """
+		https://www.google.com
+		http://coreyms.com
+		https://youtube.com
+		https://www.nasa.gov
+		"""
+
+my_pattern = re.compile(r'(https?://)(www\.)?(\w+)(\.\w+)')
+
+match = my_pattern.search(urls)
+
+#							OR
+
+match = re.search(r'(https?://)(www\.)?(\w+)(\.\w+)', urls)
+
+print(match)

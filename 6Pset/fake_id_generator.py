@@ -1,5 +1,7 @@
 
 import random
+import csv
+from sys import argv
 
 first_names = ['Aron', 'Andy', 'Arnold', 'Abby', 'Arthur', 'Alice', 'Ben', 'Betty', 'Bob', 'Beth', 'Bryce', 'Britny', 'Christoper', 'Catherine', 'Derek', 'Diana', 'Eric', 'Elisabeth', 'Fred', 'Fiona', 'Greg', 'Gabby', 'Harris', 'Hana', 'Ivan', 'Ina', 'Jack', 'Jasmine', 'Kyle', 'Kim', 'Louis', 'Lucy', 'Martin', 'Marry', 'Nolan', 'Nancy', 'Opera', 'Oliver', 'Patrick', 'Penny', 'Reagan', 'Rachel', 'Samantha', 'Steve', 'Tom', 'Tabia', 'Uler', 'Ulyana', 'Valerie', 'Vick', 'Wenston', 'Wendy', 'Xavier', 'Xandra', 'Zamayla', 'Zach', 'Ryan', 'Percy', 'Casey', 'Erika', 'Domingo', 'Douglas', 'Sandra', 'Cedric', 'Lawrence', 'Melissa', 'Alan', 'Zachary', 'Barry', 'Clint', 'Monica', 'Homer', 'Melba', 'Mary', 'Eduardo', 'Al', 'Snyder', 'Ellis', 'Chapman', 'Hubbard', 'Armstrong', 'Mack', 'Figueroa', 'Reese', 'White', 'Conner', 'Haskell', 'Lin', 'Solomon', 'Shanks', 'Cranford', 'Kincaid', 'Barger', 'Mcfadden', 'Franz', 'Hendrickson', 'Raven', 'Treena', 'Liz', 'Carolin', 'Avril', 'Amal', 'Lucina', 'Myrtice', 'Shanelle', 'Ela']
 last_names = ['Reed', 'Todd', 'Phelps', 'Arroyo', 'James', 'Nash', 'Bennett', 'Hays', 'Kane', 'Thornton', 'Pacheco', 'Hobbs', 'Choi', 'David', 'Levy', 'Walker', 'Barajas', 'Petersen', 'Reyes', 'Kramer', 'Pratt', 'Bell', 'Crane', 'Villarreal', 'Macias', 'Fritz', 'Arellano', 'Walsh', 'Gallegos', 'Tanner', 'Berg', 'Freeman', 'Hess', 'Lowery', 'Vaughan', 'Russo', 'Cummings', 'Gregory', 'Fischer', 'Holden', 'Zavala', 'Howard', 'Li', 'Singleton', 'York', 'Taylor', 'James', 'Goodman', 'Lang', 'Dean', 'Meyers', 'Frye', 'Duncan', 'Costa', 'Trevino', 'Wang', 'Bryant', 'Turner', 'Ramirez', 'Porter', 'Payne', 'Huff', 'Woods', 'Garrett', 'Hodges', 'Brooks', 'Cole', 'Mann', 'Fletcher', 'Pearson', 'Hawkins', 'Mckenzie', 'Sutton', 'Owens', 'Pierce', 'Rowe', 'Lance', 'Mona', 'Scott', 'Jorge', 'Forrest', 'Marian', 'Candice', 'Tricia', 'Allan', 'Dexter']
@@ -10,7 +12,7 @@ city_names = ['Arlington', 'Miami', 'Pittsburgh', 'Oakland', 'Reno', 'Modesto', 
 
 def get_fake_id(amount=1):
 
-    # Creates 'amount' identities. Stores them in a list. Returns the list.
+    # Creates 'amount' identities. Stores them in a list of lists. Returns the list of lists.
 
     identities = []
     for i in range(1, amount + 1):
@@ -30,15 +32,29 @@ def get_fake_id(amount=1):
 
         email = f'{first.lower()}_{last.lower()}@bogusemail.com'
 
-        identities.append(f'ID #{i}:\n{first} {last}\n{phone}\n{address}\n{email}')
+        # identities.append(f'ID #{i}:\n{first} {last}\n{phone}\n{address}\n{email}')
+        identities.append([f'{i}', f'{first}', f'{last}', f'{phone}', f'{address}', f'{email}'])
 
     return(identities)
 
 
 def main():
-    name_list = get_fake_id()
-    for identity in name_list:
-        print(identity, end='\n\n')
+
+    # Generates fake IDs and writes them to a CSV file (seperated by tabulations).
+
+    if len(argv) != 2:
+        amount = int(input('Number of IDs to be generated: '))
+    else:
+        amount = int(argv[1])
+    identities = get_fake_id(amount)
+    with open('fake_people.csv', 'w') as wr_csv_file:
+
+        csv_writer = csv.writer(wr_csv_file, delimiter='\t')
+
+        csv_writer.writerow(['id', 'firstname', 'lastname', 'phone', 'address', 'email'])
+
+        for ID in identities:
+            csv_writer.writerow(ID)
 
 
 if __name__ == '__main__':
