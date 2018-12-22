@@ -1,31 +1,11 @@
-id	firstname	lastname	phone			address										email
-1	Bryce		Mckenzie	199-555-9510	282 Cherry Lane, Chandler PW 58784			bryce_mckenzie@bogusemail.com
-2	Ina			Kramer		238-555-7647	452 5th Street, Riverside MP 78927			ina_kramer@bogusemail.com
-3	Solomon		Barajas		570-555-3957	469 Route 44, New Orleans PR 65562			solomon_barajas@bogusemail.com
-4	Gabby		Porter		349-555-4662	731 5th Street East, Toledo NE 73682		gabby_porter@bogusemail.com
-5	Andy		Reyes		636-555-6355	862 Broad Street West, Omaha NM 19466		andy_reyes@bogusemail.com
-6	White		Fischer		157-555-9769	998 Cherry Lane, New Orleans RI 42333		white_fischer@bogusemail.com
-7	Ben			Turner		834-555-4069	847 Buttonwood Drive, Glendale HI 59786		ben_turner@bogusemail.com
-8	Derek		Hobbs		541-555-6798	410 Garfield Avenue, Milwaukee LA 96499		derek_hobbs@bogusemail.com
-9	Melba		Arroyo		585-555-7254	209 Route 29, Portland HI 33134				melba_arroyo@bogusemail.com
-10	Liz			Bell		637-555-9760	222 Virginia Avenue, Riverside MD 67533		liz_bell@bogusemail.com
-11	Chapman		Meyers		942-555-1966	683 Route 20, Arlington MT 42623			chapman_meyers@bogusemail.com
-12	Mcfadden	Porter		852-555-5469	555 Route 44, Anaheim NJ 40590				mcfadden_porter@bogusemail.com
-13	Christoper	Bell		851-555-5649	356 Country Club Drive, Modesto NJ 41642	christoper_bell@bogusemail.com
-14	Lucina		Wang		235-555-8288	113 Catherine Street, New Orleans UT 38424	lucina_wang@bogusemail.com
-15	Fred		Reed		779-555-5221	332 5th Street East, Chesapeake ND 23942	fred_reed@bogusemail.com
-16	Chapman		Dean		730-555-5200	648 Clay Street, Jacksonville AK 12810		chapman_dean@bogusemail.com
-17	Mcfadden	Hays		448-555-8097	411 Front Street North, Omaha NC 57553		mcfadden_hays@bogusemail.com
-18	Eduardo		Fritz		211-555-2577	913 5th Street, Kansas City NY 45515		eduardo_fritz@bogusemail.com
-19	Zachary		Singleton	600-555-9650	181 Beechwood Drive, Portland LA 35056		zachary_singleton@bogusemail.com
-20	Christoper	Scott		563-555-2877	483 Warren Street, Boston LA 43645			christoper_scott@bogusemail.com
-21	Elisabeth	Tricia		853-555-3788	361 Street Road, Toledo AS 52764			elisabeth_tricia@bogusemail.com
-22	Aron		Pratt		103-555-1240	223 Laurel Drive, Garland OK 49951			aron_pratt@bogusemail.com
-23	Harris		Scott		568-555-3799	696 Harrison Street, Chandler MH 27100		harris_scott@bogusemail.com
-24	Penny		Zavala		876-555-6563	988 Orange Street, Lubbock AS 55872			penny_zavala@bogusemail.com
-25	Percy		Fischer		942-555-9934	900 5th Street, Portland CT 93279			percy_fischer@bogusemail.com
-26	Diana		Woods		982-555-1580	548 Howard Street, Denver OH 60389			diana_woods@bogusemail.com
-27	Wendy		York		736-555-5330	612 Broad Street West, Garland RI 39860		wendy_york@bogusemail.com
-28	Fred		Bennett		337-555-6895	774 Cedar Lane, Modesto OR 25681			fred_bennett@bogusemail.com
-29	Beth		Arellano	277-555-2855	441 Buttonwood Drive, Riverside MS 15941	beth_arellano@bogusemail.com
-30	Harris		Barajas		693-555-1158	347 Williams Street, Toledo TX 50816		harris_barajas@bogusemail.com
+id    firstname    lastname    phone           address                                        email
+1     Bryce        Mckenzie    199-555-9510    282 Cherry Lane, Chandler PW 58784             bryce_mckenzie@bogusemail.com
+2     Ina          Kramer      238-555-7647    452 5th Street, Riverside MP 78927             ina_kramer@bogusemail.com
+3     Solomon      Barajas     570-555-3957    469 Route 44, New Orleans PR 65562             solomon_barajas@bogusemail.com
+4     Gabby        Porter      349-555-4662    731 5th Street East, Toledo NE 73682           gabby_porter@bogusemail.com
+5     Andy         Reyes       636-555-6355    862 Broad Street West, Omaha NM 19466          andy_reyes@bogusemail.com
+6     White        Fischer     157-555-9769    998 Cherry Lane, New Orleans RI 42333          white_fischer@bogusemail.com
+7     Ben          Turner      834-555-4069    847 Buttonwood Drive, Glendale HI 59786        ben_turner@bogusemail.com
+8     Derek        Hobbs       541-555-6798    410 Garfield Avenue, Milwaukee LA 96499        derek_hobbs@bogusemail.com
+9     Melba        Arroyo      585-555-7254    209 Route 29, Portland HI 33134                melba_arroyo@bogusemail.com
+10    Liz          Bell        637-555-9760    222 Virginia Avenue, Riverside MD 67533        liz_bell@bogusemail.com
