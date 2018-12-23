@@ -1,70 +1,81 @@
 
-import re
 
-text = """
-abcdefghijklmnopqrstuvwxyz
-ABCDEFGHIJKLMNOPQRSTUVWXYZ
-0123456789
+# try:
+#     f = open('t.txts')
 
-Ha Haha
+# except FileNotFoundError:
+#     print('File dun Exist buddy.')
 
-Meta Characters (that need to be escaped):
-. ^ $ * + ? { } [ ] \ | ( )
+# except SyntaxError:
+#     print('Big Noob.')
 
-ayk.com
+# except Exception:
+#     print('Can\'t Code ?')
 
-321-555-4350
-123.345.9824
-123*345*9824
-123+345+9824
-123@345@9824
+# else:
+#     print(f.read(), end='')
+#     f.close()
 
-TypeError: expected string or bytes - like object
-
-Mr.Schafer
-mRs.Levki
-Mr Smith
-Ms Davis
-ms Larry
-Mrs. Robinson
-Mr. T
-"""
-sentence = 'Start a sentence and then bring it to an end.'
+# finally:
+#     print('Over.')
 
 
-urls = """
-https://www.google.com
-http://coreyms.com
-https://youtube.com
-https://www.nasa.gov
-"""
+def get_int(prompt_msg):
 
-teachers = """
-Mr.Schafer
-mRs.Levki
-Mr Smith
-Ms Davis
-ms Larry
-Mrs. Robinson
-Mr. T
-"""
+    while True:
+        try:
+            x = int(input(prompt_msg))
+            return (x)
+        except ValueError:
+            pass
 
 
-# my_pattern = re.compile(r'(https?://)(www\.)?(\w+)(\.\w+)')
+def get_string(prompt_msg):
 
-urls = """
-		https://www.google.com
-		http://coreyms.com
-		https://youtube.com
-		https://www.nasa.gov
-		"""
+    while True:
+        try:
+            x = str(input(prompt_msg))
+            return (x)
+        except Exception:
+            pass
 
-my_pattern = re.compile(r'(https?://)(www\.)?(\w+)(\.\w+)')
+				1 / try:
+							# runs the code within this try clause
 
-match = my_pattern.search(urls)
+				2 / except (RuntimeError, TypeError, ...) as e:
+							# if the code in the try clause has an
+							# error, it will come here and run the
+							# code within the except clause
 
-#							OR
+				2 / else:
+							# if no errors were raised in the try
+							# clause, it will run what is in this
+							# else clause
 
-match = re.search(r'(https?://)(www\.)?(\w+)(\.\w+)', urls)
+				3 / finally:
+							# finally, regardless of what happens
+							# the finally clause is run at the
+							# very end of the try statement
 
-print(match)
+
+
+
+
+
+
+		    while True:
+		        try:
+		            x = int(input('Number: '))
+		        except ValueError:
+		            pass
+		        else:
+		        	break
+
+
+
+
+
+
+
+
+
