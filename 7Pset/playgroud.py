@@ -43,21 +43,3 @@ t2 = time.perf_counter()
 
 print(f'Memory (Before): {memory_profiler.memory_usage()}Mb')
 print(f'Took {t2-t1} Seconds')
-
-
-# # 			Credits: Corey Schafer (Youtube)
-
-
-# 			# Lists
-# 			'Memory (Before): [12.21484375]Mb'
-# 			'Memory (Before): [276.66796875]Mb'
-# 			'Took 5.125476114 Seconds'
-
-
-# #						        V.S
-
-
-# 			# Generators
-# 			'Memory (Before): [12.1875]Mb'
-# 			'Memory (Before): [12.2109375]Mb'
-# 			'Took 3.597999999993551e-06 Seconds'
