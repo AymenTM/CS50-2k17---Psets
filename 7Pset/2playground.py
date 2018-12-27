@@ -1,24 +1,30 @@
 
-    from functools import wraps
-
-    def logger(func):
-
-        import logging
-        logging.basicConfig(filename=f'{func.__name__}.log', level=logging.INFO)
-
-        @wraps(func)
-        def wrapper(*args, **kwargs):
-
-            logging.info(f'Ran with args: {args}, and kwargs: {kwargs}')
-            return func(*args, **kwargs)
-
-        return wrapper
-
-    @logger
-    def greet_user(greeting, username):
-        print(f'{greeting}, {username}')
+from functools import wraps
 
 
-greet_user('Hello', 'Tim')
-greet_user('Hi', 'John')
-greet_user('Welcome back', 'Louis')
+def timer(func):
+
+    import time
+
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+
+        t1 = time.perf_counter()
+        value = func(*args, **kwargs)
+        t2 = time.perf_counter()
+        print(f"[Finished '{func.__name__}' in {t2 - t1:.4f}s]")
+
+        return value
+
+    return wrapper
+
+
+@timer
+def do_stuff():
+    for c in ['A', 'B', 'C']:
+        for i in range(1, 5):
+            print(tuple([c, i]), end=', ')
+    print()
+
+
+do_stuff()
