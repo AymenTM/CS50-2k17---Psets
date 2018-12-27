@@ -1,17 +1,18 @@
-# Decorators
+
+# Collection of the Decorators I've made.
 
 from functools import wraps
 
 
-def repeat(times):
-    """ Calls func 'times' times. """
+def repeater(num_times):
+    """Calls func 'num_times' times."""
 
     def decorator(func):
 
         @wraps(func)
         def wrapper(*args, **kwargs):
 
-            for i in range(times):
+            for i in range(num_times):
                 func(*args, **kwargs)
 
         return wrapper
@@ -20,8 +21,8 @@ def repeat(times):
 
 
 def logger(func):
-    """ Logs the call and arguments with which functions were called
-    in a file whose name is that of the function. """
+    """Logs the call and arguments with which functions were called
+    in a file whose name is that of the function."""
 
     import logging
     logging.basicConfig(filename=f'{func.__name__}.log', level=logging.INFO)
@@ -36,7 +37,7 @@ def logger(func):
 
 
 def timer(func):
-    """ Displays the total runtime of a function. """
+    """Displays the total runtime of a function in seconds."""
 
     import time
 
