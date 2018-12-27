@@ -24,13 +24,13 @@ def logger(func):
     """Logs the call and arguments with which functions were called
     in a file whose name is that of the function."""
 
-    import logging
-    logging.basicConfig(filename=f'{func.__name__}.log', level=logging.INFO)
+    from logging import basicConfig, info, INFO
+    basicConfig(filename=f'{func.__name__}.log', level=INFO)
 
     @wraps(func)
     def wrapper(*args, **kwargs):
 
-        logging.info(f'Ran with args: {args}, and kwargs: {kwargs}')
+        info(f"Ran '{func.__name__}' with args: {args}, and kwargs: {kwargs}")
         return func(*args, **kwargs)
 
     return wrapper
@@ -39,14 +39,14 @@ def logger(func):
 def timer(func):
     """Displays the total runtime of a function in seconds."""
 
-    import time
+    from time import perf_counter
 
     @wraps(func)
     def wrapper(*args, **kwargs):
 
-        t1 = time.perf_counter()
+        t1 = perf_counter()
         value = func(*args, **kwargs)
-        t2 = time.perf_counter()
+        t2 = perf_counter()
         print(f"[Finished '{func.__name__}' in {t2 - t1:.4f}s]")
 
         return value
