@@ -1,12 +1,16 @@
 
-from collections import namedtuple
+class Employee:
 
-Color = namedtuple('RGB', ['red', 'green', 'blue'])
+    def __init__(self, first, last, pay):
 
-orange = Color(255, 153, 81)
+        self.first = first
+        self.last = last
+        self.pay = pay
+        self.email = f'{first}.{last}@company.com'
 
-print(orange)
+    def fullname(self):
 
-print(orange.red)
-print(orange.green)
-print(orange.blue)
+        return f'{self.first} {self.last}'
+
+
+emp_1 = Employee('James', 'Lorry', 60000)
