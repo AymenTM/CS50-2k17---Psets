@@ -1,10 +1,12 @@
 
-from decorators import logger
+from collections import namedtuple
 
+Color = namedtuple('RGB', ['red', 'green', 'blue'])
 
-@logger
-def say_hi():
-    print('hi')
+orange = Color(255, 153, 81)
 
+print(orange)
 
-say_hi()
+print(orange.red)
+print(orange.green)
+print(orange.blue)
