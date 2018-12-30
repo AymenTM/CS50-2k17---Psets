@@ -1,4 +1,5 @@
 
+
 class Employee:
 
     num_employees = 0
@@ -24,9 +25,8 @@ class Employee:
         first, last, pay = string.split('-')
         return cls(first, last, pay)
 
-
-emp_1 = Employee.from_string('Jack-Dorsee-70000')
-
-print(emp_1.first)
-print(emp_1.last)
-print(emp_1.pay)
+    @staticmethod
+    def is_workday(day):
+        if day.weekday() == 5 or day.weekday() == 6:
+            return False
+        return True
