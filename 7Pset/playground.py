@@ -1,5 +1,4 @@
 
-
 class Employee:
 
     num_employees = 0
@@ -30,3 +29,54 @@ class Employee:
         if day.weekday() == 5 or day.weekday() == 6:
             return False
         return True
+
+
+class Developper(Employee):
+
+    raise_amount = 1.10
+
+    def __init__(self, first, last, pay, prog_lang):
+
+        Employee.__init__(self, first, last, pay)
+        self.prog_lang = prog_lang
+
+
+class Manager(Employee):
+
+    raise_amount = 1.10
+
+    def __init__(self, first, last, pay, employees_managed=None):
+
+        super().__init__(first, last, pay)
+        if employees_managed == None:
+            self.employees_managed = []
+        else:
+            self.employees_managed = employees_managed
+
+    def add_emp(self, emp):
+        if emp not in self.employees_managed:
+            self.employees_managed.append(emp)
+
+    def remove_emp(self, emp):
+        if emp in self.employees_managed:
+            self.employees_managed.remove(emp)
+
+    def print_emps(self, ):
+        for emp in self.employees_managed:
+            print(f'--> {emp.fullname()}')
+
+
+emp_1 = Employee('Steve', 'Jobs', 65000)
+dev_1 = Developper('Corey', 'Schafer', 95000, 'Python')
+mgr_1 = Manager('Chris', 'Olinder', 70000, None)
+
+print(emp_1.email)
+print(dev_1.email)
+print(mgr_1.email)
+
+print()
+
+mgr_1.add_emp(dev_1)
+mgr_1.remove_emp(dev_1)
+mgr_1.add_emp(emp_1)
+mgr_1.print_emps()
