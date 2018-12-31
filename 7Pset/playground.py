@@ -30,6 +30,18 @@ class Employee:
             return False
         return True
 
+    def __repr__(self):
+        return (f'Employee({self.first}, {self.last}, {self.pay})')
+
+    def __str__(self):
+        return (f'{self.first} {self.last} - {self.email} - ${self.pay}/yr')
+
+    def __add__(self, other):
+        return (self.pay + other.pay)
+
+    def __len__(self):
+        return len(self.fullname())
+
 
 class Developper(Employee):
 
@@ -69,14 +81,3 @@ class Manager(Employee):
 emp_1 = Employee('Steve', 'Jobs', 65000)
 dev_1 = Developper('Corey', 'Schafer', 95000, 'Python')
 mgr_1 = Manager('Chris', 'Olinder', 70000, None)
-
-print(emp_1.email)
-print(dev_1.email)
-print(mgr_1.email)
-
-print()
-
-mgr_1.add_emp(dev_1)
-mgr_1.remove_emp(dev_1)
-mgr_1.add_emp(emp_1)
-mgr_1.print_emps()
