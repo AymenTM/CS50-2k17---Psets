@@ -5,7 +5,7 @@ class Teacher:
 
     def __init__(self, name, subject):
 
-        self._name = name
+        self.name = name
         self._subject = subject
 
     @property
