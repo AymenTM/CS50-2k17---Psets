@@ -1,45 +1,21 @@
 
-# Context Managers
-
-
-class File:
-
-    def __init__(self, filename, mode):
-
-        self.filename = filename
-        self.mode = mode
-
-    def __enter__(self):
-
-        self.fd = open(self.filename, self.mode)
-        return self.fd
-
-    def __exit__(self, exc_type, exc_val, traceback):
-
-        self.fd.close()
-        return True
-
+# Context Manager Practical Example
 
 from contextlib import contextmanager
-
+import os
 
 @contextmanager
-def open_file(filename, mode):
+def change_dir(destination):
 
     try:
-        fd = open(filename, mode)
-        yield fd
+        cwd = os.getcwd()
+        os.chdir(destination)
+        yield
 
     finally:
-        fd.close()
+        os.chdir(cwd)
 
+        with change_dir('Sample-Dir-One'):
 
-with open_file('decorators.py', 'r') as fd:
-
-    print(fd.read())
-
-
-# with something_that_returns_a_context_manager as my_resource:
-
-    #		    do something with my resource
-    #			...
+            print(os.listdir())
+#	 		    ...
