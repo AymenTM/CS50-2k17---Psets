@@ -1,33 +1,18 @@
 
-# To understand
+# Image Manipulation using Pillow's Image Module
 
-my_list = [1, 2, 3, 4, 5]
+from PIL import Image
+import os
 
-for i in my_list:
-    print(i)
-    if i == 7:
-        break
-else:
-    print("Didnt hit the 'break' statement :/")
+os.mkdir('./1000/')
+new_size = (1000, 1000)
 
+for file in os.listdir(path='.'):
 
-# Example
+    if file.endswith('.jpeg'):
 
-from random import choice
+        fn, fx = os.path.splitext(file)
 
-
-def find_index(to_search, target):
-
-    for i, value in enumerate(to_search):
-        if value == target:
-            break
-    else:
-        return 'not found'
-    return f'index at {i}'
-
-
-all_users = ['Steve', 'Rick', 'David', 'Maurice', 'Samantha', 'Derek']
-valid_users = ['Steve', 'Rick', 'David']
-name = choice(all_users)
-
-print(f'{name.upper()} is {find_index(valid_users, name)}')
+        img = Image.open(file)
+        img.thumbnail(new_size)
+        img.save(f'1000/{fn}_1000.png')
