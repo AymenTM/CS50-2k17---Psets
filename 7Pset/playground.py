@@ -1,86 +1,65 @@
 
-# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
+# Iterators  & Iterables
+
+# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 
 
-# s1 = {1, 2, 3, 4, 5}
-# s2 = {11, 12, 13, 14, 15}
+class myRange:
 
-# s1.add(6)
-# s1.update([7, 8, 9, 10], s2)
+    def __init__(self, start, end):
+        self.value = start
+        self.end = end
 
-# print(s1)
+    def __iter__(self):
+        return self
 
-
-# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
-
-# s1 = {1, 2, 3, 4, 5}
-
-# s1.remove(4)
-# s1.discard(5)
-
-# print(s1)
+    def __next__(self):
+        if self.value >= self.end:
+            raise StopIteration
+        current = self.value
+        self.value += 1
+        return current
 
 
-# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
+# example of an object that is both an iterator and iterable
+# 1) we can iterate through its values
+# 2) it remembers where it left off in the iteration and can get the next value in the iterable
+# nums = myRange(3, 10)
 
-# s1 = {1, 2, 3}
-# s2 = {2, 3, 4}
-# s3 = {3, 4, 5}
-
-# s4 = s1.intersection(s2)
-# s5 = s1.intersection(s2, s3)
-
-# print(s4)
-# print(s5)
+# for i in nums:
+# print(i)
 
 
-# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
+# print(next(nums))
+# print(next(nums))
+# print(next(nums))
+# print(next(nums))
+# print(next(nums))
+# print(next(nums))
+# ...
 
 
-# s1 = {1, 2, 3}
-# s2 = {2, 3, 4}
-# s3 = {3, 4, 5}
+# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 
-# s4 = s1.difference(s2)
-
-
-# print(s4)
-
-# {1}
+def myRangeGenerator(current, end):
+    while current < end:
+        yield current
+        current += 1
 
 
-# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
+nums = myRangeGenerator(1, 10)
 
-# s1 = {1, 2, 3}
-# s2 = {2, 3, 4}
-
-# s3 = s1.symmetric_difference(s2)
-
-# print(s3)
-
-# {1, 4}
+for i in nums:
+    print(i)
 
 
-# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
-
-employees = ['Corey', 'Jim', 'Steven', 'April', 'Judy', 'Jenn', 'John', 'Jane']
-
-gym_members = ['Corey', 'April', 'John']
-
-developpers = ['Corey', 'Steven', 'April', 'Judy', 'Jane']
-
-
-# gym member and developper
-result = set(gym_members).intersection(developpers)
-print(result)
-
-# neither gym member and neither developper
-result = set(employees).difference(gym_members, developpers)
-print(result)
+# print(next(nums))
+# print(next(nums))
+# print(next(nums))
+# print(next(nums))
+# print(next(nums))
+# print(next(nums))
+# ...
 
 
-cpy = developpers.copy()
-cpy.add('Lucy')
-
-print(cpy)
-print(developpers)
+# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
