@@ -3,9 +3,10 @@ from bs4 import BeautifulSoup
 from robobrowser import RoboBrowser
 
 import re
+import os
 import csv
+import datetime
 
-import config
 from piscine import USERNAMES
 
 
@@ -15,13 +16,13 @@ browser = RoboBrowser(parser='html5lib')
 browser.open('https://signin.intra.42.fr/users/sign_in')
 
 form = browser.get_form()
-form['user[login]'] = config.USER
-form['user[password]'] = config.PASS
+form['user[login]'] = os.environ.get('USER')
+form['user[password]'] = os.environ.get('PASS')
 
 browser.submit_form(form)
 
 
-# Retrieve and Store User Info — — — — — — — — — — — — — — — — — —
+# Retrieving and Storing User Info — — — — — — — — — — — — — — — —
 
 all_user_info = []
 
@@ -42,15 +43,18 @@ for username in USERNAMES:
     )
 
 
-# Sort the Users by Level — — — — — — — — — — — — — — — — — — — —
+# Sorting the Users by Level — — — — — — — — — — — — — — — — — — —
 
 def get_user_lvl(user):
     return user['level']
 
+
 all_user_info.sort(key=get_user_lvl, reverse=True)
 
 
-# Write to file the Result — — — — — — — — — — — — — — — — — — — —
+# Writing the Result to a CSV File — — — — — — — — — — — — — — — —
+
+cur_datetime = datetime.datetime.today().strftime('%b/%d/%Y')
 
 with open('oct2018.csv', 'w') as f:
 
@@ -58,10 +62,8 @@ with open('oct2018.csv', 'w') as f:
 
     csv_writer = csv.writer(f, delimiter=',')
 
-    csv_writer.writerow(['Rank', 'Username', 'Level'])
+    csv_writer.writerow(['Rank', 'Username', 'Level', 'Last Updated'])
 
     for user in all_user_info:
-        csv_writer.writerow([str(n), user['username'], user['level']])
+        csv_writer.writerow([str(n), user['username'], user['level'], cur_datetime])
         n += 1
-
-# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
