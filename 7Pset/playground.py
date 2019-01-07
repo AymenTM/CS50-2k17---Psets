@@ -8,6 +8,7 @@ import csv
 import config
 from piscine import USERNAMES
 
+
 # Logging Into a 42 Account — — — — — — — — — — — — — — — — — — —
 
 browser = RoboBrowser(parser='html5lib')
@@ -19,7 +20,8 @@ form['user[password]'] = config.PASS
 
 browser.submit_form(form)
 
-# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
+
+# Retrieve and Store User Info — — — — — — — — — — — — — — — — — —
 
 all_user_info = []
 
@@ -40,17 +42,26 @@ for username in USERNAMES:
     )
 
 
+# Sort the Users by Level — — — — — — — — — — — — — — — — — — — —
+
 def get_user_lvl(user):
     return user['level']
 
-
 all_user_info.sort(key=get_user_lvl, reverse=True)
+
+
+# Write to file the Result — — — — — — — — — — — — — — — — — — — —
 
 with open('oct2018.csv', 'w') as f:
 
+    n = 1
+
     csv_writer = csv.writer(f, delimiter=',')
 
-    csv_writer.writerow(['Username', 'Level'])
+    csv_writer.writerow(['Rank', 'Username', 'Level'])
 
     for user in all_user_info:
-        csv_writer.writerow([user['username'], user['level']])
+        csv_writer.writerow([str(n), user['username'], user['level']])
+        n += 1
+
+# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
