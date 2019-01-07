@@ -1,4 +1,6 @@
 
+# Learning about the 'itertools' module functions/classes/methods.
+
 import itertools
 
 # counter = itertools.count(start=0, step=1)
