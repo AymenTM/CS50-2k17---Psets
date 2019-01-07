@@ -10,7 +10,14 @@ import datetime
 from piscine import USERNAMES
 
 
-# Logging Into a 42 Account — — — — — — — — — — — — — — — — — — —
+# Get Piscine Month & Year — — — — — — — — — — — — — — — — — — —
+
+month = datetime.date.today().strftime('%B')
+year = datetime.date.today().year
+piscine = f'{month}_Piscine_{year}'
+
+
+# Login to a 42 Account — — — — — — — — — — — — — — — — — — — — —
 
 browser = RoboBrowser(parser='html5lib')
 browser.open('https://signin.intra.42.fr/users/sign_in')
@@ -22,7 +29,7 @@ form['user[password]'] = os.environ.get('PASS')
 browser.submit_form(form)
 
 
-# Retrieving and Storing User Info — — — — — — — — — — — — — — — —
+# Retrieve and Store User Info — — — — — — — — — — — — — — — — —
 
 all_user_info = []
 
@@ -43,7 +50,7 @@ for username in USERNAMES:
     )
 
 
-# Sorting the Users by Level — — — — — — — — — — — — — — — — — — —
+# Sort Users by Level — — — — — — — — — — — — — — — — — — — — —
 
 def get_user_lvl(user):
     return user['level']
@@ -52,18 +59,16 @@ def get_user_lvl(user):
 all_user_info.sort(key=get_user_lvl, reverse=True)
 
 
-# Writing the Result to a CSV File — — — — — — — — — — — — — — — —
+# Write the Result to a CSV File — — — — — — — — — — — — — — — —
 
-cur_datetime = datetime.datetime.today().strftime('%b/%d/%Y')
+rank = 1
 
-with open('oct2018.csv', 'w') as f:
-
-    n = 1
+with open(f'{piscine}_Rankings.csv', 'w') as f:
 
     csv_writer = csv.writer(f, delimiter=',')
 
-    csv_writer.writerow(['Rank', 'Username', 'Level', 'Last Updated'])
+    csv_writer.writerow(['Rank', 'Username', 'Level'])
 
     for user in all_user_info:
-        csv_writer.writerow([str(n), user['username'], user['level'], cur_datetime])
-        n += 1
+        csv_writer.writerow([rank, user['username'], user['level']])
+        rank += 1
