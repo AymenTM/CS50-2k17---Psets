@@ -70,5 +70,5 @@ with open(f'{piscine}_Rankings.csv', 'w') as f:
     csv_writer.writerow(['Rank', 'Username', 'Level'])
 
     for user in all_user_info:
-        csv_writer.writerow([rank, user['username'], user['level']])
+        csv_writer.writerow([rank, user['username'], f"{user['level']:.2f}"])
         rank += 1
