@@ -1,4 +1,6 @@
 
+import requests
+
 class Employee:
 
     num_employees = 0
@@ -42,6 +44,13 @@ class Employee:
         if day.weekday() == 5 or day.weekday() == 6:
             return False
         return True
+
+    def monthly_schedule(self, month):
+        response = requests.get(f'http://company.com/{self._last}/{month}')
+        if response.ok:
+            return response.text
+        else:
+            return 'Bad Response!'
 
     def __repr__(self):
         return (f'Employee({self._first}, {self._last}, {self._pay})')
