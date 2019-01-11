@@ -1,136 +1,75 @@
 
-# UNIT TESTING w/ the 'unittest' Module
+# LOGGING w/ the 'logging' Module
 
+import logging
+import employee
 
-# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
+# Setting Up Logger — — — — — — — — — — — — — — — — — — — — — — — — — — —
 
-"""File called: myOperations. It contains functions we
-want to test"""
+formatter = logging.Formatter(
+    '%(levelname)s:%(name)s: %(filename)s, line %(lineno)d:\t%(message)s')
 
+file_handler = logging.FileHandler('playground.log', mode='a')
+file_handler.setFormatter(formatter)
+file_handler.setLevel(logging.DEBUG)
 
-# def add(x, y):
-#     """Add Function"""
-#     return x + y
+logger = logging.getLogger(name=__name__)
+logger.addHandler(file_handler)
+logger.setLevel(logging.DEBUG)
 
+# Setting Up StreamHandler — — — — — — — — — — — — — — — — — — — — — — —
 
-# def sub(x, y):
-#     """Subtract Function"""
-#     return x - y
+stream_handler = logging.StreamHandler(stream=None)
+stream_handler.setFormatter(formatter)
+stream_handler.setLevel(logging.ERROR)
 
-
-# def mul(x, y):
-#     """Multiply Function"""
-#     return x * y
-
-
-# def div(x, y):
-#     """Divide Function"""
-#     if y == 0:
-#     	raise ValueError(" Can not divde by zero!")
-#     return x / y
-
+logger.addHandler(stream_handler)
 
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 
 
-"""Test File (seperate from 'myOperations' the file containing
-the functions)"""
+def add(x, y):
+    """Add Function"""
+    return x + y
 
 
-# import unittest
-# import myOperations
+def sub(x, y):
+    """Subtract Function"""
+    return x - y
 
 
-# class TestCalc(unittest.TestCase):
-
-#     def test_add(self):
-#         self.assertEqual(myOperations.add(10, 5), 15)
-#         self.assertEqual(myOperations.add(4, 5), 9)
-#         self.assertEqual(myOperations.add(-1, 1), 0)
-#         self.assertEqual(myOperations.add(-1, -1), -2)
-
-#     def test_sub(self):
-#         self.assertEqual(myOperations.sub(10, 5), 5)
-#         self.assertEqual(myOperations.sub(4, 5), -1)
-#         self.assertEqual(myOperations.sub(-1, 1), -2)
-#         self.assertEqual(myOperations.sub(-1, -1), 0)
-
-#     def test_mul(self):
-#         self.assertEqual(myOperations.mul(10, 5), 50)
-#         self.assertEqual(myOperations.mul(4, 5), 20)
-#         self.assertEqual(myOperations.mul(-1, 1), -1)
-#         self.assertEqual(myOperations.mul(-1, -1), 1)
-
-#     def test_div(self):
-#         self.assertEqual(myOperations.div(10, 5), 2)		# Tests for output
-#         self.assertEqual(myOperations.div(4, 5), 0.8)
-#         self.assertEqual(myOperations.div(-1, 1), -1)
-#         self.assertEqual(myOperations.div(-1, -1), 1)
-#         self.assertEqual(myOperations.div(5, 2), 2.5)
-
-#         with self.assertRaises(ValueError):					# Tests for Execption
-#             myOperations.div(10, 0)
+def mul(x, y):
+    """Multiply Function"""
+    return x * y
 
 
-# if __name__ == '__main__':
-#     unittest.main()
-
+def div(x, y):
+    """Divide Function"""
+    try:
+        result = x / y
+    except ZeroDivisionError:
+        logger.error(f'Tried to divide by zero!', exc_info=0)
+    else:
+        return result
 
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 
-# Employee Class Unit Test
+num_1 = 20
+num_2 = 0
+
+add_result = add(num_1, num_2)
+logger.debug(f'Add: {num_1} + {num_2} = {add_result}')
 
 
-import unittest
-from employeeClass import Employee
+sub_result = sub(num_1, num_2)
+logger.debug(f'Sub: {num_1} - {num_2} = {sub_result}')
 
 
-class TestEmployeeClass(unittest.TestCase):
-
-    def setUp(self):
-        self.emp_1 = Employee('Sam', 'Telji', 50000)
-        self.emp_2 = Employee('Xavier', 'Hubert', 60000)
-
-    def tearDown(self):
-        pass
-
-    def test_email(self):
-
-        self.assertEqual(self.emp_1.email, 'sam.telji@email.com')
-        self.assertEqual(self.emp_2.email, 'xavier.hubert@email.com')
-
-        self.emp_1._first = 'John'
-        self.emp_2._last = 'Bruno'
-
-        self.assertEqual(self.emp_1.email, 'john.telji@email.com')
-        self.assertEqual(self.emp_2.email, 'xavier.bruno@email.com')
+mul_result = mul(num_1, num_2)
+logger.debug(f'Mul: {num_1} * {num_2} = {mul_result}')
 
 
-    def test_fullname(self):
-
-        self.assertEqual(self.emp_1.fullname, 'Sam Telji')
-        self.assertEqual(self.emp_2.fullname, 'Xavier Hubert')
-
-        self.emp_1._first = 'John'
-        self.emp_2._last = 'Bruno'
-
-        self.assertEqual(self.emp_1.fullname, 'John Telji')
-        self.assertEqual(self.emp_2.fullname, 'Xavier Bruno')
-
-
-    def test_raise(self):
-
-        self.assertEqual(self.emp_1._pay, 50000)
-        self.assertEqual(self.emp_2._pay, 60000)
-
-        self.emp_1.apply_raise()
-        self.emp_2.apply_raise()
-
-        self.assertEqual(self.emp_1._pay, 52000)
-        self.assertEqual(self.emp_2._pay, 62400)
-
-
-if __name__ == '__main__':
-    unittest.main()
+div_result = div(num_1, num_2)
+logger.debug(f'Div: {num_1} / {num_2} = {div_result}')
 
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
