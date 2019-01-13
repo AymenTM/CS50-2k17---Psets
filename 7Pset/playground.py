@@ -1,75 +1,78 @@
 
-# LOGGING w/ the 'logging' Module
+# MORE GENERATORS & GENERATOR EXPRESSIONS
 
-import logging
-import employee
+# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 
-# Setting Up Logger — — — — — — — — — — — — — — — — — — — — — — — — — — —
+# def gen_nums(start=0, step=1):
 
-formatter = logging.Formatter(
-    '%(levelname)s:%(name)s: %(filename)s, line %(lineno)d:\t%(message)s')
-
-file_handler = logging.FileHandler('playground.log', mode='a')
-file_handler.setFormatter(formatter)
-file_handler.setLevel(logging.DEBUG)
-
-logger = logging.getLogger(name=__name__)
-logger.addHandler(file_handler)
-logger.setLevel(logging.DEBUG)
-
-# Setting Up StreamHandler — — — — — — — — — — — — — — — — — — — — — — —
-
-stream_handler = logging.StreamHandler(stream=None)
-stream_handler.setFormatter(formatter)
-stream_handler.setLevel(logging.ERROR)
-
-logger.addHandler(stream_handler)
-
-# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
+#     _start = start
+#     while True:
+#         yield _start
+#         _start += step
 
 
-def add(x, y):
-    """Add Function"""
-    return x + y
+# stepper = gen_nums(10, 2)
+
+# >>> for i in range(0, 6):
+# ...    print(stepper.__next__())
+
+# >>> print(stepper.__next__())
+# >>> print(stepper.__next__())
+# >>> print(stepper.__next__())
+# >>> print(stepper.__next__())
+# >>> print(stepper.__next__())
+# >>> print(stepper.__next__())
+
+#       Output:
+
+        # 10
+        # 12
+        # 14
+        # 16
+        # 18
+        # 20
+
+# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
+
+# def gen_nums(start=0, end=51, step=1):
+
+#     _start = start
+#     while _start < end:
+#         yield _start
+#         _start += step
 
 
-def sub(x, y):
-    """Subtract Function"""
-    return x - y
+# >>> stepper = gen_nums(start=10, end=51, step=2)
 
 
-def mul(x, y):
-    """Multiply Function"""
-    return x * y
+# >>> print(list(stepper))
+
+# [10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50]
+
+# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
+
+# GENERATOR EXPRESSION
+# stepper = (x for x in range(10, 51, 2))
+
+# >>> print(stepper)
+# >>> print(list(stepper))
+
+# <generator object <genexpr> at 0x100a15390>
+# [10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50]
+
+# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
+
+stepper = (x for x in range(0, 11, 2))
+
+print(list(stepper))
+
+# [0, 2, 4, 6, 8, 10]
 
 
-def div(x, y):
-    """Divide Function"""
-    try:
-        result = x / y
-    except ZeroDivisionError:
-        logger.error(f'Tried to divide by zero!', exc_info=0)
-    else:
-        return result
+stepper = (x * 5 for x in range(0, 10))
 
-# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
+print(list(stepper))
 
-num_1 = 20
-num_2 = 0
+# [0, 5, 10, 15, 20, 25, 30, 35, 40, 45]
 
-add_result = add(num_1, num_2)
-logger.debug(f'Add: {num_1} + {num_2} = {add_result}')
-
-
-sub_result = sub(num_1, num_2)
-logger.debug(f'Sub: {num_1} - {num_2} = {sub_result}')
-
-
-mul_result = mul(num_1, num_2)
-logger.debug(f'Mul: {num_1} * {num_2} = {mul_result}')
-
-
-div_result = div(num_1, num_2)
-logger.debug(f'Div: {num_1} / {num_2} = {div_result}')
-
-# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
+# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
