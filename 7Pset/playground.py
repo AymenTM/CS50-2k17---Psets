@@ -1,6 +1,4 @@
 
-
-
 # MORE GENERATORS & GENERATOR EXPRESSIONS
 
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
@@ -81,20 +79,20 @@
 
 # PARTIAL Functions
 
-from functools import partial
+# from functools import partial
 
 
-def say_my_full_name(first, last):
+# def say_my_full_name(first, last):
 
-    print(f'{first} {last}')
+#     print(f'{first} {last}')
 
 
-smiths = partial(say_my_full_name, last='Smith')
+# smiths = partial(say_my_full_name, last='Smith')
 
-smiths('John')
-smiths('Tim')
-smiths('Casper')
-smiths('Lula')
+# smiths('John')
+# smiths('Tim')
+# smiths('Casper')
+# smiths('Lula')
 
 # John Smith
 # Tim Smith
@@ -102,3 +100,43 @@ smiths('Lula')
 # Lula Smith
 
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
+
+# COUNTING w/ DICTIONARY
+
+# colors = ['red', 'green', 'red', 'blue', 'green', 'red']
+
+# my_dict = {}
+# for color in colors:
+#     if color not in my_dict:
+#         my_dict[color] = 0
+#     my_dict[color] += 1
+
+# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
+
+# SORTING A DICTIONARY
+
+# my_dict = {'red': 3, 'blue': 1, 'green': 2}
+
+# sorted_dict = dict(sorted(my_dict.items(), reverse=True, key=lambda item: item[1]))
+
+# >>> print(sorted_dict)
+
+# {'blue': 1, 'green': 2, 'red': 3}
+
+# {'red': 3, 'green': 2, 'blue': 1}
+
+# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
+
+
+
+
+
+        import collections
+
+
+
+
+
+
+
+
