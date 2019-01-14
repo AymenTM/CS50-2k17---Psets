@@ -1,142 +1,83 @@
 
-# MORE GENERATORS & GENERATOR EXPRESSIONS
+# DEFAULT DICTIONNARIES
+
+from collections import defaultdict
 
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 
-# def gen_nums(start=0, step=1):
+# >>> d_int = defaultdict(int)
+# >>> d_list = defaultdict(list)
+# >>> d_foo = defaultdict(lambda: '<missing>')
 
-#     _start = start
-#     while True:
-#         yield _start
-#         _start += step
+# >>> d_int
+# defaultdict(<class 'int'>, {})
 
+# >>> d_list
+# defaultdict(<class 'list'>, {})
 
-# stepper = gen_nums(10, 2)
-
-# >>> for i in range(0, 6):
-# ...    print(stepper.__next__())
-
-# >>> print(stepper.__next__())
-# >>> print(stepper.__next__())
-# >>> print(stepper.__next__())
-# >>> print(stepper.__next__())
-# >>> print(stepper.__next__())
-# >>> print(stepper.__next__())
-
-#       Output:
-
-        # 10
-        # 12
-        # 14
-        # 16
-        # 18
-        # 20
+# >>> d_foo
+# defaultdict(<function <lambda> at 0x10d9ca6a8>, {})
 
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 
-# def gen_nums(start=0, end=51, step=1):
+# >>> d_int = defaultdict(int, a=10, b=12, c=13)
+# >>> d_int
+# defaultdict(<class 'int'>, {'a': 10, 'b': 12, 'c': 13})
 
-#     _start = start
-#     while _start < end:
-#         yield _start
-#         _start += step
+#                         OR
 
-
-# >>> stepper = gen_nums(start=10, end=51, step=2)
-
-
-# >>> print(list(stepper))
-
-# [10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50]
+# >>> d_int = defaultdict(int, {'a':10, 'b':12, 'c':13})
+# >>> d_int
+# defaultdict(<class 'int'>, {'a': 10, 'b': 12, 'c': 13})
 
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 
-# GENERATOR EXPRESSION
-# stepper = (x for x in range(10, 51, 2))
+# >>> d_int['a']
+# 10
 
-# >>> print(stepper)
-# >>> print(list(stepper))
+# >>> d_int['d']
+# 0
 
-# <generator object <genexpr> at 0x100a15390>
-# [10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50]
-
-# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
-
-# stepper = (x for x in range(0, 11, 2))
-
-# print(list(stepper))
-
-# [0, 2, 4, 6, 8, 10]
-
-
-# stepper = (x * 5 for x in range(0, 10))
-
-# print(list(stepper))
-
-# [0, 5, 10, 15, 20, 25, 30, 35, 40, 45]
+# >>> d_int
+# defaultdict(<class 'int'>, {'a': 10, 'b': 12, 'c': 13, 'd': 0})
 
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 
-# PARTIAL Functions
+# >>> d_int.default_factory = lambda: 1
 
-# from functools import partial
+# >>> d_int['f']
+# 1
 
-
-# def say_my_full_name(first, last):
-
-#     print(f'{first} {last}')
-
-
-# smiths = partial(say_my_full_name, last='Smith')
-
-# smiths('John')
-# smiths('Tim')
-# smiths('Casper')
-# smiths('Lula')
-
-# John Smith
-# Tim Smith
-# Casper Smith
-# Lula Smith
+# >>> d_int
+# defaultdict(<function <lambda> at 0x10d9ca598>, {'a': 10, 'b': 12, 'c': 13, 'd': 0, 'f': 1})
 
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 
-# COUNTING w/ DICTIONARY
+# Counting Number of Keys (using 'defaultdict's)
 
-# colors = ['red', 'green', 'red', 'blue', 'green', 'red']
+# colors = ['red', 'blue', 'yellow', 'red', 'green', 'blue']
 
-# my_dict = {}
+# 1) (good)
+
+# d = {}
 # for color in colors:
-#     if color not in my_dict:
-#         my_dict[color] = 0
-#     my_dict[color] += 1
+#     d[color] = d.get(color, 0) + 1
+
+# print(d)
+
+# 2) (better & faster)
+
+
+colors = ['red', 'blue', 'yellow', 'red', 'green', 'blue']
+
+d = defaultdict(int)
+for color in colors:
+    d[color] += 1
+
+print(dict(d))
+
+
+# {'red': 2, 'blue': 2, 'yellow': 1, 'green': 1}
 
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
-
-# SORTING A DICTIONARY
-
-# my_dict = {'red': 3, 'blue': 1, 'green': 2}
-
-# sorted_dict = dict(sorted(my_dict.items(), reverse=True, key=lambda item: item[1]))
-
-# >>> print(sorted_dict)
-
-# {'blue': 1, 'green': 2, 'red': 3}
-
-# {'red': 3, 'green': 2, 'blue': 1}
-
-# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
-
-
-
-
-
-        import collections
-
-
-
-
-
-
-
 
