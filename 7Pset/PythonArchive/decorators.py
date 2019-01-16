@@ -2,6 +2,7 @@
 # Collection of the Decorators I've made.
 
 from functools import wraps
+from contextlib import contextmanager
 
 
 def repeater(num_times):
@@ -52,3 +53,28 @@ def timer(func):
         return value
 
     return wrapper
+
+
+@contextmanager
+def ignored(*exceptions):
+    """Ignore exceptions for the code in the block."""
+
+    try:
+        yield
+    except exceptions:
+        pass
+
+
+@contextmanager
+def redirect_stdout(destination):
+    """Temporarily redirect standard output to a file."""
+
+    import sys
+
+    old_stdout = sys.stdout
+    sys.stdout = destination
+    try:
+        yield
+    finally:
+        sys.stdout = old_stdout
+

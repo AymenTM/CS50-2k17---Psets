@@ -152,3 +152,52 @@ print(dict(d))
 #  1: 'A', 2: 'B', 3: 'C'}
 
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
+
+# CHAINMAPS
+
+from collections import ChainMap
+
+# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
+
+d1 = {1: 'A', 2: 'B', 3: 'C'}
+d2 = {4: 'D', 5: 'E', 6: 'F'}
+d3 = {7: 'G', 8: 'H', 9: 'I'}
+
+new_chain = ChainMap(d1, d2, d3)
+
+# >>> chain
+# ChainMap({1: 'A', 2: 'B', 3: 'C'},
+#          {4: 'D', 5: 'E', 6: 'F'},
+#          {7: 'G', 8: 'H', 9: 'I'})
+
+# >>> dict(chain)
+# {7: 'G', 8: 'H', 9: 'I',
+#  4: 'D', 5: 'E', 6: 'F',
+#  1: 'A', 2: 'B', 3: 'C'}
+
+# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
+
+# >>> d1 = {1: 'Jack', 2: 'Sam'}
+# >>> d2 = {3: 'Paul', 4: 'Tim'}
+
+# >>> chain = ChainMap(d1, d2)
+
+# >>> chain
+# ChainMap({1: 'Jack', 2: 'Sam'}, {3: 'Paul', 4: 'Tim'})
+
+# >>> chain[1]
+# 'Jack'
+# >>> chain[2]
+# 'Sam'
+# >>> chain[3]
+# 'Paul'
+# >>> chain[4]
+# 'Tim'
+
+# >>> chain.new_child()
+# ChainMap({}, {1: 'Jack', 2: 'Sam'}, {3: 'Paul', 4: 'Tim'})
+
+# >>> chain.parents
+# ChainMap({3: 'Paul', 4: 'Tim'})
+
+# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
