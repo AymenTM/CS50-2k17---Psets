@@ -6,7 +6,9 @@ from contextlib import contextmanager
 
 
 def repeater(num_times):
-    """Calls func 'num_times' times."""
+    """
+    Calls func 'num_times' times.
+    """
 
     def decorator(func):
 
@@ -22,8 +24,10 @@ def repeater(num_times):
 
 
 def logger(func):
-    """Logs the call and arguments with which functions were called
-    in a file whose name is that of the function."""
+    """
+    Logs the call and arguments with which functions were called
+    in a file whose name is that of the function.
+    """
 
     from logging import basicConfig, info, INFO
     basicConfig(filename=f'{func.__name__}.log', level=INFO)
@@ -38,7 +42,9 @@ def logger(func):
 
 
 def timer(func):
-    """Displays the total runtime of a function in seconds."""
+    """
+    Displays the total runtime of a function in seconds.
+    """
 
     from time import perf_counter
 
@@ -57,7 +63,9 @@ def timer(func):
 
 @contextmanager
 def ignored(*exceptions):
-    """Ignore exceptions for the code in the block."""
+    """
+    Ignore exceptions for the code in the block.
+    """
 
     try:
         yield
@@ -66,15 +74,16 @@ def ignored(*exceptions):
 
 
 @contextmanager
-def redirect_stdout(destination):
-    """Temporarily redirect standard output to a file."""
+def redirect_stdout(fileobj):
+    """
+    Temporarily redirect standard output to a file.
+    """
 
     import sys
 
     old_stdout = sys.stdout
-    sys.stdout = destination
+    sys.stdout = fileobj
     try:
         yield
     finally:
         sys.stdout = old_stdout
-
