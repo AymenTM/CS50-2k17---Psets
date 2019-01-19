@@ -2,7 +2,6 @@
 # Collection of the Decorators I've made.
 
 from functools import wraps
-from contextlib import contextmanager
 
 
 def repeater(num_times):
@@ -32,8 +31,7 @@ def logger(func):
     from logging import basicConfig, info, INFO
     basicConfig(filename=f'{func.__name__}.log', level=INFO)
 
-    @wraps(func)
-    def wrapper(*args, **kwargs):
+
 
         info(f"Ran '{func.__name__}' with args: {args}, and kwargs: {kwargs}")
         return func(*args, **kwargs)
@@ -59,31 +57,3 @@ def timer(func):
         return value
 
     return wrapper
-
-
-@contextmanager
-def ignored(*exceptions):
-    """
-    Ignore exceptions for the code in the block.
-    """
-
-    try:
-        yield
-    except exceptions:
-        pass
-
-
-@contextmanager
-def redirect_stdout(fileobj):
-    """
-    Temporarily redirect standard output to a file.
-    """
-
-    import sys
-
-    old_stdout = sys.stdout
-    sys.stdout = fileobj
-    try:
-        yield
-    finally:
-        sys.stdout = old_stdout

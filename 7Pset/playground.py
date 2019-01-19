@@ -274,214 +274,215 @@
 
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 
-# Money
-rich & poor dad
-4-hour work week
+        # Money
+        rich & poor dad
+        4-hour work week
 
-# Emotional, Social Skill
-48 Laws of Power
-How to Win Friends and Influence People
+        # Emotional, Social Skill
+        48 Laws of Power
+        How to Win Friends and Influence People
 
-# Man
-The Way of the Superior Man
-Man in Search of meaning - victor frankl
-Mastery by george lenard
+        # Man
+        The Way of the Superior Man
+        Man in Search of meaning - victor frankl
+        Mastery by george lenard
 
-# Mind and Stoicism
-Mindfullness for Beginners: Reclaiming the Present Moment and your Life - John Cabedsen
-Enchiridion - Epictetus
-The Obstacle is the Way - Ryan Holiday
+        # Mind and Stoicism
+        Mindfullness for Beginners: Reclaiming the Present Moment and your Life - John Cabedsen
+        Enchiridion - Epictetus
+        The Obstacle is the Way - Ryan Holiday
 
-Recommended Authors:
-Epictetus
-Cenyca
-Marcus Aurelius
-
-# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
-
-        >>> class C:
-        ...     letter = 'c'
-        ...
-
-        >>> getattr(C, 'letter')
-        'c'
-
-        >>> C.letter
-        'c'
+        Recommended Authors:
+        Epictetus
+        Cenyca
+        Marcus Aurelius
 
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 
-        >>> globals()
-        {'__name__': '__main__', '__doc__': None, '__package__': None,
-        '__loader__': <class '_frozen_importlib.BuiltinImporter'>,
-        '__spec__': None, '__annotations__': {},
-        '__builtins__': <module 'builtins' (built-in)>}
+        # >>> class C:
+        # ...     letter = 'c'
+        # ...
+
+        # >>> getattr(C, 'letter')
+        # 'c'
+
+        # >>> C.letter
+        # 'c'
 
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 
-        >>> class C:
-        ...     letter = 'c'
-        ...
-
-        >>> hasattr(C, 'letter')
-        True
-
-# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
-
-        >>> hash('2019')
-        8381135195210278961
-
-        >>> hash('hey John')
-        32976569263748556
-
-        >>> hash(23)
-        23
-
-        >>> hash(9347)
-        9347
-
-        >>> hash(-298437)
-        -298437
+        # >>> globals()
+        # {'__name__': '__main__', '__doc__': None, '__package__': None,
+        # '__loader__': <class '_frozen_importlib.BuiltinImporter'>,
+        # '__spec__': None, '__annotations__': {},
+        # '__builtins__': <module 'builtins' (built-in)>}
 
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 
-        >>> help('itertools.tee')
+        # >>> class C:
+        # ...     letter = 'c'
+        # ...
 
-
-        Help on built-in function tee in itertools:
-
-        itertools.tee = tee(...)
-            tee(iterable, n=2) --> tuple of n independent iterators.
-        (END)
+        # >>> hasattr(C, 'letter')
+        # True
 
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 
-        >>> def say_hi():
-        ...     """Prints 'hi' to screen."""
-        ...     print('hi')
+        # >>> hash('2019')
+        # 8381135195210278961
 
-        >>> help(say_hi)
+        # >>> hash('hey John')
+        # 32976569263748556
 
+        # >>> hash(23)
+        # 23
 
-        Help on function say_hi in module __main__:
+        # >>> hash(9347)
+        # 9347
 
-        say_hi()
-            Prints 'hi' to screen.
-
-# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
-
-        >>> help(list)
-
-        >>> help(bool)
-
-        >>> help(zip)
+        # >>> hash(-298437)
+        # -298437
 
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 
-
-        >>> a = 1
-        >>> b = 0
-
-        >>> id(a)
-        4346801232
-
-        >>> id(b)
-        4346801200
+        # >>> help('itertools.tee')
 
 
-        >>> x = y = 3
+        # Help on built-in function tee in itertools:
 
-        >>> id(x)
-        4346801296
-
-        >>> id(y)
-        4346801296
-
-
-        >>> c = 1
-        >>> d = 0
-        >>> e = 3
-
-        >>> id(c)
-        4346801232
-
-        >>> id(d)
-        4346801200
-
-        >>> id(e)
-        4346801296
-
-
-        >>> L1 = [1, 2, 3, 4]
-        >>> L2 = [1, 2, 3, 4]
-
-        >>> id(L1)
-        4349136136
-
-        >>> id(L2)
-        4349136840
-
+        # itertools.tee = tee(...)
+        #     tee(iterable, n=2) --> tuple of n independent iterators.
+        # (END)
 
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 
-        >>> input('Name: ')
-        Name: _
+        # >>> def say_hi():
+        # ...     """Prints 'hi' to screen."""
+        # ...     print('hi')
 
-        >>> input('Name: ')
-        Name: Jim
-        'Jim'
+        # >>> help(say_hi)
 
-# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 
-        >>> int(10)
-        10
+        # Help on function say_hi in module __main__:
 
-        >>> int('125')
-        125
-
-        >>> int('5A', base=16)
-        90
-
-        >>> int('101', base=2)
-        5
-
-        >>> int('17777777777', base=8)
-        2147483647
-
-        >>> int('7fffffff', base=16)
-        2147483647
+        # say_hi()
+            # Prints 'hi' to screen.
 
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 
-        >>> class C:
-        ...     letter = 'c'
-        ...
+        # >>> help(list)
 
-        >>> inst = C()
+        # >>> help(bool)
 
-        >>> inst
-        <__main__.C object at 0x10373fb70>
-
-        >>> isinstance(inst, C)
-        True
+        # >>> help(zip)
 
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 
-        >>> class Letter(object):
-        ...     pass
-        ...
 
-        >>> class C(Letter):
-        ...     letter = 'c'
-        ...
+#         >>> a = 1
+#         >>> b = 0
 
-        >>> issubclass(C, Letter)
-        True
+#         >>> id(a)
+#         4346801232
 
-        >>> issubclass(C, C)
-        True
+#         >>> id(b)
+#         4346801200
 
-        >>> issubclass(C, object)
-        True
+
+#         >>> x = y = 3
+
+#         >>> id(x)
+#         4346801296
+
+#         >>> id(y)
+#         4346801296
+
+
+#         >>> c = 1
+#         >>> d = 0
+#         >>> e = 3
+
+#         >>> id(c)
+#         4346801232
+
+#         >>> id(d)
+#         4346801200
+
+#         >>> id(e)
+#         4346801296
+
+
+#         >>> L1 = [1, 2, 3, 4]
+#         >>> L2 = [1, 2, 3, 4]
+
+#         >>> id(L1)
+#         4349136136
+
+#         >>> id(L2)
+#         4349136840
+
+
+# # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
+
+#         >>> input('Name: ')
+#         Name: _
+
+#         >>> input('Name: ')
+#         Name: Jim
+#         'Jim'
 
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
+
+        # >>> int(10)
+        # 10
+
+        # >>> int('125')
+        # 125
+
+        # >>> int('5A', base=16)
+        # 90
+
+        # >>> int('101', base=2)
+        # 5
+
+        # >>> int('17777777777', base=8)
+        # 2147483647
+
+        # >>> int('7fffffff', base=16)
+        # 2147483647
+
+# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
+
+        # >>> class C:
+        # ...     letter = 'c'
+        # ...
+
+        # >>> inst = C()
+
+        # >>> inst
+        # <__main__.C object at 0x10373fb70>
+
+        # >>> isinstance(inst, C)
+        # True
+
+# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
+
+        # >>> class Letter(object):
+        # ...     pass
+        # ...
+
+        # >>> class C(Letter):
+        # ...     letter = 'c'
+        # ...
+
+        # >>> issubclass(C, Letter)
+        # True
+
+        # >>> issubclass(C, C)
+        # True
+
+        # >>> issubclass(C, object)
+        # True
+
+# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
+
