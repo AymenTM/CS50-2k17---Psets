@@ -274,28 +274,28 @@
 
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 
-        # Money
-        rich & poor dad
-        4-hour work week
+        # # Money
+        # rich & poor dad
+        # 4-hour work week
 
-        # Emotional, Social Skill
-        48 Laws of Power
-        How to Win Friends and Influence People
+        # # Emotional, Social Skill
+        # 48 Laws of Power
+        # How to Win Friends and Influence People
 
-        # Man
-        The Way of the Superior Man
-        Man in Search of meaning - victor frankl
-        Mastery by george lenard
+        # # Man
+        # The Way of the Superior Man
+        # Man in Search of meaning - victor frankl
+        # Mastery by george lenard
 
-        # Mind and Stoicism
-        Mindfullness for Beginners: Reclaiming the Present Moment and your Life - John Cabedsen
-        Enchiridion - Epictetus
-        The Obstacle is the Way - Ryan Holiday
+        # # Mind and Stoicism
+        # Mindfullness for Beginners: Reclaiming the Present Moment and your Life - John Cabedsen
+        # Enchiridion - Epictetus
+        # The Obstacle is the Way - Ryan Holiday
 
-        Recommended Authors:
-        Epictetus
-        Cenyca
-        Marcus Aurelius
+        # Recommended Authors:
+        # Epictetus
+        # Cenyca
+        # Marcus Aurelius
 
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 
@@ -485,4 +485,26 @@
         # True
 
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
+
+a = [1, 2, 3]
+
+b = iter(a)
+c = iter(b)
+
+print(a)
+print(b)
+print(c)
+print(a is b)
+print(b is c)
+print(c is a)
+
+# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
+
+
+
+
+
+
+
+
 
