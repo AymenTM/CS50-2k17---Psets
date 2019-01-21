@@ -486,24 +486,164 @@
 
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 
-a = [1, 2, 3]
+# a = (x for x in range(1, 4))    # generator
+# b = [1, 2, 3]                   # list
 
-b = iter(a)
-c = iter(b)
-
-print(a)
-print(b)
-print(c)
-print(a is b)
-print(b is c)
-print(c is a)
+# # print(iter(a) is iter(a)) # —> True   # iterator (exhaustable only once)
+# # print(iter(b) is iter(b)) # —> False  # list (exhaustable multiple times)
 
 # — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 
+# from itertools import tee
+
+# class Reiterable(object):
+
+#     def __init__(self, iterator):
+#         self.iterator = iterator
+
+#     def __iter__(self):
+#         self.iterator, copy = tee(self.iterator)
+#         return copy
+
+# a = Reiterable(iter([1, 2, 3]))
+
+# print(f'Sum: {sum(a)}')
+# print('Values:')
+# for i in a:
+#     print(i)
+
+# Sum: 6
+# Values:
+# 1
+# 2
+# 3
+
+# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
+
+# from contextlib import contextmanager
+# from sys import getsizeof
+
+# @contextmanager
+# def timer():
+#     """
+#     Times the execution time of the entire with statement block
+#     and logs it after its excution.
+#     """
+
+#     from time import perf_counter
+
+#     try:
+#         t1 = perf_counter()
+#         yield
+#     except Exception:
+#         pass
+#     finally:
+#         t2 = perf_counter()
+#         print(f"[Finished block in {t2 - t1:.9f}s]")
+
+# a = [x for x in range(1, 10000000)]
+# b = (x for x in range(1, 10000000))
+# c = iter(a)
+# d = range(1, 10000000)
+
+# print(getsizeof(a))
+# print(getsizeof(b))
+# print(getsizeof(c))
+# print(getsizeof(d))
+
+# with timer():
+#     for i in a:
+#         pass
+# with timer():
+#     for i in b:
+#         pass
+# with timer():
+#     for i in c:
+#         pass
+# with timer():
+#     for i in d:
+#         pass
 
 
+# 10 Million Intergers
+# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — 
+# | Type      |  Syntax                           |  Size            |  Speed to Iterate Through          |
+# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — 
+# | List      |  [x for x in range(1, 10000000)]  |  81528056 bytes  |  [Finished block in 0.621161122s]  |
+# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — 
+# | Generator |  (x for x in range(1, 10000000))  |  120  bytes      |  [Finished block in 1.661366191s]  |
+# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — 
+# | Iterator  |  iter(List)                       |  56   bytes      |  [Finished block in 0.581645339s]  |
+# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — 
+# | Range     |  range(1, 10000000)               |  48   bytes      |  [Finished block in 0.931747395s]  |
+# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — 
+
+# 100 Intergers
+# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — 
+# | Type      |  Syntax                           |  Size            |  Speed to Iterate Through          |
+# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — 
+# | List      |  [x for x in range(1, 100)]       |  912 bytes       |  [Finished block in 0.000011855s]  |
+# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — 
+# | Generator |  (x for x in range(1, 100))       |  120  bytes      |  [Finished block in 0.000015490s]  |
+# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — 
+# | Iterator  |  iter(List)                       |  56   bytes      |  [Finished block in 0.000006913s]  |
+# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — 
+# | Range     |  range(1, 100)                    |  48   bytes      |  [Finished block in 0.000008412s]  |
+# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — 
+
+# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
+
+        # >>> a = [1, 2, 3]
+        # >>> b = iter(a)
+
+        # >>> a
+        # [1, 2, 3]
+
+        # >>> b
+        # <list_iterator object at 0x10a69bb70>
+
+# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
+
+        # >>> a = [1, 2, 3, 4, 5]
+
+        # >>> len(a)
+        # 5
+
+        # >>> b = ['John', 'Tom', 'Ben', 'Marc']
+
+        # >>> len(b)
+        # 4
+
+# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
+
+        # # List
+        # >>> a = list([1, 2, 3, 4, 5])
+
+        # >>> a
+        # [1, 2, 3, 4, 5]
 
 
+        # # Set
+        # >>> b = list({'John', 'Tom', 'Ben', 'Marc'})
+
+        # >>> b
+        # ['Marc', 'Ben', 'Tom', 'John']
+
+
+        # # List of Tuples
+        # >>> c = list([('name', 'Jack'), ('age', 23)])
+
+        # >>> c
+        # [('name', 'Jack'), ('age', 23)]
+
+
+        # # Dict
+        # >>> d = list({'name': 'Jack', 'age': 23})
+
+        # >>> d
+        # ['name', 'age']
+
+# — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
 
 
 
