@@ -89,8 +89,3 @@ class Manager(Employee):
     def print_emps(self, ):
         for emp in self.employees_managed:
             print(f'--> {emp.fullname()}')
-
-
-
-emp_1 = Employee('John', '')
-
